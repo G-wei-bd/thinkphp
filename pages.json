@@ -141,6 +141,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/agreement/agreement",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "三方协议",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

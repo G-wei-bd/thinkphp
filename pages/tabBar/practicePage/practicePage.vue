@@ -51,7 +51,7 @@
 						open: false,
 						pages: [{
 								name: '三方协议',
-								url: 'nav-button'
+								url: 'agreement'
 							},
 							{
 								name: '周记',
