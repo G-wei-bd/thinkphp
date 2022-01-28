@@ -55,7 +55,7 @@
 							},
 							{
 								name: '周记',
-								url: 'nav-dot'
+								url: 'weekly'
 							},
 							{
 								name: '月记',

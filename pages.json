@@ -150,6 +150,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/weekly/weekly",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "周记",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
