@@ -14,9 +14,9 @@
 					<uni-list-item title="实习指导老师" rightText="不知道"></uni-list-item>
 					<uni-list-item title="实习进展">
 						<view class="text-warning" slot="footer">
-							<uni-tag text="三方协议" size="small" type="primary" circle></uni-tag>	
-							<uni-tag text="周记" size="small" type="primary" circle></uni-tag>	
-							<uni-tag text="实习材料" size="small" type="primary" circle></uni-tag>	
+							<uni-tag class="footer" text="三方协议" size="small" type="primary" circle></uni-tag>	
+							<uni-tag class="footer" text="周记" size="small" type="primary" circle></uni-tag>	
+							<uni-tag class="footer" text="实习材料" size="small" type="primary" circle></uni-tag>	
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -39,5 +39,7 @@
 </script>
 
 <style>
-
+	.footer{
+		margin-right: 10px;
+	}
 </style>

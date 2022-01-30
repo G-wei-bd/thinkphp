@@ -122,7 +122,7 @@
 
 <style>
 	.selectItem {
-		width: 400px;
+		width: 300px;
 		margin-left: 14px;
 	}
 	.weeklyTable{
