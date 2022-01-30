@@ -25,7 +25,7 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					这是写周记的界面，可以编写周记并提交
+					<textarea focus class="textContainer" placeholder="请输入文字,不少于300字" />
 				</view>
 				<view v-show="current === 1">
 					<view class="weeklyTable">
@@ -38,7 +38,7 @@
 								<uni-th align="center">周记关联时间</uni-th>
 								<uni-th align="center">更多</uni-th>
 							</uni-tr>
-							<uni-tr  v-for="(item,index) in Arr" :key="index">
+							<uni-tr v-for="(item,index) in Arr" :key="index">
 								<uni-td align="center">{{ index + 1 }}</uni-td>
 								<uni-td align="center">{{ item.time }}</uni-td>
 								<uni-td align="center">{{ item.week }}</uni-td>
@@ -113,7 +113,6 @@
 				console.log(this.$refs.table.clearSelection());
 				this.$refs.table.clearSelection();
 				this.selectedIndexs.length = 0;
-				
 			}
 			
 		}
@@ -121,12 +120,19 @@
 </script>
 
 <style>
+	.textContainer{
+		width: 500px;
+		height: 300px;
+		padding: 10px;
+		border: 1px solid #000000;
+		border-radius: 10px;
+		margin: 20px 14px;
+	}
 	.selectItem {
 		width: 300px;
 		margin-left: 14px;
 	}
 	.weeklyTable{
 		margin: 20px 14px;
-		
 	}
 </style>
