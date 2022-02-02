@@ -150,7 +150,7 @@
 
 	.left-window-style {
 		min-height: calc(100vh - var(--top-window-height));
-		background-color: #f8f8f8;
+		background-color: #F8F8F8;
 	}
 
 	.second-menu {
