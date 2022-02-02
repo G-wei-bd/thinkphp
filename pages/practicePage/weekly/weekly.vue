@@ -124,8 +124,8 @@
 		width: 500px;
 		height: 300px;
 		padding: 10px;
-		border: 1px solid #000000;
-		border-radius: 10px;
+		border: 1px solid #999999;
+		border-radius: 5px;
 		margin: 20px 14px;
 	}
 	.selectItem {
