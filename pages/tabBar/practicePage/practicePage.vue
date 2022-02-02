@@ -63,19 +63,19 @@
 							},
 							{
 								name: '我的评价',
-								url: 'nav-search-input'
+								url: 'myAssess'
 							},
 							{
 								name: '企业评定',
-								url: 'nav-transparent'
+								url: 'companyAssess'
 							},
 							{
 								name: '实习报告',
-								url: 'nav-image'
+								url: 'report'
 							},
 							{
 								name: '实习成绩鉴定',
-								url: 'nav-transparent'
+								url: 'results'
 							}
 						]
 					}
