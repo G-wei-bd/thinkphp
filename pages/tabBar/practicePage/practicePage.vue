@@ -59,7 +59,7 @@
 							},
 							{
 								name: '月记',
-								url: 'nav-city-dropdown'
+								url: 'monthly'
 							},
 							{
 								name: '我的评价',

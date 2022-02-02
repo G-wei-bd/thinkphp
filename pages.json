@@ -159,6 +159,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/monthly/monthly",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "月记",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
