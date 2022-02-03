@@ -22,9 +22,9 @@
 	@import "/common/bootstrap.css";
 	@import url("//at.alicdn.com/t/font_3123617_2ymsrh96ido.css");
 	/* 隐藏tabbar */
-	.uni-app--showtopwindow+.uni-tabbar-bottom {
+	/* .uni-app--showtopwindow+.uni-tabbar-bottom {
 		display: none;
-	}
+	} */
 	/* 隐藏所有页面的 navigationBar */
 	.uni-app--showtopwindow uni-page-head {
 	    display: none;
