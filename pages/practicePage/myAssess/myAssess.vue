@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="assessContainer">
-			<view class="cardContainer">
+			<view class="twoParts">
 				<uni-card title="我的实习评价">
 						<uni-list>
 							<uni-list-item title="参与计划" rightText="18实习"></uni-list-item>
@@ -36,8 +36,8 @@
 	.assessContainer{
 		display: flex;
 	}
-	.cardContainer{
-		width: 100vw;
+	.twoParts{
+		width: 100%;
 	}
 	.rightContainer{
 		display: flex;
