@@ -37,45 +37,18 @@
 							open: false,
 							pages: [{
 									name: '个人信息',
-									url: 'practice'
+									url: 'mySetting'
 								},
 								{
 									name: '简历信息',
-									url: 'practice-steps'
+									url: 'resumeInfo'
+								},
+								{
+									name: '学籍信息',
+									url: 'studentStatus'
 								}
 							]
-						},
-					{
-						name: '更多设置',
-						url: 'tabbar',
-						open: false,
-						pages: [
-							{
-								name: '导航栏带自定义按钮',
-								url: 'nav-button'
-							},
-							{
-								name: '导航栏带红点和角标',
-								url: 'nav-dot'
-							},
-							{
-								name: '导航栏带城市选择',
-								url: 'nav-city-dropdown'
-							},
-							{
-								name: '导航栏带搜索框',
-								url: 'nav-search-input'
-							},
-							{
-								name: '透明渐变样式',
-								url: 'nav-transparent'
-							},
-							{
-								name: '导航栏带图片',
-								url: 'nav-image'
-							}
-						]
-					}
+						}
 				]
 			}
 		},

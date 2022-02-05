@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<text>这是我的下的主页面</text>
+		<text>这是学籍信息的修改认证的窗口</text>
 	</view>
 </template>
 

@@ -96,15 +96,6 @@
             
         }
         ,{
-            "path" : "pages/myPage/my/my",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
             "path" : "pages/homePage/main/main",
             "style" :                                                                                    
             {
@@ -200,6 +191,33 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "成绩鉴定",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/myPage/mySetting/mySetting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的设置",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/myPage/resumeInfo/resumeInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "简历信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/myPage/studentStatus/studentStatus",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "学籍信息",
                 "enablePullDownRefresh": false
             }
             

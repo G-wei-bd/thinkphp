@@ -32,7 +32,7 @@
 					index:  '/pages/thirdPage/third/third'
 				}, {
 					tabBar: '/pages/tabBar/myPage/myPage',
-					index:  '/pages/myPage/my/my'
+					index:  '/pages/myPage/mySetting/mySetting'
 				}],
 			}
 		},
