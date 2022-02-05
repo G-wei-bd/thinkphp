@@ -33,14 +33,14 @@
 				list: [
 					{
 							id: 'plan',
-							name: '实习计划开始',
+							name: '我的设置',
 							open: false,
 							pages: [{
-									name: '提交实习计划',
+									name: '个人信息',
 									url: 'practice'
 								},
 								{
-									name: '实习计划进度',
+									name: '简历信息',
 									url: 'practice-steps'
 								}
 							]
