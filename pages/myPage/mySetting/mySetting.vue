@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<view class="text-info">
-			<text>在此处修改您的	个人信息</text>
+		<view class="tipInfo">
+			<text>在此处修改您的个人信息</text>
 		</view>
 		<view class="registerContainer">
 			<form class="form-group" @submit="submitRegister">
@@ -296,6 +296,13 @@
 </script>
 
 <style>
+	.tipInfo{
+		width: 330px;
+		margin: 25px 20px;
+		color: #ff6700;
+		
+	}
+	
 	.registerContainer {
 		width: 100%;
 		margin-left: 20px;
