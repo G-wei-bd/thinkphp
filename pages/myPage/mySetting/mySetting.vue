@@ -1,121 +1,133 @@
 <template>
 	<view>
 		<view class="text-info">
-			<text>请修改个人信息</text>
+			<text>在此处修改您的	个人信息</text>
 		</view>
 		<view class="registerContainer">
 			<form class="form-group" @submit="submitRegister">
-				<view class="userName">
-					<text class="iconfont icon-yonghuming"></text>
-					<text class="small">姓名</text>
-					<input type="text" class="form-control form-control-sm" name="userName" placeholder="姓名"
-						placeholder-class="small" />
-				</view>
+				<view class="allForm">
+					<view class="photo">
+						<text class="iconfont icon-yonghuming"></text>
+						<text class="small">头像</text>
+						<uni-file-picker v-model="inageValue" :image-styles="imageStyles" mode="grid" limit="1"
+							file-mediatype="image" @select="select" @progress="progress" @success="success">
+						</uni-file-picker>
+					</view>
 
-				<view class="gender">
-					<text class="iconfont icon-shenfenrenzheng-xingbie"></text>
-					<text class="small">性别</text>
+					<view class="userName">
+						<text class="iconfont icon-yonghuming"></text>
+						<text class="small">姓名</text>
+						<input type="text" class="form-control form-control-sm" name="userName" placeholder="姓名"
+							placeholder-class="small" />
+					</view>
+
 					<view class="gender">
-						<radio-group name="gender">
-							<radio value="男" color="#0069D9" class="form-control-sm radioBtn" /><text
-								class="small">男</text>
-							<radio value="女" color="#0069D9" class="form-control-sm radioBtn" /><text
-								class="small">女</text>
-						</radio-group>
+						<text class="iconfont icon-shenfenrenzheng-xingbie"></text>
+						<text class="small">性别</text>
+						<view class="gender">
+							<radio-group name="gender">
+								<radio value="男" color="#0069D9" class="form-control-sm radioBtn" /><text
+									class="small">男</text>
+								<radio value="女" color="#0069D9" class="form-control-sm radioBtn" /><text
+									class="small">女</text>
+							</radio-group>
+						</view>
 					</view>
-				</view>
 
-				<view class="birthday">
-					<text class="iconfont icon-chushengriqi"></text>
-					<text class="small">出生日期</text>
-					<view class="form-control">
-						<picker class="small form-control-sm" name="birthday" mode="date" :value="date"
-							:start="startDate" :end="endDate">
-							<view class="input-group-sm">{{date}}</view>
-						</picker>
+					<view class="birthday">
+						<text class="iconfont icon-chushengriqi"></text>
+						<text class="small">出生日期</text>
+						<view class="form-control">
+							<picker class="small form-control-sm" name="birthday" mode="date" :value="date"
+								:start="startDate" :end="endDate">
+								<view class="input-group-sm">{{date}}</view>
+							</picker>
+						</view>
 					</view>
-				</view>
 
-				<view class="address">
-					<text class="iconfont icon-dizhi"></text>
-					<text class="small">地址</text>
-					<view class="selectAddress addressText" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
-						{{add[2]}}</view>
-					<view class="addressList" v-show="dis">
-						<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
+					<view class="address">
+						<text class="iconfont icon-dizhi"></text>
+						<text class="small">地址</text>
+						<view class="selectAddress addressText" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
+							{{add[2]}}
+						</view>
+						<view class="addressList" v-show="dis">
+							<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
+						</view>
 					</view>
-				</view>
 
-				<view class="detailedAdd">
-					<text class="iconfont icon-xiangxidizhi"></text>
-					<text class="small">详细地址</text>
-					<input class="form-control form-control-sm" type="text" name="detailedAddress" placeholder="家庭详细地址"
-						placeholder-class="small" />
-				</view>
-
-				<view class="phoneNumber">
-					<text class="iconfont icon-shoujihaoma"></text>
-					<text class="small">手机号</text>
-					<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
-						placeholder="请输入手机号" placeholder-class="small" />
-				</view>
-
-				<view class="university">
-					<text class="iconfont icon-xuexiao1"></text>
-					<text class="small">学校名称</text>
-					<input type="text" class="form-control form-control-sm" name="university" placeholder="请输入学校名称"
-						placeholder-class="small" />
-				</view>
-
-				<view class="degree">
-					<text class="iconfont icon-xuexiao"></text>
-					<text class="small">学历</text>
-					<view class="list-group">
-						<picker @change="bindPickerChange" name="degree" :value="index" :range="array" range-key="name">
-							<view class="list-group-item small">{{array[index].name}}</view>
-						</picker>
+					<view class="detailedAdd">
+						<text class="iconfont icon-xiangxidizhi"></text>
+						<text class="small">详细地址</text>
+						<input class="form-control form-control-sm" type="text" name="detailedAddress"
+							placeholder="家庭详细地址" placeholder-class="small" />
 					</view>
-				</view>
 
-				<view class="major">
-					<text class="iconfont icon-zhuanyeyukecheng"></text>
-					<text class="small">专业</text>
-					<input type="text" class="form-control form-control-sm" name="major" placeholder="就读专业全称"
-						placeholder-class="small" />
-				</view>
+					<view class="phoneNumber">
+						<text class="iconfont icon-shoujihaoma"></text>
+						<text class="small">手机号</text>
+						<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
+							placeholder="请输入手机号" placeholder-class="small" />
+					</view>
 
-				<view class="majorClass">
-					<text class="iconfont icon-banjiketang"></text>
-					<text class="small">所在班级</text>
-					<input type="text" class="form-control form-control-sm" name="majorClass" placeholder="所在班级"
-						placeholder-class="small" />
-				</view>
+					<view class="university">
+						<text class="iconfont icon-xuexiao1"></text>
+						<text class="small">学校名称</text>
+						<input type="text" class="form-control form-control-sm" name="university" placeholder="请输入学校名称"
+							placeholder-class="small" />
+					</view>
 
-				<view class="password">
-					<text class="iconfont icon-mima"></text>
-					<text class="small">设置密码</text>
-					<input :type="seen ? type_text : type_password" class="form-control form-control-sm" name="password"
-						placeholder="请设置密码(6-16个字符)" placeholder-class="small" />
-					<text class="iconfont icon-xianshimima displayPassword" v-show="!seen" @click="display"></text>
-					<text class="iconfont icon-yincangmima displayPassword" v-show="seen" @click="display"></text>
-				</view>
+					<view class="degree">
+						<text class="iconfont icon-xuexiao"></text>
+						<text class="small">学历</text>
+						<view class="list-group">
+							<picker @change="bindPickerChange" name="degree" :value="index" :range="array"
+								range-key="name">
+								<view class="list-group-item small">{{array[index].name}}</view>
+							</picker>
+						</view>
+					</view>
 
-				<view class="password">
-					<text class="iconfont icon-mima"></text>
-					<text class="small">确认密码</text>
-					<input :type="secondSeen ? type_text : type_password" class="form-control form-control-sm"
-						name="comfirmPassword" placeholder="请再次确认密码" placeholder-class="small" />
-					<text class="iconfont icon-xianshimima displayPassword" v-show="!secondSeen"
-						@click="secondDis"></text>
-					<text class="iconfont icon-yincangmima displayPassword" v-show="secondSeen"
-						@click="secondDis"></text>
-				</view>
+					<view class="major">
+						<text class="iconfont icon-zhuanyeyukecheng"></text>
+						<text class="small">专业</text>
+						<input type="text" class="form-control form-control-sm" name="major" placeholder="就读专业全称"
+							placeholder-class="small" />
+					</view>
 
-				<view class="submit">
-					<button class="btn btn-primary btn-outline-primary submitBtn" type="submit"
-						form-type="submit">保存</button>
-				</view>
+					<view class="majorClass">
+						<text class="iconfont icon-banjiketang"></text>
+						<text class="small">所在班级</text>
+						<input type="text" class="form-control form-control-sm" name="majorClass" placeholder="所在班级"
+							placeholder-class="small" />
+					</view>
 
+					<!-- <view class="password">
+						<text class="iconfont icon-mima"></text>
+						<text class="small">设置密码</text>
+						<input :type="seen ? type_text : type_password" class="form-control form-control-sm"
+							name="password" placeholder="请设置密码(6-16个字符)" placeholder-class="small" />
+						<text class="iconfont icon-xianshimima displayPassword" v-show="!seen" @click="display"></text>
+						<text class="iconfont icon-yincangmima displayPassword" v-show="seen" @click="display"></text>
+					</view>
+
+					<view class="password">
+						<text class="iconfont icon-mima"></text>
+						<text class="small">确认密码</text>
+						<input :type="secondSeen ? type_text : type_password" class="form-control form-control-sm"
+							name="comfirmPassword" placeholder="请再次确认密码" placeholder-class="small" />
+						<text class="iconfont icon-xianshimima displayPassword" v-show="!secondSeen"
+							@click="secondDis"></text>
+						<text class="iconfont icon-yincangmima displayPassword" v-show="secondSeen"
+							@click="secondDis"></text>
+					</view> -->
+
+					<view class="submit">
+						<button class="btn btn-primary btn-outline-primary submitBtn" type="submit"
+							form-type="submit">保存</button>
+					</view>
+
+				</view>
 			</form>
 		</view>
 	</view>
@@ -147,6 +159,17 @@
 		},
 		data() {
 			return {
+				inageValue: [],
+				imageStyles: {
+					border: true,
+					width: 100,
+					height: 100,
+					borderStyle: {
+						width: 1,
+						color: '#ff6700',
+						redius: 50
+					}
+				},
 				date: getDate({
 					format: true
 				}),
@@ -276,9 +299,18 @@
 	.registerContainer {
 		width: 100%;
 		margin-left: 20px;
-		padding: 20rpx;
 	}
-	
+
+	.allForm {
+		width: 100%;
+		height: calc(100vh - 76px);
+		padding-bottom: 100px;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
 	.iconfont {
 		margin-right: 15rpx;
 		font-size: 32rpx;
@@ -301,12 +333,16 @@
 		padding: 0 20rpx;
 	}
 
+	.address{
+		position: relative;
+	}
 	.addressList {
 		width: 661rpx;
-		height: 50vh;
-		border: 1rpx #999999 solid;
+		height: 200px;
+		border: 1rpx #cbcbcb solid;
 		border-top: none;
 		position: absolute;
+		top: 54px;
 		z-index: 99;
 	}
 
@@ -337,6 +373,7 @@
 		width: 600rpx;
 	}
 
+	.photo,
 	.userName,
 	.gender,
 	.birthday,
