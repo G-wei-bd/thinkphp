@@ -7,23 +7,29 @@
 			<form class="form-group" @submit="submitRegister">
 				<view class="allForm">
 					<view class="photo">
-						<text class="iconfont icon-yonghuming"></text>
-						<text class="small">头像</text>
+						<view class="tipText">
+							<text class="iconfont icon-yonghuming"></text>
+							<text class="small">头像</text>
+						</view>
 						<uni-file-picker v-model="imageValue" :image-styles="imageStyles" mode="grid" limit="1"
 							file-mediatype="image" @select="select" @progress="progress" @success="success">
 						</uni-file-picker>
 					</view>
 
 					<view class="userName">
-						<text class="iconfont icon-yonghuming"></text>
-						<text class="small">姓名</text>
+						<view class="tipText">
+							<text class="iconfont icon-yonghuming"></text>
+							<text class="small">姓名</text>
+						</view>
 						<input type="text" class="form-control form-control-sm" name="userName" placeholder="姓名"
 							placeholder-class="small" />
 					</view>
 
 					<view class="gender">
-						<text class="iconfont icon-shenfenrenzheng-xingbie"></text>
-						<text class="small">性别</text>
+						<view class="tipText">
+							<text class="iconfont icon-shenfenrenzheng-xingbie"></text>
+							<text class="small">性别</text>
+						</view>
 						<view class="gender">
 							<radio-group name="gender">
 								<radio value="男" color="#0069D9" class="form-control-sm radioBtn" /><text
@@ -35,8 +41,10 @@
 					</view>
 
 					<view class="birthday">
-						<text class="iconfont icon-chushengriqi"></text>
-						<text class="small">出生日期</text>
+						<view class="tipText">
+							<text class="iconfont icon-chushengriqi"></text>
+							<text class="small">出生日期</text>
+						</view>
 						<view>
 							<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @change="dateChange" />
 							</picker>
@@ -55,13 +63,15 @@
 					</view> -->
 
 					<view class="detailedAdd">
-						<text class="iconfont icon-xiangxidizhi"></text>
-						<text class="small">详细地址</text>
+						<view class="tipText">
+							<text class="iconfont icon-xiangxidizhi"></text>
+							<text class="small">详细地址</text>
+						</view>
 						<input class="form-control form-control-sm" type="text" name="detailedAddress"
 							placeholder="家庭详细地址" placeholder-class="small" />
 					</view>
 
-						<!-- <view class="phoneNumber">
+					<!-- <view class="phoneNumber">
 							<text class="iconfont icon-shoujihaoma"></text>
 							<text class="small">手机号</text>
 							<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
@@ -69,15 +79,19 @@
 						</view> -->
 
 					<view class="university">
-						<text class="iconfont icon-xuexiao1"></text>
-						<text class="small">学校名称</text>
+						<view class="tipText">
+							<text class="iconfont icon-xuexiao1"></text>
+							<text class="small">学校名称</text>
+						</view>
 						<input type="text" class="form-control form-control-sm" name="university" placeholder="请输入学校名称"
 							placeholder-class="small" />
 					</view>
 
 					<view class="degree">
-						<text class="iconfont icon-xuexiao"></text>
-						<text class="small">学历</text>
+						<view class="tipText">
+							<text class="iconfont icon-xuexiao"></text>
+							<text class="small">学历</text>
+						</view>
 						<view class="list-group">
 							<picker @change="bindPickerChange" name="degree" :value="index" :range="array"
 								range-key="name">
@@ -87,15 +101,19 @@
 					</view>
 
 					<view class="major">
-						<text class="iconfont icon-zhuanyeyukecheng"></text>
-						<text class="small">专业</text>
+						<view class="tipText">
+							<text class="iconfont icon-zhuanyeyukecheng"></text>
+							<text class="small">专业</text>
+						</view>
 						<input type="text" class="form-control form-control-sm" name="major" placeholder="就读专业全称"
 							placeholder-class="small" />
 					</view>
 
 					<view class="majorClass">
-						<text class="iconfont icon-banjiketang"></text>
-						<text class="small">所在班级</text>
+						<view class="tipText">
+							<text class="iconfont icon-banjiketang"></text>
+							<text class="small">所在班级</text>
+						</view>
 						<input type="text" class="form-control form-control-sm" name="majorClass" placeholder="所在班级"
 							placeholder-class="small" />
 					</view>
@@ -134,7 +152,7 @@
 <script>
 	import LeeSelectCity from '@/components/lee-select-city/lee-select-city.vue';
 	import graceChecker from "../../../common/graceChecker.js";
-	
+
 	export default {
 		components: {
 			LeeSelectCity
@@ -262,12 +280,18 @@
 </script>
 
 <style>
-	.tipInfo{
-		width: 330px;
-		margin: 25px 20px;
-		color: #ff6700;	
+	page{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 	
+	.tipInfo {
+		width: 330px;
+		margin: 25px 20px;
+		color: #ff6700;
+	}
+
 	.registerContainer {
 		width: 100%;
 		margin-left: 20px;
@@ -276,7 +300,7 @@
 	.allForm {
 		width: 100%;
 		height: calc(90vh - 76px);
-		padding-bottom: 100px;
+		padding-bottom: 170px;
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: column;
@@ -305,9 +329,10 @@
 		padding: 0 20rpx;
 	}
 
-	.address{
+	.address {
 		position: relative;
 	}
+
 	.addressList {
 		width: 661rpx;
 		height: 200px;
@@ -325,17 +350,6 @@
 		color: #999999;
 	}
 
-	.password {
-		position: relative;
-	}
-
-	.displayPassword {
-		position: absolute;
-		right: 14rpx;
-		top: 55%;
-
-	}
-
 	.submit {
 		display: flex;
 		justify-content: center;
@@ -349,16 +363,14 @@
 	.userName,
 	.gender,
 	.birthday,
-	.address,
 	.detailedAdd,
-	.phoneNumber,
 	.university,
 	.degree,
 	.major,
 	.majorClass,
-	.password,
 	.submit {
 		margin-bottom: 30rpx;
 		width: 330px;
 	}
+	
 </style>

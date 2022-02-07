@@ -147,7 +147,6 @@
 </script>
 
 <style>
-
 	.left-window-style {
 		min-height: calc(97vh - var(--top-window-height));
 		background-color: #F8F8F8;

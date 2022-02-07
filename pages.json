@@ -10,7 +10,8 @@
 		"path": "/windows/leftWindow.vue",
 		"style": {
 			"width": "400rpx",
-			"height": "91vh"
+			"height": "93vh",
+			"backgroundColor": "#F8F8F8"
 		}
 	},
 
