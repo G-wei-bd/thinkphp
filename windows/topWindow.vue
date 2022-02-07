@@ -95,7 +95,7 @@
 	.top-window-header {
 		position: relative;
 		height: 60px;
-		padding: 0 15px;
+		padding: 0 20px 0 0;
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;

@@ -9,7 +9,7 @@
 					<view class="photo">
 						<text class="iconfont icon-yonghuming"></text>
 						<text class="small">头像</text>
-						<uni-file-picker v-model="inageValue" :image-styles="imageStyles" mode="grid" limit="1"
+						<uni-file-picker v-model="imageValue" :image-styles="imageStyles" mode="grid" limit="1"
 							file-mediatype="image" @select="select" @progress="progress" @success="success">
 						</uni-file-picker>
 					</view>
@@ -37,15 +37,13 @@
 					<view class="birthday">
 						<text class="iconfont icon-chushengriqi"></text>
 						<text class="small">出生日期</text>
-						<view class="form-control">
-							<picker class="small form-control-sm" name="birthday" mode="date" :value="date"
-								:start="startDate" :end="endDate">
-								<view class="input-group-sm">{{date}}</view>
+						<view>
+							<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @change="dateChange" />
 							</picker>
 						</view>
 					</view>
 
-					<view class="address">
+					<!-- <view class="address">
 						<text class="iconfont icon-dizhi"></text>
 						<text class="small">地址</text>
 						<view class="selectAddress addressText" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
@@ -54,7 +52,7 @@
 						<view class="addressList" v-show="dis">
 							<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
 						</view>
-					</view>
+					</view> -->
 
 					<view class="detailedAdd">
 						<text class="iconfont icon-xiangxidizhi"></text>
@@ -63,12 +61,12 @@
 							placeholder="家庭详细地址" placeholder-class="small" />
 					</view>
 
-					<view class="phoneNumber">
-						<text class="iconfont icon-shoujihaoma"></text>
-						<text class="small">手机号</text>
-						<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
-							placeholder="请输入手机号" placeholder-class="small" />
-					</view>
+						<!-- <view class="phoneNumber">
+							<text class="iconfont icon-shoujihaoma"></text>
+							<text class="small">手机号</text>
+							<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
+								placeholder="请输入手机号" placeholder-class="small" />
+						</view> -->
 
 					<view class="university">
 						<text class="iconfont icon-xuexiao1"></text>
@@ -136,30 +134,15 @@
 <script>
 	import LeeSelectCity from '@/components/lee-select-city/lee-select-city.vue';
 	import graceChecker from "../../../common/graceChecker.js";
-
-	function getDate(type) {
-		const date = new Date();
-		let year = date.getFullYear();
-		let month = date.getMonth() + 1;
-		let day = date.getDate();
-
-		if (type === 'start') {
-			year = year - 40;
-		} else if (type === 'end') {
-			year = year;
-		}
-		month = month > 9 ? month : '0' + month;
-		day = day > 9 ? day : '0' + day;
-
-		return `${year}-${month}-${day}`;
-	}
+	
 	export default {
 		components: {
 			LeeSelectCity
 		},
 		data() {
 			return {
-				inageValue: [],
+				single: '2021-5-3',
+				imageValue: [],
 				imageStyles: {
 					border: true,
 					width: 100,
@@ -170,16 +153,7 @@
 						redius: 50
 					}
 				},
-				date: getDate({
-					format: true
-				}),
-				startDate: getDate('start'),
-				endDate: getDate('end'),
-				add: "请选择",
-				dis: false,
 				array: [{
-					name: '-请选择学历-'
-				}, {
 					name: '专科'
 				}, {
 					name: '本科'
@@ -199,7 +173,7 @@
 		methods: {
 			submitRegister: function(e) {
 				console.log("表单提交数据为：" + JSON.stringify(e.detail.value));
-				console.log("非表单提交数据为：" + this.add);
+				console.log("非表单提交数据为：" + this.single);
 				var rule = [{
 						name: "userName",
 						checkType: "notnull",
@@ -271,16 +245,8 @@
 					});
 				}
 			},
-			disAdd: function() {
-				this.dis = !this.dis;
-			},
-			submitAddress: function({
-				simple,
-				selected
-			}) {
-				this.dis = !this.dis;
-				this.add = simple;
-				console.log(this.add);
+			dateChange: function(e) {
+				this.single = e;
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;
@@ -299,8 +265,7 @@
 	.tipInfo{
 		width: 330px;
 		margin: 25px 20px;
-		color: #ff6700;
-		
+		color: #ff6700;	
 	}
 	
 	.registerContainer {
@@ -310,7 +275,7 @@
 
 	.allForm {
 		width: 100%;
-		height: calc(100vh - 76px);
+		height: calc(90vh - 76px);
 		padding-bottom: 100px;
 		display: flex;
 		flex-wrap: wrap;

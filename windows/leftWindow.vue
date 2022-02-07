@@ -113,9 +113,9 @@
 			handlerRoute(newRoute) {
 				if (this.isPC) {
 					if (newRoute.path === '/') {
-						// uni.redirectTo({
-						// 	url: '/pages/component/view/view'
-						// })
+						uni.redirectTo({
+							url: '/pages/myPage/main/main'
+						})
 					} else if (!newRoute.matched.length) {
 						uni.redirectTo({
 							url: '/pages/error/404'
@@ -149,7 +149,7 @@
 <style>
 
 	.left-window-style {
-		min-height: calc(100vh - var(--top-window-height));
+		min-height: calc(97vh - var(--top-window-height));
 		background-color: #F8F8F8;
 	}
 

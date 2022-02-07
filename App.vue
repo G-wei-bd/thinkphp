@@ -25,16 +25,18 @@
 	/* .uni-app--showtopwindow+.uni-tabbar-bottom {
 		display: none;
 	} */
+	
 	/* 隐藏所有页面的 navigationBar */
 	.uni-app--showtopwindow uni-page-head {
 	    display: none;
 	}
 	
-	/deep/::-webkit-scrollbar {
+	/* 隐藏滚动栏 */
+	/* /deep/::-webkit-scrollbar {
 	display: none;
 	width: 0 !important;
 	height: 0 !important;
 	-webkit-appearance: none;
 	background: transparent;
-	}
+	} */
 </style>

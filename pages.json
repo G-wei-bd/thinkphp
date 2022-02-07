@@ -1,228 +1,185 @@
 {
-	"topWindow" : {
-		"path" : "/windows/topWindow.vue",
-		"style" : {
-			"width" : "100vw",
-			"height" : "100rpx"
+	"topWindow": {
+		"path": "/windows/topWindow.vue",
+		"style": {
+			"width": "100vw",
+			"height": "100rpx"
 		}
 	},
-	"leftWindow" : {
-		"path" : "/windows/leftWindow.vue",
-		"style" : {
-			"width" : "400rpx",
-			"height" : "92vh"
+	"leftWindow": {
+		"path": "/windows/leftWindow.vue",
+		"style": {
+			"width": "400rpx",
+			"height": "91vh"
 		}
 	},
-	
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path" : "pages/index/index"
+
+	"pages": [{
+			"path": "pages/index/index"
 		},
 		{
-		    "path" : "pages/login/login",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "系统登录",
-		        "enablePullDownRefresh": false,
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "系统登录",
+				"enablePullDownRefresh": false,
 				"topWindow": false,
 				"leftWindow": false
-		    }
+			}
 		},
 		{
-            "path" : "pages/tabBar/homePage/homePage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "首页",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/tabBar/practicePage/practicePage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的实习",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/tabBar/thirdPage/thirdPage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "第三页",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/tabBar/myPage/myPage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-		    "path" : "pages/register/register",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "注册",
-		        "enablePullDownRefresh": false,
+			"path": "pages/tabBar/homePage/homePage",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/tabBar/practicePage/practicePage",
+			"style": {
+				"navigationBarTitleText": "我的实习",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/tabBar/thirdPage/thirdPage",
+			"style": {
+				"navigationBarTitleText": "第三页",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/tabBar/myPage/myPage",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false,
 				"topWindow": false,
 				"leftWindow": false
-		    }
-		}
-		,{
+			}
+		}, {
 			"path": "pages/error/404",
 			"style": {
 				"navigationBarTitleText": "Not Found"
 			}
-		},{
-            "path" : "windows/leftWindow",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "windows/topWindow",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/homePage/main/main",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "主页",
+		}, {
+			"path": "windows/leftWindow",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "windows/topWindow",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/homePage/main/main",
+			"style": {
+				"navigationBarTitleText": "主页",
 				"leftWindow": false,
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/practice/practice",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "实习",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/thirdPage/third/third",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "待定",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/practice-steps/practice-steps",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "实习计划进度",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/agreement/agreement",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "三方协议",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/weekly/weekly",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "周记",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/monthly/monthly",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "月记",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/myAssess/myAssess",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的评价",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/companyAssess/companyAssess",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "企业评定",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/report/report",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "实习报告",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/results/results",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "成绩鉴定",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/myPage/mySetting/mySetting",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的设置",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/myPage/resumeInfo/resumeInfo",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "简历信息",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/myPage/studentStatus/studentStatus",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "学籍信息",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/practice/practice",
+			"style": {
+				"navigationBarTitleText": "实习",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/thirdPage/third/third",
+			"style": {
+				"navigationBarTitleText": "待定",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/practice-steps/practice-steps",
+			"style": {
+				"navigationBarTitleText": "实习计划进度",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/agreement/agreement",
+			"style": {
+				"navigationBarTitleText": "三方协议",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/weekly/weekly",
+			"style": {
+				"navigationBarTitleText": "周记",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/monthly/monthly",
+			"style": {
+				"navigationBarTitleText": "月记",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/myAssess/myAssess",
+			"style": {
+				"navigationBarTitleText": "我的评价",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/companyAssess/companyAssess",
+			"style": {
+				"navigationBarTitleText": "企业评定",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/report/report",
+			"style": {
+				"navigationBarTitleText": "实习报告",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/results/results",
+			"style": {
+				"navigationBarTitleText": "成绩鉴定",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/myPage/mySetting/mySetting",
+			"style": {
+				"navigationBarTitleText": "我的设置",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/myPage/resumeInfo/resumeInfo",
+			"style": {
+				"navigationBarTitleText": "简历信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/myPage/studentStatus/studentStatus",
+			"style": {
+				"navigationBarTitleText": "学籍信息",
+				"enablePullDownRefresh": false
+			}
+
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "SystemLogin",
@@ -231,7 +188,7 @@
 	},
 	"tabBar": {
 		"color": "#424447",
-		"selectedColor": "#ff7700",	
+		"selectedColor": "#ff7700",
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"list": [{
@@ -241,11 +198,11 @@
 			{
 				"pagePath": "pages/tabBar/practicePage/practicePage",
 				"text": "我的实习"
-			}, 
+			},
 			{
 				"pagePath": "pages/tabBar/thirdPage/thirdPage",
 				"text": "第三页"
-			}, 
+			},
 			{
 				"pagePath": "pages/tabBar/myPage/myPage",
 				"text": "我的"
