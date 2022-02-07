@@ -22,15 +22,36 @@
 	@import "/common/bootstrap.css";
 	@import url("//at.alicdn.com/t/font_3123617_2ymsrh96ido.css");
 	/* 隐藏tabbar */
-	/* .uni-app--showtopwindow+.uni-tabbar-bottom {
+	.uni-app--showtopwindow+.uni-tabbar-bottom {
 		display: none;
-	} */
-	
+	}
+
 	/* 隐藏所有页面的 navigationBar */
 	.uni-app--showtopwindow uni-page-head {
-	    display: none;
+		display: none;
 	}
-	
+
+	/deep/::-webkit-scrollbar {
+		/*滚动条整体样式*/
+		width: 8px;
+		/*高宽分别对应横竖滚动条的尺寸*/
+		height: 1px;
+	}
+
+	/deep/::-webkit-scrollbar-thumb {
+		/*滚动条里面小方块*/
+		border-radius: 10px;
+		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		background: #a6a6a6;
+	}
+
+	/deep/::-webkit-scrollbar-track {
+		/*滚动条里面轨道*/
+		box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		background: #ededed;
+	}
+
 	/* 隐藏滚动栏 */
 	/* /deep/::-webkit-scrollbar {
 	display: none;

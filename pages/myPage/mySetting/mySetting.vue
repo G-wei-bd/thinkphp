@@ -11,8 +11,8 @@
 							<text class="iconfont icon-yonghuming"></text>
 							<text class="small">头像</text>
 						</view>
-						<uni-file-picker v-model="imageValue" :image-styles="imageStyles" mode="grid" limit="1"
-							file-mediatype="image" @select="select" @progress="progress" @success="success">
+						<uni-file-picker v-model="imageValue" mode="grid" limit="1" file-mediatype="image"
+							del-icon="false" @select="select" @progress="progress" @success="success">
 						</uni-file-picker>
 					</view>
 
@@ -51,16 +51,16 @@
 						</view>
 					</view>
 
-					<!-- <view class="address">
+					<view class="address">
 						<text class="iconfont icon-dizhi"></text>
 						<text class="small">地址</text>
-						<view class="selectAddress addressText" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
+						<view class="selectAddress" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
 							{{add[2]}}
 						</view>
 						<view class="addressList" v-show="dis">
 							<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
 						</view>
-					</view> -->
+					</view>
 
 					<view class="detailedAdd">
 						<view class="tipText">
@@ -70,13 +70,6 @@
 						<input class="form-control form-control-sm" type="text" name="detailedAddress"
 							placeholder="家庭详细地址" placeholder-class="small" />
 					</view>
-
-					<!-- <view class="phoneNumber">
-							<text class="iconfont icon-shoujihaoma"></text>
-							<text class="small">手机号</text>
-							<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber"
-								placeholder="请输入手机号" placeholder-class="small" />
-						</view> -->
 
 					<view class="university">
 						<view class="tipText">
@@ -118,26 +111,6 @@
 							placeholder-class="small" />
 					</view>
 
-					<!-- <view class="password">
-						<text class="iconfont icon-mima"></text>
-						<text class="small">设置密码</text>
-						<input :type="seen ? type_text : type_password" class="form-control form-control-sm"
-							name="password" placeholder="请设置密码(6-16个字符)" placeholder-class="small" />
-						<text class="iconfont icon-xianshimima displayPassword" v-show="!seen" @click="display"></text>
-						<text class="iconfont icon-yincangmima displayPassword" v-show="seen" @click="display"></text>
-					</view>
-
-					<view class="password">
-						<text class="iconfont icon-mima"></text>
-						<text class="small">确认密码</text>
-						<input :type="secondSeen ? type_text : type_password" class="form-control form-control-sm"
-							name="comfirmPassword" placeholder="请再次确认密码" placeholder-class="small" />
-						<text class="iconfont icon-xianshimima displayPassword" v-show="!secondSeen"
-							@click="secondDis"></text>
-						<text class="iconfont icon-yincangmima displayPassword" v-show="secondSeen"
-							@click="secondDis"></text>
-					</view> -->
-
 					<view class="submit">
 						<button class="btn btn-primary btn-outline-primary submitBtn" type="submit"
 							form-type="submit">保存</button>
@@ -161,16 +134,8 @@
 			return {
 				single: '2021-5-3',
 				imageValue: [],
-				imageStyles: {
-					border: true,
-					width: 100,
-					height: 100,
-					borderStyle: {
-						width: 1,
-						color: '#ff6700',
-						redius: 50
-					}
-				},
+				add: "请选择",
+				dis: false,
 				array: [{
 					name: '专科'
 				}, {
@@ -200,17 +165,12 @@
 					{
 						name: "gender",
 						checkType: "notnull",
-						errorMsg: "请选择性别	"
+						errorMsg: "请选择性别"
 					},
 					{
 						name: "detailedAddress",
 						checkType: "notnull",
 						errorMsg: "请输入详细地址"
-					},
-					{
-						name: "phoneNumber",
-						checkType: "notnull",
-						errorMsg: "手机号不能为空"
 					},
 					{
 						name: "university",
@@ -231,23 +191,7 @@
 						name: "majorClass",
 						checkType: "notnull",
 						errorMsg: "所在班级不能为空"
-					},
-					{
-						name: "password",
-						checkType: "notnull",
-						errorMsg: "密码不能为空"
-					},
-					{
-						name: "password",
-						checkType: "length",
-						errorMsg: "密码需要6-16个字符"
-					},
-					{
-						name: "comfirmPassword",
-						checkType: "same",
-						checkRule: e.detail.value.password,
-						errorMsg: "两次密码不一致"
-					},
+					}
 				];
 				var formData = e.detail.value;
 				var checkRes = graceChecker.check(formData, rule);
@@ -263,32 +207,37 @@
 					});
 				}
 			},
+			disAdd: function() {
+				this.dis = !this.dis;
+			},
+			submitAddress: function({
+				simple,
+				selected
+			}) {
+				this.dis = !this.dis;
+				this.add = simple;
+				console.log(this.add);
+			},
 			dateChange: function(e) {
 				this.single = e;
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;
-			},
-			display: function() {
-				this.seen = !this.seen;
-			},
-			secondDis: function() {
-				this.secondSeen = !this.secondSeen;
 			}
 		}
 	}
 </script>
 
 <style>
-	page{
+	page {
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
 	}
-	
+
 	.tipInfo {
 		width: 330px;
-		margin: 25px 20px;
+		margin: 25px 10px;
 		color: #ff6700;
 	}
 
@@ -298,19 +247,21 @@
 	}
 
 	.allForm {
-		width: 100%;
-		height: calc(90vh - 76px);
-		padding-bottom: 170px;
+		width: 800px;
+		height: 500px;
+		padding: 0 100px;
+		margin: 0 0 0 200px;
 		display: flex;
 		flex-wrap: wrap;
-		flex-direction: column;
-		align-items: flex-start;
+		justify-content: flex-start;
+		align-items: center;
+
 	}
 
 	.iconfont {
-		margin-right: 15rpx;
-		font-size: 32rpx;
-		line-height: 32rpx;
+		margin-right: 8px;
+		font-size: 16px;
+		line-height: 16px;
 	}
 
 	.radioBtn {
@@ -319,58 +270,53 @@
 
 	.selectAddress {
 		width: 100%;
-		height: 60rpx;
-		font-size: 20rpx;
-		line-height: 60rpx;
+		height: 30px;
+		font-size: 10px;
+		line-height: 30px;
 		color: #999999;
 		background-color: #FFFFFF;
 		border: #ced4da 1rpx solid;
-		border-radius: 6rpx;
-		padding: 0 20rpx;
-	}
-
-	.address {
-		position: relative;
+		border-radius: 3px;
+		padding: 0 10px;
 	}
 
 	.addressList {
-		width: 661rpx;
-		height: 200px;
+		width: 330px;
+		height: 320px;
 		border: 1rpx #cbcbcb solid;
-		border-top: none;
 		position: absolute;
-		top: 54px;
+		bottom: -5px;
+		left: 320px;
 		z-index: 99;
 	}
 
 	.list-group-item {
-		padding: 0 20rpx;
-		height: 60rpx;
-		line-height: 58rpx;
+		padding: 0 10px;
+		height: 30px;
+		line-height: 29px;
 		color: #999999;
 	}
 
 	.submit {
-		display: flex;
-		justify-content: center;
+		margin: 0 150px;
 	}
 
 	.submitBtn {
-		width: 600rpx;
+		width: 200px;
 	}
 
 	.photo,
 	.userName,
 	.gender,
 	.birthday,
+	.address,
 	.detailedAdd,
 	.university,
 	.degree,
 	.major,
 	.majorClass,
 	.submit {
-		margin-bottom: 30rpx;
-		width: 330px;
+		margin-right: 50px;
+		width: 250px;
 	}
-	
 </style>
