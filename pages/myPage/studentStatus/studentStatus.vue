@@ -7,11 +7,10 @@
 					<uni-forms ref="form" :modelValue="formData">
 						<uni-forms-item required label="学习时间" name="time">
 							<uni-datetime-picker v-model="formData.time" type="daterange" :clearIcon="false"
-								start="1990-01-01" end="2099-12-31" rangeSeparator="~" @change="intoChange" />
+								start="1990-01-01" end="2099-12-31" rangeSeparator="~" />
 						</uni-forms-item>
 						<uni-forms-item required label="入学年份" name="intoTime">
-							<uni-datetime-picker type="date" :clearIcon="false" v-model="formData.intoTime"
-								@change="dateChange" />
+							<uni-datetime-picker type="date" :clearIcon="false" v-model="formData.intoTime" />
 						</uni-forms-item>
 						<uni-forms-item required label="学校" name="university">
 							<uni-easyinput v-model="formData.university" placeholder="请输入学校名称" />
@@ -47,7 +46,7 @@
 					</uni-tr>
 					<uni-tr v-for="(item,index) in Arr" :key="index">
 						<uni-td align="center">{{index + 1}}</uni-td>
-						<uni-td align="center">{{item.time}}</uni-td>
+						<uni-td align="center">{{item.time[0]}} ~ {{item.time[1]}}</uni-td>
 						<uni-td align="center">{{item.university}}</uni-td>
 						<uni-td align="center">{{item.collage}}</uni-td>
 						<uni-td align="center">{{item.major}}</uni-td>
@@ -68,7 +67,7 @@
 		data() {
 			return {
 				formData: {
-					time: ["2017-09-1", "2021-6-30"],
+					time: ["2018-09-1", "2022-6-30"],
 					university: '',
 					collage: '',
 					major: '',
@@ -76,36 +75,31 @@
 					intoTime: '2022-02-01'
 				},
 				Arr: [{
-					time: "2018.09 ~ 2022.06",
+					time: ["2017-09-1", "2021-6-30"],
 					university: "广东工业大学华立学院",
 					collage: "计算机与信息工程学院",
 					major: "网络工程",
 					majorClass: "18网络1班",
-					intoTime: "2018.09"
+					intoTime: "2018-09-1"
 				}]
 			}
 		},
 		methods: {
 			openPopup: function() {
-				this.$refs.popup.open()
+				this.$refs.popup.open();
 			},
-			intoChange: function(e) {
-				this.formData.time = e;
-			},
-			dateChange: function(e) {
-				this.formData.intoTime = e;
-			},
-			submit() {
-				this.$refs.form.validate().then(res => {
-					console.log('表单数据信息：', res);
-					// this.formData.university = res.university;
-					// this.formData.collage = res.collage;
-					// this.formData.major = res.major;
-					// this.formData.majorClass = res.majorClass;
-					// console.log("data 中的数据是：" + this.formData);
-					this.$refs.popup.close()
-				}).catch(err => {
-					console.log('表单错误信息：', err);
+			submit: function() {
+				this.$refs.form.validate().then((res) => {
+					this.formData.university = res.university;
+					this.formData.collage = res.collage;
+					this.formData.major = res.major;
+					this.formData.majorClass = res.majorClass;
+					this.formData.time = res.time;
+					this.formData.intoTime = res.intoTime;
+					this.Arr.push(this.formData);
+					this.$refs.popup.close();
+				}).catch((err) => {
+					console.log(err)
 				})
 			}
 		}
