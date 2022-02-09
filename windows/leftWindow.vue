@@ -1,9 +1,7 @@
 <template>
 	<view class="left-window-style">
 		<view class="second-menu">
-			<!-- <keep-alive> -->
 			<component v-bind:is="active" :hasLeftWin="hasLeftWin" :leftWinActive="leftWinActive"></component>
-			<!-- </keep-alive> -->
 		</view>
 	</view>
 </template>
@@ -26,6 +24,7 @@
 					'myPage'
 				],
 				isPC: false
+
 			}
 		},
 		components: {
@@ -108,7 +107,6 @@
 				this.handlerRoute(newRoute)
 			}
 		},
-
 		methods: {
 			...mapMutations(['setMatchLeftWindow', 'setActive', 'setLeftWinActive']),
 
@@ -146,8 +144,13 @@
 
 <style>
 	.left-window-style {
-		min-height: calc(99vh - var(--top-window-height));
+		width: 200px;
+		min-height: calc(100vh - var(--top-window-height));
 		background-color: #242b40;
+		position: fixed;
+		top: 51px;
+		left: 0;
+		z-index: 999;
 	}
 
 	.second-menu {

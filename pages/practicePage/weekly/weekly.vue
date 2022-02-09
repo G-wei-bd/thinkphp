@@ -31,15 +31,15 @@
 					<view class="weeklyTable">
 						<uni-table ref="table" border stripe emptyText="暂无更多数据">
 							<uni-tr>
-								<uni-th align="center">序号</uni-th>
+								<!-- <uni-th align="center">序号</uni-th> -->
 								<uni-th align="center">提交时间</uni-th>
 								<uni-th align="center">周记周数</uni-th>
 								<uni-th align="center">批阅状态</uni-th>
 								<uni-th align="center">周记关联时间</uni-th>
 								<uni-th align="center">更多</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item,index) in Arr" :key="index">
-								<uni-td align="center">{{ index + 1 }}</uni-td>
+							<uni-tr v-for="(item,index) in currentArr" :key="index">
+								<!-- <uni-td align="center">{{ index + 1 }}</uni-td> -->
 								<uni-td align="center">{{ item.time }}</uni-td>
 								<uni-td align="center">{{ item.week }}</uni-td>
 								<uni-td align="center">{{ item.state }}</uni-td>
@@ -73,33 +73,35 @@
 				pageCurrent: 1,
 				// 数据总量
 				total: 0,
+				currentArr: [],
 				Arr: [
+					{time: "2022.01.03", week: "1", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "2", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "3", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "4", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "5", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "6", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "7", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "8", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "9", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "10", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "11", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "12", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "13", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "14", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
 					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "15", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
+					{time: "2022.01.03", week: "16", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "17", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "18", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "19", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "20", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					// {time: "2022.01.03", week: "21", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
 				]
 			}
 		},
 		onLoad() {
 			this.total = this.Arr.length
+			this.currentArr = this.Arr.slice(0,10);
 		},
 		methods: {
 			onClickItem(e) {
@@ -110,9 +112,13 @@
 			// 分页触发
 			change(e) {
 				console.log(e);
-				console.log(this.$refs.table.clearSelection());
-				this.$refs.table.clearSelection();
-				this.selectedIndexs.length = 0;
+				console.log("e.type--------------"+e.type);
+				if(e.current == "1"){
+					this.currentArr = this.Arr.slice(0,10);
+				}
+				if(e.current == "2"){
+					this.currentArr = this.Arr.slice(10,20);
+				}
 			}
 			
 		}

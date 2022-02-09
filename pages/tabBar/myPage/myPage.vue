@@ -11,7 +11,7 @@
 				<view :class="{'selectText': leftWinActive === item2.url  && hasLeftWin}"
 					class="uni-navigate-item menuItem" v-for="(item2,key) in item.pages" :key="key"
 					@click="goDetailPage(item2)">
-					<text class="small">{{item2.name ? item2.name : item2}}</text>
+					<text class="itemMenu small">{{item2.name ? item2.name : item2}}</text>
 					<text class="iconfont icon-anniu-jiantouxiangyou_o"></text>
 				</view>
 			</view>
@@ -30,26 +30,24 @@
 		},
 		data() {
 			return {
-				list: [
-					{
-							id: 'plan',
-							name: '我的设置',
-							open: false,
-							pages: [{
-									name: '个人信息',
-									url: 'mySetting'
-								},
-								{
-									name: '简历信息',
-									url: 'resumeInfo'
-								},
-								{
-									name: '学籍信息',
-									url: 'studentStatus'
-								}
-							]
+				list: [{
+					id: 'plan',
+					name: '我的设置',
+					open: false,
+					pages: [{
+							name: '个人信息',
+							url: 'mySetting'
+						},
+						{
+							name: '简历信息',
+							url: 'resumeInfo'
+						},
+						{
+							name: '学籍信息',
+							url: 'studentStatus'
 						}
-				]
+					]
+				}]
 			}
 		},
 		watch: {

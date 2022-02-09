@@ -45,8 +45,8 @@
 				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
 	            //定义表单规则
 	            var rule = [
-					{name:"userName", checkType : "null", errorMsg:"请输入手机号"},
-	                {name:"userName", checkType : "phoneNumber", checkRule:"11",  errorMsg:"请输入正确的手机号"},
+					{name:"userName", checkType : "admin", errorMsg:"请输入手机号"},
+	                // {name:"userName", checkType : "phoneNumber", checkRule:"11",  errorMsg:"请输入正确的手机号"},
 					{name:"password", checkType : "null", errorMsg:"请输入密码"},
 	                {name:"password", checkType : "password", checkRule:"8",  errorMsg:"请输入正确密码"}
 	            ];

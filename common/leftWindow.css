@@ -1,32 +1,33 @@
+/* 选中时菜单文字样式 */
 .selectText {
-		color: #ff7700 !important;
-	}
-	
-	.menu{
-		color: red;
-	}
+	color: red !important;
+}
 
-	.uni-container {
-		width: 200px;
-		margin-right: 0px;
-		background-color: #242B40;
-	}
+/* 一级菜单文字样式 */
+.menu {
+	color: red;
+}
 
-	.menuList {
-		width: 170px;
-		height: 40px !important;
-		border-radius: 5px;
-		background-color: #F8F8F8;
-		display: flex;
-		justify-content: space-between;
-	}
+.uni-container {
+	width: 200px;
+	margin-right: 0px;
+	background-color: #242B40;
+}
 
-	.menuItem {
-		height: 40px;
-		background-color: #EEEEEE;
-		margin-top: 8px;
-		border-radius: 5px;
-		text-align: center;
-		display: flex;
-		justify-content: space-between;
-	}
+.menuList {
+	width: 170px;
+	height: 40px !important;
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.menuItem {
+	height: 40px;
+	background-color: #EEEEEE;
+	margin-top: 8px;
+	border-radius: 5px;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+}

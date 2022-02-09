@@ -11,7 +11,7 @@
 				<view :class="{'selectText': leftWinActive === item2.url  && hasLeftWin}"
 					class="uni-navigate-item menuItem" v-for="(item2,key) in item.pages" :key="key"
 					@click="goDetailPage(item2)">
-					<text class="small">{{item2.name ? item2.name : item2}}</text>
+					<text class="itemMenu small">{{item2.name ? item2.name : item2}}</text>
 					<text class="iconfont icon-anniu-jiantouxiangyou_o"></text>
 				</view>
 			</view>

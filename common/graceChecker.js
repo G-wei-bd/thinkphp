@@ -87,6 +87,10 @@ export default {
 					var reg = /^1[3-9][0-9]{9}$/;
 					if (!reg.test(data[rule[i].name])) { this.error = rule[i].errorMsg; return false; }
 				break;
+				case 'admin':
+					var reg = /^123456$/;
+					if (!reg.test(data[rule[i].name])) { this.error = rule[i].errorMsg; return false; }
+				break;
 				case 'password':
 					var reg = /^123456$/;
 					if (!reg.test(data[rule[i].name])) { this.error = rule[i].errorMsg; return false; }

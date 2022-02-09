@@ -81,6 +81,9 @@
 					success(res) {
 						if (res.confirm) {
 							uni.removeStorageSync("token");
+							uni.navigateTo({
+								url: '/pages/login/login',
+							});
 						} else if (res.cancel) {
 							console.log("点击取消");
 						}
