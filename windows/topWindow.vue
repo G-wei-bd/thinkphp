@@ -94,7 +94,7 @@
 <style>
 	.top-window-header {
 		position: relative;
-		height: 60px;
+		height: 50px;
 		padding: 0 20px 0 0;
 		display: flex;
 		flex-direction: row;

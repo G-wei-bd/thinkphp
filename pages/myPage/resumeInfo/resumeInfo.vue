@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<text>这是修改简历信息</text>
+		<text>这是修改我的简历信息</text>
 	</view>
 </template>
 

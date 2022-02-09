@@ -3,7 +3,7 @@
 		<view class="uni-panel" v-for="(item, index) in list" :key="item.id">
 			<view :class="{'selectText': leftWinActive === item.url  && hasLeftWin, 'uni-panel-h-on': item.open}"
 				class="uni-panel-h menuList" @click="triggerCollapse(index, item.id)">
-				<text class="text-dark small">{{item.name}}</text><!-- 菜单主体文字样式 -->
+				<text class="menu small font-weight-bold">{{item.name}}</text><!-- 菜单主体文字样式 -->
 				<text class="iconfont right-icon" :class="item.open  ? 'icon-xiangshang' : 'icon-xiangxia'"></text>
 				<!-- 菜单右侧小图标 -->
 			</view>
@@ -135,30 +135,5 @@
 
 <style>
 	@import '../../../common/uni-nvue.css';
-
-	.selectText {
-		color: #ff7700 !important;
-	}
-
-	.uni-container {
-		width: 200px;
-		margin-right: 0px;
-	}
-
-	.menuList {
-		width: 170px;
-		height: 40px !important;
-		border-radius: 10px;
-		background-color: #fff;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.menuItem {
-		margin-top: 8px;
-		border-radius: 10px;
-		text-align: center;
-		display: flex;
-		justify-content: space-between;
-	}
+	@import '../../../common/leftWindow.css';
 </style>

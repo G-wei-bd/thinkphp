@@ -13,8 +13,8 @@
 	import third from '@/pages/tabBar/thirdPage/thirdPage.vue'
 	import my from '@/pages/tabBar/myPage/myPage.vue'
 	import {
-		mapMutations,//调用 index.js 里的方法
-		mapState//读取数据
+		mapMutations, //调用 index.js 里的方法
+		mapState //读取数据
 	} from 'vuex'
 	let isPcObserver, isPhoneObserver
 	export default {
@@ -52,7 +52,8 @@
 				if (!pageUrl) return
 				const pageName = this.$route.path.split('/')[4]
 				if (pageUrl === '/' || this.nav.includes(pageName)) {
-					const tabbarUrl = pageName ? (pageName === 'practicePage' ? '/' : `/pages/tabBar/${pageName}/${pageName}`) : '/'
+					const tabbarUrl = pageName ? (pageName === 'practicePage' ? '/' :
+						`/pages/tabBar/${pageName}/${pageName}`) : '/'
 					if (pageUrl === '/' || pageUrl === tabbarUrl) {
 						uni.switchTab({
 							url: pageUrl,
@@ -72,7 +73,8 @@
 				if (matched) {
 					const pageUrl = this.$route.path
 					const tabbarName = this.$route.path.split('/')[2]
-					const tabbarUrl = tabbarName && (tabbarName === 'practicePage' ? '/' : `/pages/tabBar/${tabbarName}/${tabbarName}`)
+					const tabbarUrl = tabbarName && (tabbarName === 'practicePage' ? '/' :
+						`/pages/tabBar/${tabbarName}/${tabbarName}`)
 					uni.switchTab({
 						url: tabbarUrl,
 						success(e) {
@@ -127,7 +129,7 @@
 							if (active === 'practicePage') {
 								active = 'practice'
 							}
-							if (active === 'thirdPage'){
+							if (active === 'thirdPage') {
 								active = 'third'
 							}
 							if (active === 'myPage') {
@@ -137,10 +139,6 @@
 						}
 					}
 				}
-			},
-
-			switchTab() {
-
 			}
 		}
 	}
@@ -148,13 +146,13 @@
 
 <style>
 	.left-window-style {
-		min-height: calc(97vh - var(--top-window-height));
-		background-color: #F8F8F8;
+		min-height: calc(99vh - var(--top-window-height));
+		background-color: #242b40;
 	}
 
 	.second-menu {
 		width: 175px;
-		background-color: #F8F8F8;
+		background-color: #242B40;
 	}
 
 	.icon-image {
@@ -162,4 +160,3 @@
 		height: 30px;
 	}
 </style>
-

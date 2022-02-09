@@ -12,7 +12,7 @@
 							<text class="small">头像</text>
 						</view>
 						<uni-file-picker v-model="imageValue" mode="grid" limit="1" file-mediatype="image"
-							del-icon="false" @select="select" @progress="progress" @success="success">
+						 @select="select" @progress="progress" @success="success">
 						</uni-file-picker>
 					</view>
 

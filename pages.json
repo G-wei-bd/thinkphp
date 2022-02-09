@@ -3,15 +3,15 @@
 		"path": "/windows/topWindow.vue",
 		"style": {
 			"width": "100vw",
-			"height": "100rpx"
+			"height": "50px"
 		}
 	},
 	"leftWindow": {
 		"path": "/windows/leftWindow.vue",
 		"style": {
-			"width": "400rpx",
-			"height": "93vh",
-			"backgroundColor": "#F8F8F8"
+			"width": "200px",
+			"height": "93.3vh",
+			"backgroundColor": "#242b40"
 		}
 	},
 
