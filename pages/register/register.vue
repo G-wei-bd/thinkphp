@@ -189,6 +189,7 @@
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;
+				console.log(e);
 			},
 			display: function(){
 				this.seen = !this.seen;

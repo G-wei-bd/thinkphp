@@ -31,17 +31,15 @@
 					<view class="weeklyTable">
 						<uni-table ref="table" border stripe emptyText="暂无更多数据">
 							<uni-tr>
-								<!-- <uni-th align="center">序号</uni-th> -->
-								<uni-th align="center">提交时间</uni-th>
 								<uni-th align="center">周记周数</uni-th>
+								<uni-th align="center">提交时间</uni-th>
 								<uni-th align="center">批阅状态</uni-th>
 								<uni-th align="center">周记关联时间</uni-th>
 								<uni-th align="center">更多</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item,index) in currentArr" :key="index">
-								<!-- <uni-td align="center">{{ index + 1 }}</uni-td> -->
-								<uni-td align="center">{{ item.time }}</uni-td>
 								<uni-td align="center">{{ item.week }}</uni-td>
+								<uni-td align="center">{{ item.time }}</uni-td>
 								<uni-td align="center">{{ item.state }}</uni-td>
 								<uni-td align="center">{{ item.connectTime }}</uni-td>
 								<uni-td align="center">
@@ -105,7 +103,8 @@
 					{time: "2022.01.03", week: "27", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
 					{time: "2022.01.03", week: "28", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
 					{time: "2022.01.03", week: "29", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					{time: "2022.01.03", week: "30", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
+					{time: "2022.01.03", week: "30", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "31", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
 				]
 			}
 		},
@@ -127,14 +126,14 @@
 			// 分页触发
 			change(e) {
 				if(e.type == "next" || e.type == "prev"){
-					this.currentArr = this.Arr.slice(10*e.current - 10,10*e.current);
+					this.currentArr = this.Arr.slice(10*e.current - 10, 10*e.current);
 				}
 				if(e.type == "current"){
 					e.pageCurrent = e.current;
-					this.currentArr = this.Arr.slice(10*e.current - 10,10*e.current);
+					this.currentArr = this.Arr.slice(10*e.current - 10, 10*e.current);
 				}
 			}
-			
+		
 		}
 	}
 </script>
@@ -148,11 +147,17 @@
 		border-radius: 5px;
 		margin: 20px 14px;
 	}
+	.content{
+		padding-bottom: 100px;
+	}
 	.selectItem {
 		width: 300px;
 		margin-left: 14px;
 	}
 	.weeklyTable{
 		margin: 20px 14px;
+	}
+	.paginationContainer{
+		margin: 20px 0;
 	}
 </style>
