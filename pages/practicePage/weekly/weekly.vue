@@ -69,10 +69,11 @@
 				],
 				// 每页数据量
 				pageSize: 10,
-				// 当前页
+				// 当前显示页
 				pageCurrent: 1,
 				// 数据总量
 				total: 0,
+				// 显示在表格上的数据
 				currentArr: [],
 				Arr: [
 					{time: "2022.01.03", week: "1", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
@@ -95,13 +96,27 @@
 					{time: "2022.01.03", week: "18", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
 					{time: "2022.01.03", week: "19", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
 					{time: "2022.01.03", week: "20", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
-					// {time: "2022.01.03", week: "21", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
+					{time: "2022.01.03", week: "21", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "22", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "23", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "24", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "25", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "26", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "27", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "28", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "29", state: "已批阅", connectTime: "2022.01.02~2022.01.09"},
+					{time: "2022.01.03", week: "30", state: "已批阅", connectTime: "2022.01.02~2022.01.09"}
 				]
 			}
 		},
 		onLoad() {
-			this.total = this.Arr.length
-			this.currentArr = this.Arr.slice(0,10);
+			this.total = this.Arr.length;
+			this.currentArr = this.Arr.slice(10*this.pageCurrent - 10,10*this.pageCurrent);
+		},
+		watch: {
+			pageCurrent: function(newVal, oldVal){
+				
+			}
 		},
 		methods: {
 			onClickItem(e) {
@@ -111,13 +126,12 @@
 			},
 			// 分页触发
 			change(e) {
-				console.log(e);
-				console.log("e.type--------------"+e.type);
-				if(e.current == "1"){
-					this.currentArr = this.Arr.slice(0,10);
+				if(e.type == "next" || e.type == "prev"){
+					this.currentArr = this.Arr.slice(10*e.current - 10,10*e.current);
 				}
-				if(e.current == "2"){
-					this.currentArr = this.Arr.slice(10,20);
+				if(e.type == "current"){
+					e.pageCurrent = e.current;
+					this.currentArr = this.Arr.slice(10*e.current - 10,10*e.current);
 				}
 			}
 			
