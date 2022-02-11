@@ -13,8 +13,10 @@
 								</uni-forms-item>
 								<uni-forms-item label="期望城市" name="city">
 									<view class="combox">
-										<picker id="picker" mode="multiSelector" :range="range" :value="value" @columnchange="columnchange">
-										    <view class="picker">{{selected}}</view>
+										<picker id="picker" mode="multiSelector" :range="range" :value="value"
+											@columnchange="columnchange">
+											<view class="picker">{{this.range[0][value[0]]}} {{this.range[1][value[1]]}}
+											</view>
 										</picker>
 									</view>
 								</uni-forms-item>
@@ -74,7 +76,9 @@
 </template>
 
 <script>
-	import {area} from './area.js'
+	import {
+		area
+	} from './area.js'
 	export default {
 		data() {
 			return {
@@ -96,11 +100,14 @@
 				styles: {
 					color: '#000'
 				},
-				selected: '请选择期望城市',
-				range: [[''], [''], ['']],
+				// 存放省市文字数据的位置, range[0] 是所有省文字数据，this.range[1] 省下所有地级市的文字数据
+				range: [['请选择期望城市'],[]],
 				provinceCodes: [],
 				cityCodes: [],
-				value: [0,0,0],
+				// 省市的索引存放位置
+				value: [0, 0],
+				index1: '',
+				index2:'',
 				items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
 				itemsIndex: 0,
 				pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
@@ -109,11 +116,13 @@
 				arriveIndex: 0
 			}
 		},
-		onLoad:function(){
-		    for (let provinceCode in area.province_list) {
-		        this.range[0].push(area.province_list[provinceCode])
-		        this.provinceCodes.push(provinceCode)
-		    }
+		onLoad: function() {
+			// 导入各省的数据
+			for (let provinceCode in area.province_list) {
+				this.range[0].push(area.province_list[provinceCode])
+				
+				this.provinceCodes.push(provinceCode)
+			}
 		},
 		methods: {
 			submit: function() {
@@ -131,44 +140,38 @@
 				})
 			},
 			columnchange: function(e) {
-			    this.value[e.detail.column] = e.detail.value
-			    if (0==e.detail.column) {
-			        let provinceCode = this.provinceCodes[e.detail.value-1]
-			        this.range[1] = ['']
-			        this.range[2] = ['']
-			        let cities = ['']
-			        this.cityCodes = []
-			        for (let cityCode in area.city_list) {
-			            if (Number(cityCode)>=Number(provinceCode) && Number(cityCode)<=Number(provinceCode)+9900) {
-			                cities.push(area.city_list[cityCode])
-			                this.cityCodes.push(cityCode)
-			            }
-			        }
-			        this.range[1] = cities
-			        this.value.splice(1, 1, 0)
-			        this.value.splice(2, 1, 0)
-			    } 
-				else if (1==e.detail.column) {
-			        this.value[2] = 0
-			        let cityCode = this.cityCodes[e.detail.value-1]
-			        this.range[2] = ['']
-			        let counties = ['']
-			        for (let countyCode in area.county_list) {
-			            if (Number(countyCode)>=Number(cityCode) && Number(countyCode)<=Number(cityCode)+99) {
-			                counties.push(area.county_list[countyCode])
-			            }
-			        }
-			        this.range[2] = counties
-			        this.value.splice(2, 1, 0)
-			    }
-			    this.$forceUpdate()
-			    if (this.range[2][this.value[2]]) {
-			        this.selected = this.range[2][this.value[2]]
-			    } else if(this.range[1][this.value[1]]) {
-			        this.selected = this.range[1][this.value[1]]
-			    } else if(this.range[0][this.value[0]]) {
-			        this.selected = this.range[0][this.value[0]]
-			    }
+				this.value[e.detail.column] = e.detail.value
+				// 这是省的滚动列表,用来表示省的滚动判断，并动态加载省各地级市的数据
+				if (0 == e.detail.column) {
+					let provinceCode = this.provinceCodes[e.detail.value - 1]
+					this.range[1] = []
+					let cities = []
+					this.cityCodes = []
+					// 利用 for 循环查找属于本省的地级市的行政代码并加载到数组中进行展示
+					for (let cityCode in area.city_list) {
+						if (Number(cityCode) >= Number(provinceCode) && Number(cityCode) <= Number(provinceCode) +
+							9900) {
+							cities.push(area.city_list[cityCode])
+							this.cityCodes.push(cityCode)
+						}
+					}
+					
+					this.range[1] = cities
+					// 这是将数据索引剪切到 value 数组中，进行展示
+					this.value.splice(1, 1)
+					this.value.splice(2, 1, 0)
+				}
+				
+				// 这是地级市的滚动列表，用来表示市的滚动判断
+				else if (1 == e.detail.column) {
+					let cityCode = this.cityCodes[e.detail.value - 1]
+					// 这是将数据索引剪切到 value 数组中，进行展示
+			  this.value.splice(2, 1)
+				}
+				console.log("this.value是：======"+this.value);
+				console.log(this.value[0]);
+				console.log(this.value[1]);
+				// console.log(this.range[this.value[0]][this.value[1]]);
 			},
 			salary(e) {
 				this.itemsIndex = e.target.value;
