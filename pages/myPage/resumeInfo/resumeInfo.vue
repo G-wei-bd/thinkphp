@@ -4,40 +4,46 @@
 			<uni-collapse>
 				<uni-collapse-item title="求职意向" open>
 					<view class="firstForm">
-						<uni-forms ref="firstForm" :rules="rules">
+						<uni-forms ref="firstForm" :modelValue="firstFormData" :rules="rules">
 							<view class="firForm">
-								<uni-forms-item label="期望岗位" name="post">
+								<uni-forms-item label="期望岗位" name="post" required>
+									<input class="picker" type="text" placeholder="请输入期待岗位" v-model="firstFormData.post"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @blur="post" />
+								</uni-forms-item>
+								<!-- <uni-forms-item label="期望岗位" name="post" required>
 									<uni-easyinput trim="all" v-model="firstFormData.post" style="width: 170px;"
 										:styles="styles" placeholder="请输入期待岗位"
 										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" />
-								</uni-forms-item>
-								<uni-forms-item label="期望城市" name="city">
+								</uni-forms-item> -->
+								<uni-forms-item label="期望城市" name="city" required>
 									<view class="combox">
-										<picker id="picker" mode="multiSelector" :range="range" :value="value"
-											@columnchange="columnchange">
+										<picker mode="multiSelector" :range="range" :value="value"
+											v-model="firstFormData.city" @columnchange="columnchange">
 											<view class="picker">{{this.range[0][value[0]]}} {{this.range[1][value[1]]}}
 											</view>
 										</picker>
 									</view>
 								</uni-forms-item>
-								<uni-forms-item label="期望薪资" name="salary">
+								<uni-forms-item label="期望薪资" name="salary" required>
 									<view class="combox">
-										<picker mode="selector" :range="items" :value="itemsIndex" @change="salary">
+										<picker mode="selector" :range="items" :value="itemsIndex"
+											v-model="firstFormData.salary" @change="salary">
 											<view class="picker">{{items[itemsIndex]}}</view>
 										</picker>
 									</view>
 								</uni-forms-item>
-								<uni-forms-item label="实习时长" name="time">
+								<uni-forms-item label="实习时长" name="time" required>
 									<view class="combox">
-										<picker mode="selector" :range="pickerTime" :value="timeIndex" @change="time">
+										<picker mode="selector" :range="pickerTime" :value="timeIndex"
+											v-model="firstFormData.time" @change="time">
 											<view class="picker">{{pickerTime[timeIndex]}}</view>
 										</picker>
 									</view>
 								</uni-forms-item>
-								<uni-forms-item label="到岗时间" name="arriveTime">
+								<uni-forms-item label="到岗时间" name="arriveTime" required>
 									<view class="combox">
 										<picker mode="selector" :range="arriveTime" :value="arriveIndex"
-											@change="arrive">
+											v-model="firstFormData.arriveTime" @change="arrive">
 											<view class="picker">{{arriveTime[arriveIndex]}}</view>
 										</picker>
 									</view>
@@ -95,19 +101,44 @@
 							required: true,
 							errorMessage: "请选择期望岗位"
 						}]
-					}
+					},
+					city: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择期望城市"
+						}]
+					},
+					salary: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择期望薪资"
+						}]
+					},
+					time: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择实习时长"
+						}]
+					},
+					arriveTime: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择到岗时间"
+						}]
+					},
 				},
 				styles: {
 					color: '#000'
 				},
 				// 存放省市文字数据的位置, range[0] 是所有省文字数据，this.range[1] 省下所有地级市的文字数据
-				range: [['请选择期望城市'],[]],
+				range: [
+					['请选择期望城市'],
+					[]
+				],
 				provinceCodes: [],
 				cityCodes: [],
 				// 省市的索引存放位置
 				value: [0, 0],
-				index1: '',
-				index2:'',
 				items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
 				itemsIndex: 0,
 				pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
@@ -120,7 +151,7 @@
 			// 导入各省的数据
 			for (let provinceCode in area.province_list) {
 				this.range[0].push(area.province_list[provinceCode])
-				
+
 				this.provinceCodes.push(provinceCode)
 			}
 		},
@@ -129,15 +160,20 @@
 				this.$refs.firstForm.validate().then((res) => {
 					this.firstFormData.post = res.post;
 					console.log(this.firstFormData);
-					if (this.firstFormData.salary == "" || this.firstFormData.time == "" || this.firstFormData
-						.arriveTime == "") {
+					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData.time == "" || this.firstFormData.arriveTime == "") {
 						console.log("未选择全");
 					} else {
-						console.log("成功");
+						console.log("提交成功");
 					}
 				}).catch((err) => {
 					console.log(err)
 				})
+			},
+			post(e) {
+				this.firstFormData.post = e.detail.value;
+				if (e.detail.value == '') {
+					this.firstFormData.post = ''
+				}
 			},
 			columnchange: function(e) {
 				this.value[e.detail.column] = e.detail.value
@@ -155,23 +191,26 @@
 							this.cityCodes.push(cityCode)
 						}
 					}
-					
 					this.range[1] = cities
 					// 这是将数据索引剪切到 value 数组中，进行展示
 					this.value.splice(1, 1)
 					this.value.splice(2, 1, 0)
 				}
-				
+
 				// 这是地级市的滚动列表，用来表示市的滚动判断
 				else if (1 == e.detail.column) {
 					let cityCode = this.cityCodes[e.detail.value - 1]
 					// 这是将数据索引剪切到 value 数组中，进行展示
-			  this.value.splice(2, 1)
+					this.value.splice(2, 1)
 				}
-				console.log("this.value是：======"+this.value);
-				console.log(this.value[0]);
-				console.log(this.value[1]);
-				// console.log(this.range[this.value[0]][this.value[1]]);
+				// 提交数据到 this.firstFormData 中
+				if (this.value[0] == 0) {
+					this.firstFormData.city = ''
+				}
+				if(this.range[1][this.value[1]] === undefined){
+					this.firstFormData.city = this.range[0][this.value[0]];
+				}
+				this.firstFormData.city = this.range[0][this.value[0]] + this.range[1][this.value[1]];
 			},
 			salary(e) {
 				this.itemsIndex = e.target.value;
