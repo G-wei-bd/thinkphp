@@ -2,19 +2,14 @@
 	<view>
 		<view class="resume">
 			<uni-collapse>
-				<uni-collapse-item title="求职意向" open>
+				<uni-collapse-item title="求职意向">
 					<view class="firstForm">
-						<uni-forms ref="firstForm" :modelValue="firstFormData" :rules="rules">
-							<view class="firForm">
+						<uni-forms ref="firstFormRef" :modelValue="firstFormData" :rules="firRules">
+							<view class="allForm-Item">
 								<uni-forms-item label="期望岗位" name="post" required>
 									<input class="picker" type="text" placeholder="请输入期待岗位" v-model="firstFormData.post"
 										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @blur="post" />
 								</uni-forms-item>
-								<!-- <uni-forms-item label="期望岗位" name="post" required>
-									<uni-easyinput trim="all" v-model="firstFormData.post" style="width: 170px;"
-										:styles="styles" placeholder="请输入期待岗位"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" />
-								</uni-forms-item> -->
 								<uni-forms-item label="期望城市" name="city" required>
 									<view class="combox">
 										<picker mode="multiSelector" :range="range" :value="value"
@@ -55,9 +50,45 @@
 						</view>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="个人信息">
-					<text>折叠内容</text>
-				</uni-collapse-item>
+				<!-- <uni-collapse-item title="个人信息" open>
+					<view class="personInfo">
+						<uni-forms ref="secondForm" :rules="secRules">
+							<view class="allForm-Item">
+								<uni-forms-item label="姓名" name="userName" required>
+									<input class="picker" type="text" placeholder="请输入姓名"
+										v-model="secondFormData.userName"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" />
+								</uni-forms-item>
+								<uni-forms-item label="性别" name="gender" required>
+									<uni-data-checkbox :value="genderValue" :localdata="genderData" mode="tag" @change="gender" />
+								</uni-forms-item>
+								<uni-forms-item label="出生日期" name="birth" required>
+									<view class="uDateBox">
+										<uni-datetime-picker type="date" :clearIcon="false" v-model="secondFormData.bitrh" />
+									</view>
+								</uni-forms-item>
+								<uni-forms-item label="籍贯" name="location" required>
+									<view class="combox">
+										<picker mode="multiSelector" :range="secondRange" :value="secondValue"
+											v-model="secondFormData.location" @columnchange="secondColumnchange">
+											<view class="picker">{{this.secondRange[0][secondValue[0]]}} {{this.secondRange[1][secondValue[1]]}}
+											</view>
+										</picker>
+									</view>
+								</uni-forms-item>
+								<uni-forms-item label="最高学历" name="degree" required>
+
+								</uni-forms-item>
+								<uni-forms-item label="手机号" name="phoneNumber" required>
+
+								</uni-forms-item>
+								<uni-forms-item label="邮箱" name="email">
+
+								</uni-forms-item>
+							</view>
+						</uni-forms>
+					</view>
+				</uni-collapse-item> -->
 				<uni-collapse-item title="教育经历">
 					<text>折叠内容</text>
 				</uni-collapse-item>
@@ -88,79 +119,57 @@
 	export default {
 		data() {
 			return {
-				firstFormData: {
-					post: '',
-					city: '',
-					salary: '',
-					time: '',
-					arriveTime: ''
-				},
-				rules: {
-					post: {
-						rules: [{
-							required: true,
-							errorMessage: "请选择期望岗位"
-						}]
-					},
-					city: {
-						rules: [{
-							required: true,
-							errorMessage: "请选择期望城市"
-						}]
-					},
-					salary: {
-						rules: [{
-							required: true,
-							errorMessage: "请选择期望薪资"
-						}]
-					},
-					time: {
-						rules: [{
-							required: true,
-							errorMessage: "请选择实习时长"
-						}]
-					},
-					arriveTime: {
-						rules: [{
-							required: true,
-							errorMessage: "请选择到岗时间"
-						}]
-					},
-				},
-				styles: {
-					color: '#000'
-				},
-				// 存放省市文字数据的位置, range[0] 是所有省文字数据，this.range[1] 省下所有地级市的文字数据
+				firstFormData: {},
+				secondFormData: {},
+				firRules: {},
+				secRules: {},
 				range: [
 					['请选择期望城市'],
 					[]
 				],
 				provinceCodes: [],
 				cityCodes: [],
-				// 省市的索引存放位置
 				value: [0, 0],
-				items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
+				secondRange: [
+					['请选择籍贯'],
+					[]
+				],
+				secondProvinceCodes: [],
+				secondCityCodes: [],
+				secondValue: [0, 0],
+				items: [],
 				itemsIndex: 0,
-				pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
+				pickerTime: [],
 				timeIndex: 0,
-				arriveTime: ["请选择到岗时间", "随时", "一周以内", "一个月以内", "1-3个月", "三个月以后"],
-				arriveIndex: 0
+				arriveTime: [],
+				arriveIndex: 0,
+				genderValue: '',
+				genderData: [{"value": 1,"text": "男"},{"value": 0,"text": "女"}] 
 			}
 		},
 		onLoad: function() {
+			this.firRules = area.firRules;
+			this.secRules = area.secRules;
+			this.items = area.items;
+			this.pickerTime = area.pickerTime;
+			this.arriveTime = area.arriveTime;
 			// 导入各省的数据
 			for (let provinceCode in area.province_list) {
 				this.range[0].push(area.province_list[provinceCode])
-
 				this.provinceCodes.push(provinceCode)
+			}
+			for (let secondProvinceCode in area.province_list) {
+				this.secondRange[0].push(area.province_list[secondProvinceCode])
+				this.secondProvinceCodes.push(secondProvinceCode)
 			}
 		},
 		methods: {
 			submit: function() {
-				this.$refs.firstForm.validate().then((res) => {
+				this.$refs.firstFormRef.validate().then((res) => {
 					this.firstFormData.post = res.post;
 					console.log(this.firstFormData);
-					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData.time == "" || this.firstFormData.arriveTime == "") {
+					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
+						.time == "" || this.firstFormData.arriveTime == "") {
 						console.log("未选择全");
 					} else {
 						console.log("提交成功");
@@ -207,7 +216,7 @@
 				if (this.value[0] == 0) {
 					this.firstFormData.city = ''
 				}
-				if(this.range[1][this.value[1]] === undefined){
+				if (this.range[1][this.value[1]] == '') {
 					this.firstFormData.city = this.range[0][this.value[0]];
 				}
 				this.firstFormData.city = this.range[0][this.value[0]] + this.range[1][this.value[1]];
@@ -232,7 +241,42 @@
 				if (e.target.value == "0") {
 					this.firstFormData.arriveTime = ""
 				}
-			}
+			},
+			gender(e){
+				this.secondFormData.gender = e.detail.value;
+			},
+			secondColumnchange: function(e) {
+				this.secondValue[e.detail.column] = e.detail.value
+				if (0 == e.detail.column) {
+					let secondProvinceCode = this.secondProvinceCodes[e.detail.value - 1]
+					this.secondRange[1] = []
+					let secondCities = []
+					this.secondCityCodes = []
+					for (let secondCityCode in area.city_list) {
+						if (Number(secondCityCode) >= Number(secondProvinceCode) && Number(secondCityCode) <= Number(secondProvinceCode) +
+							9900) {
+							secondCities.push(area.city_list[secondCityCode])
+							this.secondCityCodes.push(secondCityCode)
+						}
+					}
+					this.secondRange[1] = secondCities
+					this.secondValue.splice(1, 1)
+					this.secondValue.splice(2, 1, 0)
+				}
+				else if (1 == e.detail.column) {
+					let secondCityCode = this.secondCityCodes[e.detail.value - 1]
+				
+					this.secondValue.splice(2, 1)
+				}
+				if (this.secondValue[0] == 0) {
+					this.secondFormData.location = ''
+				}
+				if (this.secondRange[1][this.secondValue[1]] == '') {
+					this.secondFormData.location = this.secondRange[0][this.secondValue[0]];
+				}
+				this.secondFormData.location = this.secondRange[0][this.secondValue[0]] + this.secondRange[1][this.secondValue[1]];
+				console.log(this.secondFormData.location);
+			},
 		}
 	}
 </script>
@@ -241,16 +285,15 @@
 	.resume {
 		padding: 10px 50px;
 		margin: 10px;
-		background-color: #bfa;
+		/* background-color: #bfa; */
 	}
 
 	.firstForm {
-		height: 220px;
 		margin-left: 30px;
-		padding-bottom: 20px;
+		padding-bottom: 10px;
 	}
 
-	.firForm {
+	.allForm-Item {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -268,6 +311,14 @@
 		line-height: 36px;
 		text-align: left;
 	}
+	
+	.uDateBox{
+		
+	}
+	
+	
+	
+	
 
 	.submitBtn {
 		width: 100px;

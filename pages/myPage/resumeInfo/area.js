@@ -31,8 +31,8 @@ export const area = {
 		630000: '青海省',
 		640000: '宁夏回族自治区',
 		650000: '新疆维吾尔自治区',
-		810000:	'香港特别行政区',					
-		820000:	'澳门特别行政区'
+		810000: '香港特别行政区',
+		820000: '澳门特别行政区'
 	},
 	city_list: {
 		130100: '石家庄市',
@@ -369,5 +369,78 @@ export const area = {
 		654000: '伊犁哈萨克自治州',
 		654200: '塔城地区',
 		654300: '阿勒泰地区',
-	}
+	},
+	firRules: {
+		post: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择期望岗位"
+			}]
+		},
+		city: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择期望城市"
+			}]
+		},
+		salary: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择期望薪资"
+			}]
+		},
+		time: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择实习时长"
+			}]
+		},
+		arriveTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择到岗时间"
+			}]
+		},
+	},
+	secRules: {
+		userName: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写姓名"
+			}]
+		},
+		gender: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择性别"
+			}]
+		},
+		birth: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择出生日期"
+			}]
+		},
+		location: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择籍贯"
+			}]
+		},
+		degree: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择最高学历"
+			}]
+		},
+		phoneNumber: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写手机号码"
+			}]
+		}
+	},
+	items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
+	pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
+	arriveTime: ["请选择到岗时间", "随时", "一周以内", "一个月以内", "1-3个月", "三个月以后"],
 };

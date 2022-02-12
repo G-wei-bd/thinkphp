@@ -66,14 +66,7 @@
 	export default {
 		data() {
 			return {
-				formData: {
-					time: '',
-					university: '',
-					collage: '',
-					major: '',
-					majorClass: '',
-					intoTime: ''
-				},
+				formData: {},
 				rules: {
 					time: {
 						rules: [{
