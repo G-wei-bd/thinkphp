@@ -822,15 +822,10 @@
 	}
 
 	.uni-date-picker__container {
-		position: relative;
-		/* 		position: fixed;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
+		position: fixed;
 		box-sizing: border-box;
 		z-index: 996;
-		font-size: 14px; */
+		font-size: 14px;
 	}
 
 	.uni-date-mask {
