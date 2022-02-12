@@ -442,7 +442,7 @@ export const area = {
 		email: {
 			rules: [{
 				required: true,
-				errorMessage: "请填写手机号码"
+				errorMessage: "请填写邮箱"
 			}]
 		}
 	},

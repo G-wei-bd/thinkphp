@@ -53,7 +53,7 @@
 				</uni-collapse-item>
 				<uni-collapse-item title="个人信息" open>
 					<view class="personInfo">
-						<uni-forms ref="secondFormRef" :rules="secRules">
+						<uni-forms ref="secondFormRef" :rules="secRules" :modelValue="secondFormData">
 							<view class="allForm-Item">
 								<uni-forms-item label="姓名" name="userName" required>
 									<input class="picker" type="text" placeholder="请输入姓名" v-model="secondFormData.userName"
@@ -62,11 +62,11 @@
 								</uni-forms-item>
 								<uni-forms-item label="性别" name="gender" required>
 									<uni-data-checkbox :value="genderValue" :localdata="genderData" mode="tag"
-										 v-model="secondFormData.gender" /><!-- @change="genderChange" -->
+										 v-model="secondFormData.gender" />
 								</uni-forms-item>
 								<uni-forms-item label="出生日期" name="birth" required>
 										<uni-datetime-picker style="width: 170px;" type="date" :clearIcon="false"
-											v-model="secondFormData.bitrh" />
+											v-model="secondFormData.bitrh" @change="binddata('birth',$event.detail.value,'secondFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="籍贯" name="location" required>
 									<view class="combox">
@@ -202,19 +202,19 @@
 		},
 		methods: {
 			submit: function(e) {
-				// this.$refs.firstFormRef.validate().then((res) => {
-				// 	this.firstFormData.post = res.post;
-				// 	// console.log(this.firstFormData);
-				// 	console.log(e);
-				// 	if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
-				// 		.time == "" || this.firstFormData.arriveTime == "") {
-				// 		console.log("未选择全");
-				// 	} else {
-				// 		console.log("提交成功");
-				// 	}
-				// }).catch((err) => {
-				// 	console.log(err)
-				// })
+				this.$refs.firstFormRef.validate().then((res) => {
+					this.firstFormData.post = res.post;
+					// console.log(this.firstFormData);
+					console.log(e);
+					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
+						.time == "" || this.firstFormData.arriveTime == "") {
+						console.log("未选择全");
+					} else {
+						console.log("提交成功");
+					}
+				}).catch((err) => {
+					console.log(err)
+				})
 				this.$refs.secondFormRef.validate().then((res) => {
 					console.log(res);
 					console.log(this.secondFormData);
@@ -267,25 +267,25 @@
 				console.log(this.firstFormData.city);
 			},
 			salaryChange(e) {
-				this.itemsIndex = e.target.value;
-				this.firstFormData.salary = this.items[e.target.value];
 				if (e.target.value == "0") {
 					this.firstFormData.salary = ""
 				}
+				this.itemsIndex = e.target.value;
+				this.firstFormData.salary = this.items[e.target.value];
 			},
 			timeChange(e) {
-				this.timeIndex = e.target.value;
-				this.firstFormData.time = this.pickerTime[e.target.value];
 				if (e.target.value == "0") {
 					this.firstFormData.time = ""
 				}
+				this.timeIndex = e.target.value;
+				this.firstFormData.time = this.pickerTime[e.target.value];
 			},
 			arriveChange(e) {
-				this.arriveIndex = e.target.value;
-				this.firstFormData.arriveTime = this.arriveTime[e.target.value];
 				if (e.target.value == "0") {
 					this.firstFormData.arriveTime = ""
 				}
+				this.arriveIndex = e.target.value;
+				this.firstFormData.arriveTime = this.arriveTime[e.target.value];
 			},
 			secondColumnchange: function(e) {
 				this.secondValue[e.detail.column] = e.detail.value;
@@ -318,11 +318,11 @@
 				this.secondFormData.location = this.secondRange[0][this.secondValue[0]] + this.secondRange[1][this.secondValue[1]];
 			},
 			degreeChange(e){
-				this.degreeValue = e.target.value;
-				this.secondFormData.degree = this.degreeRange[e.target.value];
 				if (e.target.value == "0") {
 					this.secondFormData.degree = ""
 				}
+				this.degreeValue = e.target.value;
+				this.secondFormData.degree = this.degreeRange[e.target.value];
 			},
 		}
 	}
