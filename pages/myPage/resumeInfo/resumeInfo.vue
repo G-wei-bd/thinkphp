@@ -56,13 +56,13 @@
 						<uni-forms ref="secondFormRef" :rules="secRules">
 							<view class="allForm-Item">
 								<uni-forms-item label="姓名" name="userName" required>
-									<input class="picker" type="text" placeholder="请输入姓名"
-										v-model="secondFormData.userName"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('userName',$event.detail.value,'secondFormRef')" @blur="userNameChange" />
+									<input class="picker" type="text" placeholder="请输入姓名" v-model="secondFormData.userName"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" 
+										@input="binddata('userName',$event.detail.value,'secondFormRef')"  />
 								</uni-forms-item>
 								<uni-forms-item label="性别" name="gender" required>
 									<uni-data-checkbox :value="genderValue" :localdata="genderData" mode="tag"
-										@change="genderChange" />
+										 v-model="secondFormData.gender" /><!-- @change="genderChange" -->
 								</uni-forms-item>
 								<uni-forms-item label="出生日期" name="birth" required>
 										<uni-datetime-picker style="width: 170px;" type="date" :clearIcon="false"
@@ -89,12 +89,12 @@
 								<uni-forms-item label="手机号" name="phoneNumber" required>
 									<input class="picker" type="number" maxlength="11" placeholder="请输入手机号"
 										v-model="secondFormData.phoneNumber"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('phoneNumber',$event.detail.value,'secondFormRef')" @blur="phoneNumberChange" />
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('phoneNumber',$event.detail.value,'secondFormRef')"  />
 								</uni-forms-item>
-								<uni-forms-item label="邮箱" name="email">
+								<uni-forms-item label="邮箱" name="email" required>
 									<input class="picker" type="text" placeholder="请输入邮箱"
 										v-model="secondFormData.email"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @blur="emailChange" />
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('email',$event.detail.value,'secondFormRef')"  />
 								</uni-forms-item>
 							</view>
 						</uni-forms>
@@ -202,20 +202,21 @@
 		},
 		methods: {
 			submit: function(e) {
-				this.$refs.firstFormRef.validate().then((res) => {
-					this.firstFormData.post = res.post;
-					console.log(this.firstFormData);
-					console.log(e);
-					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
-						.time == "" || this.firstFormData.arriveTime == "") {
-						console.log("未选择全");
-					} else {
-						console.log("提交成功");
-					}
-				}).catch((err) => {
-					console.log(err)
-				})
+				// this.$refs.firstFormRef.validate().then((res) => {
+				// 	this.firstFormData.post = res.post;
+				// 	// console.log(this.firstFormData);
+				// 	console.log(e);
+				// 	if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
+				// 		.time == "" || this.firstFormData.arriveTime == "") {
+				// 		console.log("未选择全");
+				// 	} else {
+				// 		console.log("提交成功");
+				// 	}
+				// }).catch((err) => {
+				// 	console.log(err)
+				// })
 				this.$refs.secondFormRef.validate().then((res) => {
+					console.log(res);
 					console.log(this.secondFormData);
 				}).catch((err) => {
 					console.log(err)
@@ -286,15 +287,6 @@
 					this.firstFormData.arriveTime = ""
 				}
 			},
-			userNameChange(e){
-				this.secondFormData.userName = e.detail.value;
-				if(e.detail.value = ''){
-					this.secondFormData.userName = '';
-				}
-			},
-			genderChange(e) {
-				this.secondFormData.gender = e.detail.value;
-			},
 			secondColumnchange: function(e) {
 				this.secondValue[e.detail.column] = e.detail.value;
 				if (0 == e.detail.column) {
@@ -331,15 +323,6 @@
 				if (e.target.value == "0") {
 					this.secondFormData.degree = ""
 				}
-			},
-			phoneNumberChange(e){
-				this.secondFormData.phoneNumber = e.detail.value;
-				if(e.detail.value = ''){
-					this.secondFormData.phoneNumber = '';
-				}
-			},
-			emailChange(e){
-				this.secondFormData.email = e.detail.value;
 			},
 		}
 	}

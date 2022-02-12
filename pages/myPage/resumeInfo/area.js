@@ -438,6 +438,12 @@ export const area = {
 				required: true,
 				errorMessage: "请填写手机号码"
 			}]
+		},
+		email: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写手机号码"
+			}]
 		}
 	},
 	items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
