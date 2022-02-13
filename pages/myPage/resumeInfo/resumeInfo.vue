@@ -127,23 +127,23 @@
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="实习经历" open>
+				<uni-collapse-item title="实习经历">
 					<view class="forthForm">
 						<uni-forms ref="forthFormRef" :modelValue="forthFormData" :rules="forthRules">
 							<view class="allForm-Item">
 								<uni-forms-item label="公司名称" name="company" required>
-									<input class="picker" type="text" placeholder="请输入学校" v-model="forthFormData.company"
+									<input class="picker" type="text" placeholder="请输入公司名称" v-model="forthFormData.company"
 										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
 										@input="binddata('company',$event.detail.value,'forthFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="我的职位" name="jobs" required>
-									<input class="picker" type="text" placeholder="请输入专业" v-model="forthFormData.jobs"
+									<input class="picker" type="text" placeholder="请输入我的职位" v-model="forthFormData.jobs"
 										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
 										@input="binddata('jobs',$event.detail.value,'forthFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="工作时间" name="workTime" required>
 									<uni-datetime-picker type="daterange" :clearIcon="false"
-										v-model="forthFormData.workTime" rangeSeparator="至" @change="binddata('studyTime',$event,'forthFormRef')"/>
+										v-model="forthFormData.workTime" rangeSeparator="至" @change="binddata('workTime',$event,'forthFormRef')"/>
 								</uni-forms-item>
 								<uni-forms-item label="简介" name="intro" required>
 									<textarea class="textareaPicker" maxlength="200" placeholder="请填写简介" v-model="forthFormData.intro"
@@ -155,10 +155,49 @@
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="项目经验">
-					<text>折叠内容</text>
+					<view class="fifthForm">
+						<uni-forms ref="fifthFormRef" :modelValue="fifthFormData" :rules="fifthRules">
+							<view class="allForm-Item">
+								<uni-forms-item label="项目名称" name="itemName" required>
+									<input class="picker" type="text" placeholder="请输入项目名称" v-model="fifthFormData.itemName"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('itemName',$event.detail.value,'fifthFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="担任职位" name="jobs" required>
+									<input class="picker" type="text" placeholder="请输入担任职位" v-model="fifthFormData.jobs"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('jobs',$event.detail.value,'fifthFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="项目时间" name="itemTime" required>
+									<uni-datetime-picker type="daterange" :clearIcon="false"
+										v-model="fifthFormData.itemTime" rangeSeparator="至" @change="binddata('itemTime',$event,'fifthFormRef')"/>
+								</uni-forms-item>
+								<uni-forms-item label="项目描述" name="intro" required>
+									<textarea class="textareaPicker" maxlength="200" placeholder="请填写项目描述" v-model="fifthFormData.intro"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('intro',$event.detail.value,'fifthFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="项目职责" name="duty" required>
+									<textarea class="textareaPicker" maxlength="200" placeholder="请填写项目职责" v-model="fifthFormData.duty"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('duty',$event.detail.value,'fifthFormRef')" />
+								</uni-forms-item>
+							</view>
+						</uni-forms>
+					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="个人优势">
-					<text>折叠内容</text>
+				<uni-collapse-item title="个人优势" open>
+					<view class="sixthForm">
+						<uni-forms ref="sixthFormRef" :modelValue="sixthFormData" :rules="sixthRules">
+							<view class="allForm-Item">	
+								<uni-forms-item label="个人优势" name="advantage" required>
+									<textarea class="textareaPicker" maxlength="200" placeholder="请填写个人优势" v-model="sixthFormData.advantage"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('advantage',$event.detail.value,'sixthFormRef')" />
+								</uni-forms-item>
+							</view>
+						</uni-forms>
+					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="获得荣誉">
 					<text>折叠内容</text>
@@ -208,10 +247,22 @@
 					workTime: '',
 					intro: ''
 				},
+				fifthFormData: {
+					itemName: '',
+					jobs: '',
+					itemTime: '',
+					intro: '',
+					duty: ''
+				},
+				sixthFormData: {
+					advantage: ''
+				},
 				firRules: {},
 				secRules: {},
 				thirdRules:{},
 				forthRules:{},
+				fifthRules:{},
+				sixthRules:{},
 				range: [
 					['请选择期望城市'],
 					[]
@@ -249,6 +300,8 @@
 			this.secRules = area.secRules;
 			this.thirdRules = area.thirdRules;
 			this.forthRules = area.forthRules;
+			this.fifthRules = area.fifthRules;
+			this.sixthRules = area.sixthRules;
 			this.items = area.items;
 			this.pickerTime = area.pickerTime;
 			this.arriveTime = area.arriveTime;
@@ -305,9 +358,16 @@
 				if(form == 'forthFormRef'){
 					this.$refs.forthFormRef.setValue(name, value);
 				}
+				if(form == 'fifthFormRef'){
+					this.$refs.fifthFormRef.setValue(name, value);
+				}
+				if(form == 'sixthFormRef'){
+					this.$refs.sixthFormRef.setValue(name, value);
+				}
 
 			},
 			submit: function(e) {
+				console.log(e);
 				this.$refs.firstFormRef.validate().then((res) => {
 					console.log(this.firstFormData);
 					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
@@ -331,6 +391,16 @@
 				})
 				this.$refs.forthFormRef.validate().then((res) => {
 					console.log(this.forthFormData);
+				}).catch((err) => {
+					console.log(err)
+				})
+				this.$refs.fifthFormRef.validate().then((res) => {
+					console.log(this.fifthFormData);
+				}).catch((err) => {
+					console.log(err)
+				})
+				this.$refs.sixthFormRef.validate().then((res) => {
+					console.log(this.fifthFormData);
 				}).catch((err) => {
 					console.log(err)
 				})

@@ -823,8 +823,9 @@
 
 	.uni-date-picker__container {
 		position: fixed;
+		bottom: 500px;
 		box-sizing: border-box;
-		z-index: 996;
+		z-index: 9999;
 		font-size: 14px;
 	}
 
@@ -946,7 +947,7 @@
 	}
 
 	/* picker 弹出层通用的指示小三角, todo：扩展至上下左右方向定位 */
-	.uni-popper__arrow,
+	/* .uni-popper__arrow,
 	.uni-popper__arrow::after {
 		position: absolute;
 		display: block;
@@ -972,5 +973,5 @@
 		margin-left: -6px;
 		border-top-width: 0;
 		border-bottom-color: #fff;
-	}
+	} */
 </style>
