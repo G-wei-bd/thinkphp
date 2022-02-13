@@ -186,7 +186,7 @@
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="个人优势" open>
+				<uni-collapse-item title="个人优势">
 					<view class="sixthForm">
 						<uni-forms ref="sixthFormRef" :modelValue="sixthFormData" :rules="sixthRules">
 							<view class="allForm-Item">	
@@ -200,9 +200,6 @@
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="获得荣誉">
-					<text>折叠内容</text>
-				</uni-collapse-item>
-				<uni-collapse-item title="其他">
 					<text>折叠内容</text>
 				</uni-collapse-item>
 			</uni-collapse>
