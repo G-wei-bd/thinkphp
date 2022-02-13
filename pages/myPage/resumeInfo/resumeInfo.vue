@@ -9,12 +9,13 @@
 								<uni-forms-item label="期望岗位" name="post" required>
 									<input class="picker" type="text" placeholder="请输入期待岗位" v-model="firstFormData.post"
 										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
-										@blur="postChange" @input="binddata('post',$event.detail.value,'firstFormRef')" />
+										@input="binddata('post',$event.detail.value,'firstFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="期望城市" name="city" required>
 									<view class="combox">
 										<picker mode="multiSelector" :range="range" :value="value"
-											v-model="firstFormData.city" @columnchange="columnchange">
+											v-model="firstFormData.city" @columnchange="columnchange"
+											@change="binddata('city',$event.detail.value,'firstFormRef')">
 											<view class="picker">{{this.range[0][value[0]]}} {{this.range[1][value[1]]}}
 											</view>
 										</picker>
@@ -23,7 +24,8 @@
 								<uni-forms-item label="期望薪资" name="salary" required>
 									<view class="combox">
 										<picker mode="selector" :range="items" :value="itemsIndex"
-											v-model="firstFormData.salary" @change="salaryChange">
+											v-model="firstFormData.salary"
+											@change="binddata('salary',$event.detail.value,'firstFormRef')">
 											<view class="picker">{{items[itemsIndex]}}</view>
 										</picker>
 									</view>
@@ -31,7 +33,8 @@
 								<uni-forms-item label="实习时长" name="time" required>
 									<view class="combox">
 										<picker mode="selector" :range="pickerTime" :value="timeIndex"
-											v-model="firstFormData.time" @change="timeChange">
+											v-model="firstFormData.time"
+											@change="binddata('time',$event.detail.value,'firstFormRef')">
 											<view class="picker">{{pickerTime[timeIndex]}}</view>
 										</picker>
 									</view>
@@ -39,39 +42,39 @@
 								<uni-forms-item label="到岗时间" name="arriveTime" required>
 									<view class="combox">
 										<picker mode="selector" :range="arriveTime" :value="arriveIndex"
-											v-model="firstFormData.arriveTime" @change="arriveChange">
+											v-model="firstFormData.arriveTime"
+											@change="binddata('arriveTime',$event.detail.value,'firstFormRef')">
 											<view class="picker">{{arriveTime[arriveIndex]}}</view>
 										</picker>
 									</view>
 								</uni-forms-item>
 							</view>
 						</uni-forms>
-						<!-- <view class="submitBtn">
-							<button class="btn btn-info" @click="submit">提交</button>
-						</view> -->
 					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="个人信息" open>
+				<uni-collapse-item title="个人信息">
 					<view class="personInfo">
 						<uni-forms ref="secondFormRef" :rules="secRules" :modelValue="secondFormData">
 							<view class="allForm-Item">
 								<uni-forms-item label="姓名" name="userName" required>
-									<input class="picker" type="text" placeholder="请输入姓名" v-model="secondFormData.userName"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" 
-										@input="binddata('userName',$event.detail.value,'secondFormRef')"  />
+									<input class="picker" type="text" placeholder="请输入姓名"
+										v-model="secondFormData.userName"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('userName',$event.detail.value,'secondFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="性别" name="gender" required>
 									<uni-data-checkbox :value="genderValue" :localdata="genderData" mode="tag"
-										 v-model="secondFormData.gender" />
+										v-model="secondFormData.gender" />
 								</uni-forms-item>
 								<uni-forms-item label="出生日期" name="birth" required>
-										<uni-datetime-picker style="width: 170px;" type="date" :clearIcon="false"
-											v-model="secondFormData.bitrh" @change="binddata('birth',$event.detail.value,'secondFormRef')" />
+									<uni-datetime-picker style="width: 170px;" type="date" :clearIcon="false"
+										v-model="secondFormData.bitrh" @change="binddata('birth',$event,'secondFormRef')"/>	
 								</uni-forms-item>
 								<uni-forms-item label="籍贯" name="location" required>
 									<view class="combox">
 										<picker mode="multiSelector" :range="secondRange" :value="secondValue"
-											v-model="secondFormData.location" @columnchange="secondColumnchange">
+											v-model="secondFormData.location" @columnchange="secondColumnchange"
+											@change="binddata('location',$event.detail.value,'secondFormRef')">
 											<view class="picker">{{this.secondRange[0][secondValue[0]]}}
 												{{this.secondRange[1][secondValue[1]]}}
 											</view>
@@ -80,7 +83,8 @@
 								</uni-forms-item>
 								<uni-forms-item label="最高学历" name="degree" required>
 									<view class="combox">
-										<picker mode="selector" :range="degreeRange" :value="degreeValue" @change="degreeChange"
+										<picker mode="selector" :range="degreeRange" :value="degreeValue"
+											@change="binddata('degree',$event.detail.value,'secondFormRef')"
 											v-model="secondFormData.degree">
 											<view class="picker">{{degreeRange[degreeValue]}}</view>
 										</picker>
@@ -89,22 +93,66 @@
 								<uni-forms-item label="手机号" name="phoneNumber" required>
 									<input class="picker" type="number" maxlength="11" placeholder="请输入手机号"
 										v-model="secondFormData.phoneNumber"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('phoneNumber',$event.detail.value,'secondFormRef')"  />
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('phoneNumber',$event.detail.value,'secondFormRef')" />
 								</uni-forms-item>
 								<uni-forms-item label="邮箱" name="email" required>
-									<input class="picker" type="text" placeholder="请输入邮箱"
-										v-model="secondFormData.email"
-										placeholderStyle="color: #000;font-weight: 500;font-size: 13px" @input="binddata('email',$event.detail.value,'secondFormRef')"  />
+									<input class="picker" type="text" placeholder="请输入邮箱" v-model="secondFormData.email"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('email',$event.detail.value,'secondFormRef')" />
 								</uni-forms-item>
 							</view>
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="教育经历">
-					<text>折叠内容</text>
+					<view class="thirdForm">
+						<uni-forms ref="thirdFormRef" :modelValue="thirdFormData" :rules="thirdRules">
+							<view class="allForm-Item">
+								<uni-forms-item label="院校" name="university" required>
+									<input class="picker" type="text" placeholder="请输入学校" v-model="thirdFormData.university"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('university',$event.detail.value,'thirdFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="专业" name="major" required>
+									<input class="picker" type="text" placeholder="请输入专业" v-model="thirdFormData.major"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('major',$event.detail.value,'thirdFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="学习时间" name="studyTime" required>
+									<uni-datetime-picker type="daterange" :clearIcon="false"
+										v-model="thirdFormData.studyTime" rangeSeparator="至" @change="binddata('studyTime',$event,'thirdFormRef')"/>
+								</uni-forms-item>
+							</view>
+						</uni-forms>
+					</view>
 				</uni-collapse-item>
-				<uni-collapse-item title="实习经历">
-					<text>折叠内容</text>
+				<uni-collapse-item title="实习经历" open>
+					<view class="forthForm">
+						<uni-forms ref="forthFormRef" :modelValue="forthFormData" :rules="forthRules">
+							<view class="allForm-Item">
+								<uni-forms-item label="公司名称" name="company" required>
+									<input class="picker" type="text" placeholder="请输入学校" v-model="forthFormData.company"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('company',$event.detail.value,'forthFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="我的职位" name="jobs" required>
+									<input class="picker" type="text" placeholder="请输入专业" v-model="forthFormData.jobs"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('jobs',$event.detail.value,'forthFormRef')" />
+								</uni-forms-item>
+								<uni-forms-item label="工作时间" name="workTime" required>
+									<uni-datetime-picker type="daterange" :clearIcon="false"
+										v-model="forthFormData.workTime" rangeSeparator="至" @change="binddata('studyTime',$event,'forthFormRef')"/>
+								</uni-forms-item>
+								<uni-forms-item label="简介" name="intro" required>
+									<textarea class="textareaPicker" maxlength="200" placeholder="请填写简介" v-model="forthFormData.intro"
+										placeholderStyle="color: #000;font-weight: 500;font-size: 13px"
+										@input="binddata('intro',$event.detail.value,'forthFormRef')" />
+								</uni-forms-item>
+							</view>
+						</uni-forms>
+					</view>
 				</uni-collapse-item>
 				<uni-collapse-item title="项目经验">
 					<text>折叠内容</text>
@@ -149,8 +197,21 @@
 					phoneNumber: '',
 					email: ''
 				},
+				thirdFormData: {
+					university: '',
+					major: '',
+					studyTime: ''
+				},
+				forthFormData: {
+					company: '',
+					jobs: '',
+					workTime: '',
+					intro: ''
+				},
 				firRules: {},
 				secRules: {},
+				thirdRules:{},
+				forthRules:{},
 				range: [
 					['请选择期望城市'],
 					[]
@@ -186,6 +247,8 @@
 		onLoad: function() {
 			this.firRules = area.firRules;
 			this.secRules = area.secRules;
+			this.thirdRules = area.thirdRules;
+			this.forthRules = area.forthRules;
 			this.items = area.items;
 			this.pickerTime = area.pickerTime;
 			this.arriveTime = area.arriveTime;
@@ -201,11 +264,52 @@
 			}
 		},
 		methods: {
+			binddata(name, value, form) {
+				if (form == 'firstFormRef') {
+					this.$refs.firstFormRef.setValue(name, value);
+					switch (name) {
+						case 'salary':
+							if (value == "0") {
+								this.firstFormData.salary = ""
+							}
+							this.itemsIndex = value;
+							this.firstFormData.salary = this.items[value];
+							break;
+						case 'time':
+							if (value == "0") {
+								this.firstFormData.time = ""
+							}
+							this.timeIndex = value;
+							this.firstFormData.time = this.pickerTime[value];
+							break;
+						case 'arriveTime':
+							if (value == "0") {
+								this.firstFormData.arriveTime = ""
+							}
+							this.arriveIndex = value;
+							this.firstFormData.arriveTime = this.arriveTime[value];
+							break;
+							break;
+					}
+				}
+				if (form == 'secondFormRef') {
+					this.$refs.secondFormRef.setValue(name, value);
+					if (name == 'degree') {
+						this.degreeValue = value;
+						this.secondFormData.degree = this.degreeRange[value];
+					}
+				}
+				if(form == 'thirdFormRef'){
+					this.$refs.thirdFormRef.setValue(name, value);
+				}
+				if(form == 'forthFormRef'){
+					this.$refs.forthFormRef.setValue(name, value);
+				}
+
+			},
 			submit: function(e) {
 				this.$refs.firstFormRef.validate().then((res) => {
-					this.firstFormData.post = res.post;
-					// console.log(this.firstFormData);
-					console.log(e);
+					console.log(this.firstFormData);
 					if (this.firstFormData.city == "" || this.firstFormData.salary == "" || this.firstFormData
 						.time == "" || this.firstFormData.arriveTime == "") {
 						console.log("未选择全");
@@ -216,17 +320,20 @@
 					console.log(err)
 				})
 				this.$refs.secondFormRef.validate().then((res) => {
-					console.log(res);
 					console.log(this.secondFormData);
 				}).catch((err) => {
 					console.log(err)
 				})
-			},
-			postChange(e) {
-				this.firstFormData.post = e.detail.value;
-				if (e.detail.value == '') {
-					this.firstFormData.post = ''
-				}
+				this.$refs.thirdFormRef.validate().then((res) => {
+					console.log(this.thirdFormData);
+				}).catch((err) => {
+					console.log(err)
+				})
+				this.$refs.forthFormRef.validate().then((res) => {
+					console.log(this.forthFormData);
+				}).catch((err) => {
+					console.log(err)
+				})
 			},
 			columnchange: function(e) {
 				this.value[e.detail.column] = e.detail.value;
@@ -266,27 +373,6 @@
 				this.firstFormData.city = this.range[0][this.value[0]] + this.range[1][this.value[1]];
 				console.log(this.firstFormData.city);
 			},
-			salaryChange(e) {
-				if (e.target.value == "0") {
-					this.firstFormData.salary = ""
-				}
-				this.itemsIndex = e.target.value;
-				this.firstFormData.salary = this.items[e.target.value];
-			},
-			timeChange(e) {
-				if (e.target.value == "0") {
-					this.firstFormData.time = ""
-				}
-				this.timeIndex = e.target.value;
-				this.firstFormData.time = this.pickerTime[e.target.value];
-			},
-			arriveChange(e) {
-				if (e.target.value == "0") {
-					this.firstFormData.arriveTime = ""
-				}
-				this.arriveIndex = e.target.value;
-				this.firstFormData.arriveTime = this.arriveTime[e.target.value];
-			},
 			secondColumnchange: function(e) {
 				this.secondValue[e.detail.column] = e.detail.value;
 				if (0 == e.detail.column) {
@@ -315,14 +401,9 @@
 				if (!this.secondRange[1][this.secondValue[1]]) {
 					this.secondRange[1][this.secondValue[1]] = '';
 				}
-				this.secondFormData.location = this.secondRange[0][this.secondValue[0]] + this.secondRange[1][this.secondValue[1]];
-			},
-			degreeChange(e){
-				if (e.target.value == "0") {
-					this.secondFormData.degree = ""
-				}
-				this.degreeValue = e.target.value;
-				this.secondFormData.degree = this.degreeRange[e.target.value];
+				this.secondFormData.location = this.secondRange[0][this.secondValue[0]] + this.secondRange[1][this
+					.secondValue[1]
+				];
 			},
 		}
 	}
@@ -333,11 +414,6 @@
 		padding: 10px 50px;
 		margin: 10px;
 		/* background-color: #bfa; */
-	}
-
-	.firstForm {
-		margin-left: 30px;
-		padding-bottom: 10px;
 	}
 
 	.allForm-Item {
@@ -356,6 +432,16 @@
 		font-size: 13px;
 		color: #000;
 		line-height: 36px;
+		text-align: left;
+	}
+	.textareaPicker {
+		width: 270px;
+		height: 170px;
+		padding-left: 12px;
+		border: rgb(229, 229, 229) 1px solid;
+		border-radius: 4px;
+		font-size: 13px;
+		color: #000;
 		text-align: left;
 	}
 

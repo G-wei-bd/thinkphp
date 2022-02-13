@@ -446,6 +446,52 @@ export const area = {
 			}]
 		}
 	},
+	thirdRules: {
+		university: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写学校"
+			}]
+		},
+		major: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写专业"
+			}]
+		},
+		studyTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择学习时间"
+			}]
+		}
+	},
+	forthRules: {
+		company: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写公司名称"
+			}]
+		},
+		jobs: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写您的职位"
+			}]
+		},
+		workTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择工作时间"
+			}]
+		},
+		intro: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写简介"
+			}]
+		}
+	},
 	items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
 	pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
 	arriveTime: ["请选择到岗时间", "随时", "一周以内", "一个月以内", "1-3个月", "三个月以后"],
