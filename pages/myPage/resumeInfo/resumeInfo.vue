@@ -204,7 +204,7 @@
 				</uni-collapse-item>
 			</uni-collapse>
 			<view class="submitBtn">
-				<button class="btn btn-info" @click="submit">提交</button>
+				<button class="submit btn btn-danger btn-outline-danger" @click="submit">提交</button>
 			</view>
 		</view>
 	</view>
@@ -513,7 +513,11 @@
 	}
 
 	.submitBtn {
-		width: 100px;
-		margin: 0 auto;
+		width: 200px;
+		margin: 20px auto;
+	}
+	
+	.submit{
+		width: 150px;
 	}
 </style>
