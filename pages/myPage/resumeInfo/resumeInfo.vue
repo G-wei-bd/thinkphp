@@ -480,7 +480,6 @@
 	.resume {
 		padding: 10px 50px;
 		margin: 10px;
-		/* background-color: #bfa; */
 	}
 
 	.allForm-Item {
