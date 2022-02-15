@@ -1,6 +1,9 @@
 <template>
 	<view>
 		<view class="resume">
+			<view class="text-danger text-lg-center font-weight-bold">
+				<text>请在此填写您的个人简历信息</text>
+			</view>
 			<uni-collapse>
 				<uni-collapse-item title="求职意向">
 					<view class="firstForm">
@@ -105,6 +108,7 @@
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
+				<!-- 动态表单校验 -->
 				<uni-collapse-item title="教育经历">
 					<view class="thirdForm">
 						<uni-forms ref="thirdFormRef" :modelValue="thirdFormData" :rules="thirdRules">
@@ -127,6 +131,7 @@
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
+				<!-- 动态表单校验 -->
 				<uni-collapse-item title="实习经历">
 					<view class="forthForm">
 						<uni-forms ref="forthFormRef" :modelValue="forthFormData" :rules="forthRules">
@@ -154,6 +159,7 @@
 						</uni-forms>
 					</view>
 				</uni-collapse-item>
+				<!-- 动态表单校验 -->
 				<uni-collapse-item title="项目经验">
 					<view class="fifthForm">
 						<uni-forms ref="fifthFormRef" :modelValue="fifthFormData" :rules="fifthRules">
@@ -211,9 +217,7 @@
 </template>
 
 <script>
-	import {
-		area
-	} from './area.js'
+	import { area } from './area.js'
 	export default {
 		data() {
 			return {
