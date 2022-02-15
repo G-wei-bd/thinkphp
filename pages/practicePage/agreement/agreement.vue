@@ -4,7 +4,7 @@
 			<text>请上传三方协议</text>
 			<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles"
 				mode="grid" limit="1" @select="select" @progress="progress" @success="success" @fail="fail">
-				<button class="btn btn-info btn-sm">选择文件</button>
+				<button class="btn btn-primary btn-sm">选择文件</button>
 			</uni-file-picker>
 		</view>
 

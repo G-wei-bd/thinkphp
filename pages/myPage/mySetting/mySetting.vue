@@ -11,8 +11,7 @@
 							<text class="iconfont icon-yonghuming"></text>
 							<text class="small">头像</text>
 						</view>
-						<uni-file-picker v-model="imageValue" mode="grid" limit="1" file-mediatype="image"
-						 @select="select" @progress="progress" @success="success">
+						<uni-file-picker v-model="imageValue" :image-styles="imageStyles" mode="grid" limit="1" file-mediatype="image">
 						</uni-file-picker>
 					</view>
 
@@ -134,6 +133,13 @@
 			return {
 				single: '2021-5-3',
 				imageValue: [],
+				imageStyles: {
+					width: 100,
+					height: 100,
+					border: {
+						radius: '50%'
+					}
+				},
 				add: "请选择",
 				dis: false,
 				array: [{
