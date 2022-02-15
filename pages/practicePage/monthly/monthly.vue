@@ -13,7 +13,7 @@
 						<uni-td align="center">18网络工程实习</uni-td>
 						<uni-td align="center">前端开发</uni-td>
 						<uni-td align="center">2021.09.01 ~ 2022.01.31</uni-td>
-						<uni-td align="center">0篇</uni-td>
+						<uni-td align="center">12篇</uni-td>
 					</uni-tr>
 				</uni-table>
 			</uni-card>
@@ -49,10 +49,6 @@
 								</uni-td>
 							</uni-tr>
 						</uni-table>
-						<view class="paginationContainer">
-							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
-								@change="change"></uni-pagination>
-						</view>
 					</view>
 				</view>
 			</view>
@@ -68,93 +64,75 @@
 				items: [
 					"写月记", "我的月记"
 				],
-				// 每页数据量
-				pageSize: 10,
-				// 当前页
-				pageCurrent: 1,
-				// 数据总量
-				total: 0,
 				Arr: [{
 						time: "2022.01.03",
-						week: "15",
+						week: "1",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "16",
+						week: "2",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "3",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "4",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "5",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "6",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "7",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "8",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "9",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "10",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
+						week: "11",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					},
 					{
 						time: "2022.01.03",
-						week: "15",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "15",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "15",
+						week: "12",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					}
@@ -169,13 +147,6 @@
 				if (this.current !== e.currentIndex) {
 					this.current = e.currentIndex
 				}
-			},
-			// 分页触发
-			change(e) {
-				console.log(e);
-				console.log(this.$refs.table.clearSelection());
-				this.$refs.table.clearSelection();
-				this.selectedIndexs.length = 0;
 			}
 
 		}

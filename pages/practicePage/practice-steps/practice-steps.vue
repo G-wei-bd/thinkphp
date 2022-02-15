@@ -5,7 +5,7 @@
 				当前实习计划进度
 				<uni-steps
 					:options="[{title:'事件一'},{title:'事件二'},{title:'事件三'},{title:'事件四'},{title:'事件五'},{title:'事件六'},{title:'事件七'}]"
-					:active=active activeColor="#94bcff"></uni-steps>
+					:active=active activeColor="#ff0000"></uni-steps>
 				<view class="step-icons">
 					<view class="detailStep" v-for="(item, index) in stepList" :key="index">
 						<text class="iconfont icon-shijian"></text>
