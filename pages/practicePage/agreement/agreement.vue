@@ -1,12 +1,40 @@
 <template>
 	<view>
-		<view class="filePicker">
+		<view class="agreementInfo">
+			<uni-card title="协议详情">
+				<view class="agreeTable">
+					<uni-table stripe emptyText="暂无更多数据">
+						<uni-tr>
+							<uni-th align="center">参与实习</uni-th>
+							<uni-th align="center">实习时间</uni-th>
+							<uni-th align="center">指导老师</uni-th>
+							<uni-th align="center">提交时间</uni-th>
+							<uni-th align="center">上传协议</uni-th>
+						</uni-tr>
+						<uni-tr>
+							<uni-td align="center">18实习</uni-td>
+							<uni-td align="center">2020-09-01~2022-01-30</uni-td>
+							<uni-td align="center">第一个老师</uni-td>
+							<uni-td align="center">2020-10-22</uni-td>
+							<uni-td align="center">
+								<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles"
+									mode="grid" limit="1" @select="select" @progress="progress" @success="success"
+									@fail="fail">
+								</uni-file-picker>
+							</uni-td>
+
+						</uni-tr>
+					</uni-table>
+				</view>
+			</uni-card>
+		</view>
+		<!-- <view class="filePicker">
 			<text>请上传三方协议</text>
-			<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles"
-				mode="grid" limit="1" @select="select" @progress="progress" @success="success" @fail="fail">
+			<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles" mode="grid"
+				limit="1" @select="select" @progress="progress" @success="success" @fail="fail">
 				<button class="btn btn-primary btn-sm">选择文件</button>
 			</uni-file-picker>
-		</view>
+		</view> -->
 
 	</view>
 </template>
@@ -52,7 +80,7 @@
 </script>
 
 <style>
-	.filePicker{
+	.filePicker {
 		width: 240px;
 		height: 100%;
 		margin-left: 100px;
