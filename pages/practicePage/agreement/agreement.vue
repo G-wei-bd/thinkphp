@@ -46,8 +46,8 @@
 				imageValue: [],
 				imageStyles: {
 					border: true,
-					width: 250,
-					height: 250,
+					width: 100,
+					height: 100,
 					borderStyle: {
 						width: 1,
 						color: '#ff6700',

@@ -15,7 +15,7 @@
 								<uni-list-item title="指导老师" rightText="不知道"></uni-list-item>
 								<uni-list-item title="是否评价" note="未评价">
 									<view slot="footer">
-										<button class="btn btn-danger btn-sm">添加评价</button>
+										<button class="btn btn-danger btn-sm" @click="openPopup">添加评价</button>
 									</view>
 								</uni-list-item>
 							</uni-list>
@@ -31,7 +31,7 @@
 								<uni-list-item title="指导老师" rightText="不知道"></uni-list-item>
 								<uni-list-item title="是否评价" note="已评价">
 									<view slot="footer">
-										<button disabled class="btn btn-dark btn-sm">添加评价</button>
+										<button disabled class="btn btn-dark btn-sm">已评价</button>
 									</view>
 								</uni-list-item>
 							</uni-list>
@@ -68,6 +68,43 @@
 						</view>
 					</view>
 				</view>
+			</view>
+			<view class="popupContainer">
+				<uni-popup ref="popup" type="top">
+					<view class="assessRate">
+						<uni-forms ref="form">
+							<uni-group title="自身评价" mode="card" margin-top="0">
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="0"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="1"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="2"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="3"></uni-rate>
+								</uni-forms-item>
+							</uni-group>
+							<uni-group title="企业评价" mode="card" margin-top="0">
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="0"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="1"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="2"></uni-rate>
+								</uni-forms-item>
+								<uni-forms-item label="自身评价" name="assess">
+									<uni-rate value="3"></uni-rate>
+								</uni-forms-item>
+							</uni-group>
+
+						</uni-forms>
+					</view>
+				</uni-popup>
 			</view>
 		</view>
 	</view>
@@ -108,6 +145,9 @@
 					this.current = e.currentIndex
 				}
 			},
+			openPopup() {
+				this.$refs.popup.open();
+			}
 		}
 	}
 </script>
@@ -136,9 +176,19 @@
 	.allAssess {
 		width: 33%;
 	}
-	
-	.allA{
+
+	.allA {
 		display: flex;
 		flex-wrap: wrap;
+	}
+
+	.popupContainer {
+		position: relative;
+		z-index: 1000;
+	}
+	
+	.assessRate{
+		width: 86%;
+		margin-left: 210px;
 	}
 </style>
