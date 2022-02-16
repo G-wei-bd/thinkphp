@@ -255,11 +255,11 @@
 	.allForm {
 		width: 800px;
 		height: 500px;
-		padding: 0 100px;
-		margin: 0 0 0 200px;
+		padding: 0 10px;
+		margin: 0 auto;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: flex-start;
+		justify-content: space-around;
 		align-items: center;
 
 	}
@@ -304,7 +304,7 @@
 	}
 
 	.submit {
-		margin: 0 150px;
+		margin: 0 auto;
 	}
 
 	.submitBtn {
@@ -320,8 +320,7 @@
 	.university,
 	.degree,
 	.major,
-	.majorClass,
-	.submit {
+	.majorClass {
 		margin-right: 50px;
 		width: 250px;
 	}

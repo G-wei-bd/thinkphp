@@ -1,5 +1,5 @@
 {
-    "name" : "graduateDesignV2",
+    "name" : "实习",
     "appid" : "__UNI__806E961",
     "description" : "",
     "versionName" : "1.0.0",
@@ -43,7 +43,9 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "ad" : {}
+            }
         }
     },
     /* 快应用特有相关 */
@@ -70,6 +72,9 @@
     },
     "vueVersion" : "2",
     "h5" : {
-        "template" : "template.h5.html"
+        "template" : "template.h5.html",
+        "router" : {
+            "base" : "./"
+        }
     }
 }
