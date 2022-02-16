@@ -39,8 +39,8 @@
 					</view>
 				</view>
 				<view v-show="current === 2">
-					<view class="allA">
-						<view class="allAssess" v-for="(item, index) in arrData" :key="index">
+					<view class="allAssess">
+						<view v-for="(item, index) in arrData" :key="index">
 							<uni-card title="我的实习评价">
 								<uni-list>
 									<uni-list-item title="参与计划">
@@ -174,10 +174,6 @@
 	}
 
 	.allAssess {
-		width: 33%;
-	}
-
-	.allA {
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -186,8 +182,8 @@
 		position: relative;
 		z-index: 1000;
 	}
-	
-	.assessRate{
+
+	.assessRate {
 		width: 86%;
 		margin-left: 210px;
 	}
