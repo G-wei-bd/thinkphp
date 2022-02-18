@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="assessContainer">
+		<view v-if="display" class="assessContainer">
 			<view class="controlItem">
 				<uni-segmented-control :current="current" :values="items" @clickItem="onClickItem" styleType="button"
 					activeColor="#ff0000"></uni-segmented-control>
@@ -15,7 +15,7 @@
 								<uni-list-item title="指导老师" rightText="不知道"></uni-list-item>
 								<uni-list-item title="是否评价" note="未评价">
 									<view slot="footer">
-										<button class="btn btn-danger btn-sm" @click="openPopup">添加评价</button>
+										<button class="btn btn-danger btn-sm" @click="toRate">添加评价</button>
 									</view>
 								</uni-list-item>
 							</uni-list>
@@ -69,42 +69,70 @@
 					</view>
 				</view>
 			</view>
-			<view class="popupContainer">
-				<uni-popup ref="popup" type="top">
-					<view class="assessRate">
-						<uni-forms ref="form">
-							<uni-group title="自身评价" mode="card" margin-top="0">
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="0"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="1"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="2"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="3"></uni-rate>
-								</uni-forms-item>
-							</uni-group>
-							<uni-group title="企业评价" mode="card" margin-top="0">
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="0"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="1"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="2"></uni-rate>
-								</uni-forms-item>
-								<uni-forms-item label="自身评价" name="assess">
-									<uni-rate value="3"></uni-rate>
-								</uni-forms-item>
-							</uni-group>
-
-						</uni-forms>
-					</view>
-				</uni-popup>
+		</view>
+		<view class="rateContainer" v-else>
+			<view class="back">
+				<button class="btn btn-danger" @click="toRate">返回</button>
+			</view>
+			<view class="assessRate">
+				<uni-forms ref="form" :rules="rules">
+					<uni-group title="自身评价" margin-top="0">
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+					</uni-group>
+					<uni-group title="自身评价" margin-top="0">
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+					</uni-group>
+					<uni-group title="自身评价" margin-top="0">
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+					</uni-group>
+					<uni-group title="自身评价" margin-top="0">
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="自身评价" name="myself">
+							<uni-rate value="1"></uni-rate>
+						</uni-forms-item>
+					</uni-group>
+				</uni-forms>
 			</view>
 		</view>
 	</view>
@@ -114,6 +142,7 @@
 	export default {
 		data() {
 			return {
+				display: false,
 				current: 0,
 				items: [
 					"未评价", "已评价", "全部评价"
@@ -145,8 +174,8 @@
 					this.current = e.currentIndex
 				}
 			},
-			openPopup() {
-				this.$refs.popup.open();
+			toRate() {
+				this.display = !this.display;
 			}
 		}
 	}
@@ -183,8 +212,7 @@
 		z-index: 1000;
 	}
 
-	.assessRate {
-		width: 86%;
-		margin-left: 210px;
+	.rateContainer {
+		margin: 20px;
 	}
 </style>
