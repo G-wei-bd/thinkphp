@@ -146,7 +146,7 @@
 	.left-window-style {
 		width: 200px;
 		min-height: calc(100vh - var(--top-window-height));
-		background-color: #242b40;
+		background-color: #8cde9b;
 		position: fixed;
 		top: 51px;
 		left: 0;
@@ -155,7 +155,7 @@
 
 	.second-menu {
 		width: 175px;
-		background-color: #242B40;
+		background-color: #8cde9b;
 	}
 
 	.icon-image {

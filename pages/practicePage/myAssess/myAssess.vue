@@ -133,7 +133,7 @@
 				</uni-forms>
 			</view>
 			<view class="submitBtn">
-				<button class="submit btn btn-danger btn-outline-danger" @click="submitRate">提交评价</button>
+				<button class="btn btn-danger btn-outline-danger" @click="submitRate">提交评价</button>
 			</view>
 		</view>
 	</view>
@@ -143,7 +143,7 @@
 	export default {
 		data() {
 			return {
-				display: false,
+				display: true,
 				current: 0,
 				items: [
 					"未评价", "已评价", "全部评价"
@@ -336,6 +336,7 @@
 
 	.rateContainer {
 		margin: 20px;
+		padding-bottom: 30px;
 	}
 
 	.easyInput {
@@ -344,4 +345,10 @@
 		align-items: center;
 		width: 140px;
 	}
+	
+	.submitBtn{
+		display: flex;
+		justify-content: center;
+	}
+
 </style>
