@@ -75,64 +75,65 @@
 				<button class="btn btn-danger" @click="toRate">返回</button>
 			</view>
 			<view class="assessRate">
-				<uni-forms ref="form" :rules="rules">
-					<uni-group title="自身评价" margin-top="0">
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+				<uni-forms ref="form" :modelValue="rateData" :rules="rules">
+					<uni-group title="对实践教学的评价" margin-top="0">
+						<uni-forms-item label="适应岗位的时间" name="adaptTime">
+							<view class="easyInput">
+								<uni-easyinput type="number" maxlength="2" v-model="rateData.adaptTime" />
+								<text>天</text>
+							</view>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="理想的实习时间" name="idealTime">
+							<view class="easyInput">
+								<uni-easyinput type="number" maxlength="3" v-model="rateData.idealTime" />
+								<text>天</text>
+							</view>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="岗位胜任情况评价" name="postRate">
+							<uni-rate v-model="rateData.postRate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="实习工作量评价" name="workloadRate">
+							<uni-rate v-model="rateData.workloadRate"></uni-rate>
 						</uni-forms-item>
-					</uni-group>
-					<uni-group title="自身评价" margin-top="0">
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="实习组织满意度" name="organizationRate">
+							<uni-rate v-model="rateData.organizationRate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
-						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
-						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="对本次实践教学的建议" name="suggest">
+							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.suggest" />
 						</uni-forms-item>
 					</uni-group>
-					<uni-group title="自身评价" margin-top="0">
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+					<uni-group title="指导老师评价" margin-top="0">
+						<uni-forms-item label="指导老师满意度" name="teacherRate">
+							<uni-rate v-model="rateData.teacherRate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
-						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
-						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="对指导老师评价" name="teacherAdvise">
+							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.teacherAdvise" />
 						</uni-forms-item>
 					</uni-group>
-					<uni-group title="自身评价" margin-top="0">
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+					<uni-group title="对实习单位的评价" margin-top="0">
+						<uni-forms-item label="工作环境" name="workCondition">
+							<uni-rate v-model="rateData.workCondition"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="工作岗位" name="workPost">
+							<uni-rate v-model="rateData.workPost"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="工作指导" name="workGuidance">
+							<uni-rate v-model="rateData.workGuidance"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="自身评价" name="myself">
-							<uni-rate value="1"></uni-rate>
+						<uni-forms-item label="薪资" name="salary">
+							<uni-rate v-model="rateData.salary"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="锻炼价值" name="value">
+							<uni-rate v-model="rateData.value"></uni-rate>
+						</uni-forms-item>
+						<uni-forms-item label="是否留用" name="stay">
+							<uni-data-checkbox :value="stayValue" v-model="rateData.stay" mode="default" :localdata="stayData" />
 						</uni-forms-item>
 					</uni-group>
 				</uni-forms>
+			</view>
+			<view class="submitBtn">
+				<button class="submit btn btn-danger btn-outline-danger" @click="submitRate">提交评价</button>
 			</view>
 		</view>
 	</view>
@@ -165,7 +166,120 @@
 						teacher: '第三个老师',
 						whetherAssess: '已评价'
 					}
-				]
+				],
+				rateData: {
+					adaptTime: '',
+					idealTime: '',
+					postRate: '',
+					workloadRate: '',
+					organizationRate: '',
+					suggest: '',
+					teacherRate: '',
+					teacherAdvise: '',
+					workCondition: '',
+					workPost: '',
+					workGuidance: '',
+					salary: '',
+					value: '',
+					stay: ''
+				},
+				rules: {
+					adaptTime: {
+						rules: [{
+							required: true,
+							errorMessage: "请输入时间"
+						}]
+					},
+					idealTime: {
+						rules: [{
+							required: true,
+							errorMessage: "请输入时间"
+						}]
+					},
+					postRate: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					workloadRate: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					organizationRate: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					suggest: {
+						rules: [{
+							required: true,
+							errorMessage: "请填写本次教学建议"
+						}]
+					},
+					teacherRate: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					teacherAdvise: {
+						rules: [{
+							required: true,
+							errorMessage: "请填写对指导老师的评价"
+						}]
+					},
+					workCondition: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					workPost: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					workGuidance: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					salary: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					value: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择评价等级"
+						}]
+					},
+					stay: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择是否留用"
+						}]
+					}
+				},
+				stayValue: '',
+				stayData: [{
+					"value": 0,
+					"text": "是"
+				}, {
+					"value": 1,
+					"text": "否"
+				}, {
+					"value": 2,
+					"text": "无意留用"
+				}],
 			}
 		},
 		methods: {
@@ -176,6 +290,14 @@
 			},
 			toRate() {
 				this.display = !this.display;
+			},
+			submitRate(e){
+				this.$refs.form.validate().then((res) => {
+					console.log(e);
+					console.log(this.rateData);
+				}).catch((err) => {
+					console.log(err)
+				})
 			}
 		}
 	}
@@ -214,5 +336,12 @@
 
 	.rateContainer {
 		margin: 20px;
+	}
+
+	.easyInput {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 140px;
 	}
 </style>
