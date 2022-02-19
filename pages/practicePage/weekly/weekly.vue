@@ -25,7 +25,17 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					<textarea focus class="textContainer" placeholder="请输入文字,不少于300字" />
+						<uni-forms ref="form" :rules="rules">
+							<view class="writeWeekly">
+								<uni-forms-item label="内容" name="weekly">
+									<textarea focus class="textContainer" placeholder="请输入文字,不少于300字" />
+								</uni-forms-item>
+							</view>
+							<uni-forms-item label="" name="">
+								
+							</uni-forms-item>
+						</uni-forms>
+					
 				</view>
 				<view v-show="current === 1">
 					<view class="weeklyTable">
