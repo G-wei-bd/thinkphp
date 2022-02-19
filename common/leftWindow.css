@@ -1,17 +1,17 @@
 /* 选中时菜单文字样式 */
 .selectText {
-	color: red !important;
+	color: #18BC37 !important;
 }
 
 /* 一级菜单文字样式 */
 .menu {
-	color: red;
+	color: #18BC37;
 }
 
 .uni-container {
 	width: 200px;
 	margin-right: 0px;
-	background-color: #8cde9b;
+	background-color: #D4E4FF;
 }
 
 .menuList {
@@ -24,7 +24,7 @@
 
 .menuItem {
 	height: 40px;
-	background-color: #EEEEEE;
+	background-color: #F8F8F8;
 	margin-top: 8px;
 	border-radius: 5px;
 	text-align: center;
