@@ -1,19 +1,26 @@
 <template>
 	<view>
-		<view class="steps">
-			<uni-card title="实习进度" extra="无额外信息">
-				当前实习计划进度
-				<uni-steps
-					:options="[{title:'事件一'},{title:'事件二'},{title:'事件三'},{title:'事件四'},{title:'事件五'},{title:'事件六'},{title:'事件七'}]"
-					:active=active activeColor="#ff0000"></uni-steps>
-				<view class="step-icons">
-					<view class="detailStep" v-for="(item, index) in stepList" :key="index">
-						<text class="iconfont icon-shijian"></text>
-						<text>{{item.index}}</text>
-					</view>
-				</view>
+		<view class="practiceContainer">
+			<uni-card title="实习情况" extra="额外信息">
+				<uni-list>
+					<uni-list-item title="实习计划" rightText="18网络工程 生产实习"></uni-list-item>
+					<uni-list-item title="实践课程" rightText="生产实习"></uni-list-item>
+					<uni-list-item title="实践周数" rightText="20周"></uni-list-item>
+					<uni-list-item title="参与实习时间" rightText="2021-09-01~2022-01-28"></uni-list-item>
+					<uni-list-item title="参与状态">
+						<text class="text-danger text-right small" slot="footer">已参与</text>
+					</uni-list-item>
+					<uni-list-item title="实习岗位" rightText="前端开发"></uni-list-item>
+					<uni-list-item title="实习指导老师" rightText="不知道"></uni-list-item>
+					<uni-list-item title="实习进展">
+						<view class="text-warning" slot="footer">
+							<uni-tag class="footer" text="三方协议" size="small" type="primary" circle @click="agreement"></uni-tag>	
+							<uni-tag class="footer" text="周记" size="small" type="primary" circle @click="weekly"></uni-tag>	
+							<uni-tag class="footer" text="实习材料" size="small" type="primary" circle></uni-tag>	
+						</view>
+					</uni-list-item>
+				</uni-list>
 			</uni-card>
-			<button class="btn btn-info btn-sm" type="default" @click="add">前进</button>
 		</view>
 	</view>
 </template>
@@ -22,26 +29,21 @@
 	export default {
 		data() {
 			return {
-				active: 0,
-				stepList:[
-					{id:1,index: '岗位申请通过'},
-					{id:2,index: '三方协议通过'},
-					{id:3,index: '提交周/日志'},
-					{id:4,index: '提交我的评价'},
-					{id:5,index: '提交企业评定'},
-					{id:6,index: '提交自我鉴定'},
-					{id:7,index: '提交实习报告'}
-						]
+				
 			}
 		},
 		methods: {
-			add() {
-				if (this.active < 6) {
-					this.active++;
-				} else {
-					this.active = 0;
-				}
-			}
+			agreement(){
+				uni.navigateTo({
+					url: '/pages/practicePage/agreement/agreement',
+				});
+			},
+			weekly(){
+				uni.navigateTo({
+					url: '/pages/practicePage/weekly/weekly',
+				});
+			},
+			
 		}
 	}
 </script>
@@ -52,23 +54,9 @@
 		height: 100%;
 		overflow: hidden;
 	}
-	.step-icons{
-		display: flex;
-		justify-content: space-around;
-		margin-top: 10px;
-	}
-	.detailStep{
-		width: 60px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-	}
-	.select-step{
-		color: #94bcff;
-	}
-	.iconfont{
-		font-size: 26px;
+	
+	.footer{
+		margin-right: 10px;
 	}
 </style>
+
