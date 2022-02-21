@@ -371,77 +371,169 @@ export const area = {
 		654300: '阿勒泰地区',
 	},
 	firRules: {
-		companyName: {
+		post: {
 			rules: [{
 				required: true,
-				errorMessage: "请填写实习单位名称"
+				errorMessage: "请选择期望岗位"
 			}]
 		},
-		postName: {
+		city: {
 			rules: [{
 				required: true,
-				errorMessage: "请填写实习岗位名称"
-			}]
-		},
-		trade: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写行业方向"
-			}]
-		},
-		contact: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写实习单位联系人"
-			}]
-		},
-		companyNumber: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写实习单位电话"
-			}]
-		},
-		companyEmail: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写实习单位邮箱"
-			}]
-		},
-		companyTeacher: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写实习单位导师"
-			}]
-		},
-		teacherNumber: {
-			rules: [{
-				required: true,
-				errorMessage: "请填写导师手机号"
+				errorMessage: "请选择期望城市"
 			}]
 		},
 		salary: {
 			rules: [{
 				required: true,
-				errorMessage: "请填写具体薪资"
+				errorMessage: "请选择期望薪资"
 			}]
 		},
-		practiceTime: {
+		time: {
 			rules: [{
 				required: true,
-				errorMessage: "请选择实习时间"
+				errorMessage: "请选择实习时长"
 			}]
 		},
-		practiceCity: {
+		arriveTime: {
 			rules: [{
 				required: true,
-				errorMessage: "请选择实习所在地区"
+				errorMessage: "请选择到岗时间"
 			}]
 		},
-		workContent: {
+	},
+	secRules: {
+		userName: {
 			rules: [{
 				required: true,
-				errorMessage: "请填写工作内容"
+				errorMessage: "请填写姓名"
+			}]
+		},
+		gender: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择性别"
+			}]
+		},
+		birth: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择出生日期"
+			}]
+		},
+		location: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择籍贯"
+			}]
+		},
+		degree: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择最高学历"
+			}]
+		},
+		phoneNumber: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写手机号码"
+			}]
+		},
+		email: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写邮箱"
 			}]
 		}
 	},
+	thirdRules: {
+		university: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写学校"
+			}]
+		},
+		major: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写专业"
+			}]
+		},
+		studyTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择学习时间"
+			}]
+		}
+	},
+	forthRules: {
+		company: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写公司名称"
+			}]
+		},
+		jobs: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写您的职位"
+			}]
+		},
+		workTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择工作时间"
+			}]
+		},
+		intro: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写简介"
+			}]
+		}
+	},
+	fifthRules: {
+		itemName: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写项目名称"
+			}]
+		},
+		jobs: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写您的职位"
+			}]
+		},
+		itemTime: {
+			rules: [{
+				required: true,
+				errorMessage: "请选择项目时间"
+			}]
+		},
+		intro: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写项目简介"
+			}]
+		},
+		duty: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写项目职责"
+			}]
+		}
+	},
+	sixthRules: {
+		advantage: {
+			rules: [{
+				required: true,
+				errorMessage: "请填写个人优势"
+			}]
+		}
+	},
+	items: ["请选择期望薪资", "2k以下", "2k-3k", "3k-4k", "4k-5k", "5k-6k", "6k-7k", "7k以上"],
+	pickerTime: ["请选择实习时间", "1-3个月", "3-6个月", "6-9个月", "9个月以上"],
+	arriveTime: ["请选择到岗时间", "随时", "一周以内", "一个月以内", "1-3个月", "三个月以后"],
+	degreeRange: ["请选择学历", "专科", "本科", "硕士", "博士"],
 };
