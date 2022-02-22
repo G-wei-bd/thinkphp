@@ -96,7 +96,7 @@
 				items: [
 					"写周记", "我的周记"
 				],
-				isWeekly: false,
+				isWeekly: true,
 				weeklyData: {
 					weeklyTitle: '',
 					weeklyTime: '',
@@ -385,6 +385,7 @@
 	.selectItem {
 		width: 300px;
 		margin-left: 14px;
+		margin-top: 20px;
 	}
 
 	.weeklyTable {

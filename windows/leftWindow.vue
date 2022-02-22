@@ -51,8 +51,7 @@
 				if (!pageUrl) return
 				const pageName = this.$route.path.split('/')[4]
 				if (pageUrl === '/' || this.nav.includes(pageName)) {
-					const tabbarUrl = pageName ? (pageName === 'practicePage' ? '/' :
-						`/pages/tabBar/${pageName}/${pageName}`) : '/'
+					const tabbarUrl = pageName ? (pageName === 'practicePage' ? '/' : `/pages/tabBar/${pageName}/${pageName}`) : '/'
 					if (pageUrl === '/' || pageUrl === tabbarUrl) {
 						uni.switchTab({
 							url: pageUrl,
@@ -97,15 +96,19 @@
 					this.setMatchLeftWindow(newMatches)
 				}
 			},
+			// #ifndef VUE3
 			$route: {
 				immediate: true,
 				handler(newRoute) {
 					this.handlerRoute(newRoute)
 				}
 			},
+			// #endif
+			// #ifdef VUE3
 			$route(newRoute) {
 				this.handlerRoute(newRoute)
 			}
+			// #endif
 		},
 		methods: {
 			...mapMutations(['setMatchLeftWindow', 'setActive', 'setLeftWinActive']),
@@ -144,9 +147,11 @@
 
 <style>
 	.left-window-style {
+		/* #ifdef H5 */
 		width: 200px;
+		/* #endif */
 		min-height: calc(100vh - var(--top-window-height));
-		background-color: #D4E4FF;
+		background-color: #f1f0ed;
 		position: fixed;
 		top: 51px;
 		left: 0;
@@ -155,11 +160,12 @@
 
 	.second-menu {
 		width: 175px;
-		background-color: #D4E4FF;
+		background-color: #f1f0ed;
 	}
 
 	.icon-image {
 		width: 30px;
 		height: 30px;
 	}
+	
 </style>

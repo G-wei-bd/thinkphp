@@ -82,6 +82,7 @@
 				]
 			}
 		},
+		// #ifdef H5
 		watch: {
 			$route: {
 				immediate: true,
@@ -91,7 +92,7 @@
 						for (const item of this.list) {
 							if (Array.isArray(item.pages)) {
 								for (const page of item.pages) {
-									if (page === path || page.url && page.url === path) {
+									if (page === path || page.url && page.url === newRoute.path) {
 										item.open = true
 									}
 								}
@@ -101,6 +102,7 @@
 				}
 			}
 		},
+		// #endif
 		methods: {
 			triggerCollapse(e, id) {
 				if (!this.list[e].pages) {

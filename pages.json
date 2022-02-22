@@ -9,8 +9,7 @@
 	"leftWindow": {
 		"path": "/windows/leftWindow.vue",
 		"style": {
-			"width": "200px",
-			"height": "93.3vh"
+			"width": "200px"
 		}
 	},
 
@@ -201,7 +200,7 @@
 			},
 			{
 				"pagePath": "pages/tabBar/thirdPage/thirdPage",
-				"text": "第三页"
+				"text": "实习管理"
 			},
 			{
 				"pagePath": "pages/tabBar/myPage/myPage",

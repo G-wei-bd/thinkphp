@@ -20,7 +20,7 @@
 <style>
 	/*每个页面公共css */
 	@import "/common/bootstrap.css";
-	@import url("//at.alicdn.com/t/font_3123617_2ymsrh96ido.css");
+	@import url("//at.alicdn.com/t/font_3123617_i07wm7qzc2q.css");
 	/* 隐藏tabbar */
 	.uni-app--showtopwindow+.uni-tabbar-bottom {
 		display: none;
