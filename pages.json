@@ -13,7 +13,8 @@
 		}
 	},
 
-	"pages": [{
+	"pages": [
+		{
 			"path": "pages/index/index"
 		},
 		{
@@ -192,19 +193,27 @@
 		"backgroundColor": "#FFFFFF",
 		"list": [{
 				"pagePath": "pages/tabBar/homePage/homePage",
-				"text": "首页"
+				"text": "首页",
+				"iconPath":"static/tabBar/tabBar-1.png",
+				"selectedIconPath":"static/tabBar/tabBar-1-active.png"
 			},
 			{
 				"pagePath": "pages/tabBar/practicePage/practicePage",
-				"text": "我的实习"
+				"text": "我的实习",
+				"iconPath":"static/tabBar/tabBar-2.png",
+				"selectedIconPath":"static/tabBar/tabBar-2-active.png"
 			},
 			{
 				"pagePath": "pages/tabBar/thirdPage/thirdPage",
-				"text": "进行中"
+				"text": "进行中",
+				"iconPath":"static/tabBar/tabBar-3.png",
+				"selectedIconPath":"static/tabBar/tabBar-3-active.png"
 			},
 			{
 				"pagePath": "pages/tabBar/myPage/myPage",
-				"text": "我的"
+				"text": "我的",
+				"iconPath":"static/tabBar/tabBar-4.png",
+				"selectedIconPath":"static/tabBar/tabBar-4-active.png"
 			}
 		]
 	}

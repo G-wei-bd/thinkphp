@@ -20,7 +20,7 @@
 
 .menuList {
 	/* #ifdef H5 */
-	width: 190px;
+	width: 180px;
 	/* #endif */
 	width: 100%;
 	height: 40px !important;
