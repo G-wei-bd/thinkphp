@@ -10,6 +10,9 @@ import { createStore } from 'vuex'
 const store = createStore({
 // #endif
 	state: {
+		hasLogin: false,
+		isUniverifyLogin: false,
+		openid: null,
 		testvuex: false,
 		colorIndex: 0,
 		colorList: ['#FF0000', '#00FF00', '#0000FF'],
@@ -17,7 +20,8 @@ const store = createStore({
 		active: 'practice',
 		leftWinActive: '/pages/practicePage/practice/practice',
 		activeOpen: '',
-		menu: []
+		menu: [],
+		univerifyErrorMsg: ''
 	},
 	mutations: {
 		setTestTrue(state) {
