@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<text>这是main主界面</text>
+		<uni-notice-bar single scrollable showIcon text="好烦呀,不知道什么时候才写的出来,难受,太难受了!!!!!!!"></uni-notice-bar>
 	</view>
 </template>
 

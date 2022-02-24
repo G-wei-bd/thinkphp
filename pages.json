@@ -97,7 +97,7 @@
 		}, {
 			"path": "pages/thirdPage/third/third",
 			"style": {
-				"navigationBarTitleText": "待定",
+				"navigationBarTitleText": "进行中",
 				"enablePullDownRefresh": false
 			}
 
