@@ -8,7 +8,7 @@
 
 <script>
 	import practice from '@/pages/tabBar/practicePage/practicePage.vue'
-	import third from '@/pages/tabBar/thirdPage/thirdPage.vue'
+	import more from '@/pages/tabBar/morePage/morePage.vue'
 	import my from '@/pages/tabBar/myPage/myPage.vue'
 	import {
 		mapMutations, //调用 index.js 里的方法
@@ -20,7 +20,7 @@
 			return {
 				nav: [
 					'practicePage',
-					'thirdPage',
+					'morePage',
 					'myPage'
 				],
 				isPC: false
@@ -29,7 +29,7 @@
 		},
 		components: {
 			practice,
-			third,
+			more,
 			my
 		},
 		computed: {
@@ -130,8 +130,8 @@
 							if (active === 'practicePage') {
 								active = 'practice'
 							}
-							if (active === 'thirdPage') {
-								active = 'third'
+							if (active === 'morePage') {
+								active = 'more'
 							}
 							if (active === 'myPage') {
 								active = 'my'

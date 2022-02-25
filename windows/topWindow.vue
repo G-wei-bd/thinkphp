@@ -17,7 +17,7 @@
 				selected: {
 					homePage: 0,
 					practicePage: 1,
-					thirdPage: 2,
+					morePage: 2,
 					myPage: 3
 				},
 				current: 0,
@@ -28,8 +28,8 @@
 					tabBar: '/pages/tabBar/practicePage/practicePage',
 					index:  '/pages/practicePage/practice/practice'
 				}, {
-					tabBar: '/pages/tabBar/thirdPage/thirdPage',
-					index:  '/pages/thirdPage/third/third'
+					tabBar: '/pages/tabBar/morePage/morePage',
+					index:  '/pages/morePage/message/message'
 				}, {
 					tabBar: '/pages/tabBar/myPage/myPage',
 					index:  '/pages/myPage/mySetting/mySetting'
@@ -67,6 +67,8 @@
 		methods: {
 			toSecondMenu(e) {
 				const activeTabBar = '/' + e.pagePath
+				const tabBarIndex = activeTabBar.split('/')[3]
+				this.current = this.selected[tabBarIndex]
 				for(const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
 						uni.redirectTo({

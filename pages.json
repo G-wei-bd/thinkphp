@@ -41,9 +41,9 @@
 			}
 
 		}, {
-			"path": "pages/tabBar/thirdPage/thirdPage",
+			"path": "pages/tabBar/morePage/morePage",
 			"style": {
-				"navigationBarTitleText": "第三页",
+				"navigationBarTitleText": "更多",
 				"enablePullDownRefresh": false
 			}
 
@@ -91,13 +91,6 @@
 			"path": "pages/practicePage/practice/practice",
 			"style": {
 				"navigationBarTitleText": "实习",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/thirdPage/third/third",
-			"style": {
-				"navigationBarTitleText": "进行中",
 				"enablePullDownRefresh": false
 			}
 
@@ -179,6 +172,15 @@
 			}
 
 		}
+        ,{
+            "path" : "pages/morePage/message/message",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -199,13 +201,13 @@
 			},
 			{
 				"pagePath": "pages/tabBar/practicePage/practicePage",
-				"text": "我的实习",
+				"text": "实习",
 				"iconPath":"static/tabBar/tabBar-2.png",
 				"selectedIconPath":"static/tabBar/tabBar-2-active.png"
 			},
 			{
-				"pagePath": "pages/tabBar/thirdPage/thirdPage",
-				"text": "进行中",
+				"pagePath": "pages/tabBar/morePage/morePage",
+				"text": "更多",
 				"iconPath":"static/tabBar/tabBar-3.png",
 				"selectedIconPath":"static/tabBar/tabBar-3-active.png"
 			},

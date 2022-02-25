@@ -33,63 +33,12 @@
 				list: [
 					{
 						id: 'navbar',
-						name: '顶部原生导航标题栏',
+						name: '消息',
 						open: false,
 						pages: [
 							{
-								name: '导航栏带自定义按钮',
-								url: 'nav-button'
-							},
-							{
-								name: '导航栏带红点和角标',
-								url: 'nav-dot'
-							},
-							{
-								name: '导航栏带城市选择',
-								url: 'nav-city-dropdown'
-							},
-							{
-								name: '导航栏带搜索框',
-								url: 'nav-search-input'
-							},
-							{
-								name: '透明渐变样式',
-								url: 'nav-transparent'
-							},
-							{
-								name: '导航栏带图片',
-								url: 'nav-image'
-							}
-						]
-					},
-					{
-						name: '顶部选项卡',
-						url: 'tabbar',
-						open: false,
-						pages: [
-							{
-								name: '导航栏带自定义按钮',
-								url: 'nav-button'
-							},
-							{
-								name: '导航栏带红点和角标',
-								url: 'nav-dot'
-							},
-							{
-								name: '导航栏带城市选择',
-								url: 'nav-city-dropdown'
-							},
-							{
-								name: '导航栏带搜索框',
-								url: 'nav-search-input'
-							},
-							{
-								name: '透明渐变样式',
-								url: 'nav-transparent'
-							},
-							{
-								name: '导航栏带图片',
-								url: 'nav-image'
+								name: '消息及公告',
+								url: 'message'
 							}
 						]
 					}
@@ -131,7 +80,7 @@
 			},
 			goDetailPage(e) {
 				let path = e.url ? e.url : e;
-				let url = path.indexOf('') ? path : '/pages/thirdPage/' + path + '/' + path;
+				let url = path.indexOf('') ? path : '/pages/morePage/' + path + '/' + path;
 				if (this.hasLeftWin) {
 					uni.reLaunch({
 						url: url
