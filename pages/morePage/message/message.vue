@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="messageContainer">
-			<uni-list>
+			<uni-list class="messageList">
 				<uni-list :border="true">
 					<!-- 头像显示角标 -->
 					<uni-list-chat title="消息助手" link="navigateTo" to="../messageDetail/messageDetail"
@@ -36,18 +36,7 @@
 </script>
 
 <style>
-	.chat-custom-right {
-		flex: 1;
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: flex-end;
-	}
-
-	.chat-custom-text {
-		font-size: 12px;
-		color: #999;
+	.messageContainer{
+		
 	}
 </style>
