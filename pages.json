@@ -181,6 +181,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/morePage/messageDetail/messageDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "消息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
