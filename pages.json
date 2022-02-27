@@ -190,6 +190,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/morePage/location/location",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "签到",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

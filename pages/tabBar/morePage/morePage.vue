@@ -37,6 +37,10 @@
 						pages: [{
 							name: '消息及公告',
 							url: 'message'
+						},
+						{
+							name: '签到',
+							url: 'location'
 						}]
 					},
 					{
