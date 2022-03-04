@@ -199,6 +199,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/examine/examine",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "审核",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

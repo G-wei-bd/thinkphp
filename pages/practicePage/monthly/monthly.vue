@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<view class="weeklyContainer">
-			<uni-card title="周记详情">
+		<view class="monthlyContainer">
+			<uni-card title="月记详情">
 				<uni-table stripe emptyText="暂无更多数据">
 					<uni-tr>
 						<uni-th align="center">参与项目</uni-th>
@@ -25,10 +25,31 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					<textarea focus class="textContainer" placeholder="请输入文字,不少于300字" />
+					<uni-forms ref="form" :modelValue="monthlyData" :rules="rules">
+						<view class="writemonthly">
+							<uni-forms-item class="formsItem" required label="标题" name="monthlyTitle">
+								<uni-easyinput class="easyInput" v-model="monthlyData.monthlyTitle" trim="all" placeholder="标题 1-20 字"  />
+							</uni-forms-item>
+							<uni-forms-item class="formsItem" required label="关联日期" name="monthlyTime">
+								<uni-datetime-picker class="easyInput" type="daterange" :clearIcon="false"
+									v-model="monthlyData.monthlyTime" rangeSeparator="至"
+									@change="binddata('monthlyData',$event,)" />
+							</uni-forms-item>
+							<uni-forms-item class="formsItem" required label="周记内容" name="monthlyContent">
+								<uni-easyinput class="textareaInput" v-model="monthlyData.monthlyContent" type="textarea" autoHeight maxlength="-1" trim="all" @input="wordCount" />
+								<view class="small">已输入<text class="text-danger">{{wordsCount}} </text>/ 300 字</view>
+							</uni-forms-item>
+							<uni-forms-item class="formsItem" label="其他附件" name="otherFile">
+								<uni-file-picker file-mediatype="all"></uni-file-picker>
+							</uni-forms-item>
+						</view>
+					</uni-forms>
+					<view class="submit">
+						<button class="btn btn-danger" @click="monthlyUpload">发表</button>
+					</view>
 				</view>
 				<view v-show="current === 1">
-					<view class="weeklyTable">
+					<view class="monthlyTable">
 						<uni-table ref="table" border stripe emptyText="暂无更多数据">
 							<uni-tr>
 								<uni-th align="center">序号</uni-th>
@@ -64,6 +85,37 @@
 				items: [
 					"写月记", "我的月记"
 				],
+				ismonthly: true,
+				monthlyData: {
+					monthlyTitle: '',
+					monthlyTime: '',
+					monthlyContent: '',
+					otherFile: ''
+				},
+				rules: {
+					monthlyTitle: {
+						rules: [{
+							required: true,
+							errorMessage: "请填写周记标题"
+						}]
+					},
+					monthlyTime: {
+						rules: [{
+							required: true,
+							errorMessage: "请选择关联日期"
+						}]
+					},
+					monthlyContent: {
+						rules: [{
+							required: true,
+							errorMessage: "请填写周记内容"
+						},
+						{
+							minLength: 300,
+							errorMessage: '至少需要 {minLength} 个字',
+						}]
+					}
+				},
 				Arr: [{
 						time: "2022.01.03",
 						week: "1",
@@ -143,6 +195,13 @@
 			this.total = this.Arr.length
 		},
 		methods: {
+			monthlyUpload(){
+				this.$refs.form.validate().then((res) => {
+					
+				}).catch((err) => {
+					console.log(err)
+				})
+			},
 			onClickItem(e) {
 				if (this.current !== e.currentIndex) {
 					this.current = e.currentIndex
@@ -168,7 +227,12 @@
 		margin-left: 14px;
 	}
 
-	.weeklyTable {
+	.monthlyTable {
 		margin: 20px 14px;
+	}
+	.writemonthly{
+		width: 500px;
+		padding-top: 20px;
+		padding-left: 20px;
 	}
 </style>

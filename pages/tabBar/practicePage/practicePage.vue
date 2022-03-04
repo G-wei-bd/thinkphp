@@ -41,6 +41,10 @@
 							{
 								name: '实习计划进度',
 								url: 'practice-steps'
+							},
+							{
+								name: '教师提交实习计划',
+								url: ''
 							}
 						]
 					},
@@ -74,9 +78,22 @@
 								url: 'report'
 							},
 							{
-								name: '实习成绩鉴定',
-								url: 'results'
+								name: '教师审核三方',
+								url: ''
+							},
+							{
+								name: '教师审核周记',
+								url: ''
+							},
+							{
+								name: '教师审核月记',
+								url: ''
+							},
+							{
+								name: '审核实习报告',
+								url: ''
 							}
+							
 						]
 					}
 				]
