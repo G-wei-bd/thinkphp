@@ -210,6 +210,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/exa-monthly/exa-monthly",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "审核月记",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

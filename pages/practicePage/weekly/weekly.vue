@@ -31,28 +31,76 @@
 					</view>
 				</view>
 				<view v-show="current === 1">
-					<view class="weeklyTable">
-						<uni-table ref="table" border stripe emptyText="暂无更多数据">
-							<uni-tr>
-								<uni-th align="center">周记周数</uni-th>
-								<uni-th align="center">提交时间</uni-th>
-								<uni-th align="center">批阅状态</uni-th>
-								<uni-th align="center">周记关联时间</uni-th>
-								<uni-th align="center">更多</uni-th>
-							</uni-tr>
-							<uni-tr v-for="(item,index) in currentArr" :key="index">
-								<uni-td align="center">{{ item.week }}</uni-td>
-								<uni-td align="center">{{ item.time }}</uni-td>
-								<uni-td align="center">{{ item.state }}</uni-td>
-								<uni-td align="center">{{ item.connectTime }}</uni-td>
-								<uni-td align="center">
-									<button class="btn btn-sm btn-primary">查看</button>
-								</uni-td>
-							</uni-tr>
-						</uni-table>
-						<view class="paginationContainer">
-							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
-								@change="change"></uni-pagination>
+					<view v-show="!isCheck">
+						<view class="weeklyTable">
+							<uni-table ref="table" border stripe emptyText="暂无更多数据">
+								<uni-tr>
+									<uni-th align="center">周记周数</uni-th>
+									<uni-th align="center">提交时间</uni-th>
+									<uni-th align="center">批阅状态</uni-th>
+									<uni-th align="center">周记关联时间</uni-th>
+									<uni-th align="center">更多</uni-th>
+								</uni-tr>
+								<uni-tr v-for="(item,index) in currentArr" :key="index">
+									<uni-td align="center">{{ item.week }}</uni-td>
+									<uni-td align="center">{{ item.time }}</uni-td>
+									<uni-td align="center">{{ item.state }}</uni-td>
+									<uni-td align="center">{{ item.connectTime }}</uni-td>
+									<uni-td align="center">
+										<button class="btn btn-sm btn-primary" @click="changeIsCheck">查看</button>
+									</uni-td>
+								</uni-tr>
+							</uni-table>
+							<view class="paginationContainer">
+								<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+									@change="change"></uni-pagination>
+							</view>
+						</view>
+					</view>
+					<view v-show="isCheck">
+						<view class="m-3">
+							<button class="btn btn-danger btn-sm" @click="changeIsCheck">返回</button>
+						</view>
+						<uni-card title="周记详情">
+							<view class="m-4">
+								<view class="weeklyTitle text-center m-3">
+									<text class="text-center font-weight-bold">第二十周周记</text>
+								</view>
+								<view class="message text-center d-flex justify-content-between">
+									<text>姓名：
+										<text>学生1</text>
+									</text>
+									<text>专业：
+										<text>1班</text>
+									</text>
+									<text>班级：
+										<text>1班</text>
+									</text>
+									<text>关联日期：
+										<text>2020-01-01~2020-09-01</text>
+									</text>
+								</view>
+							</view>
+							<view class="weeklyMain">
+								<text>很快就到春节了，春节的到来就意味着我的工作就已经准备告一段落。其实我在想在这段时间的实习过程中我自己有没有做好进入这个社会的各方面的准备呢。我想也许我已经做好了大部分的准备了，不管是心态上也好、生活上、工作上也好，在这个实习的过程中我们每一个人都在不知不觉中做好了准备，在对这个社会做出适合自己的改变。也许我们从来也没有发觉到这一点。我想这也许就是我们实习最大的意义吧。对于每一个刚出校门的我们，身上有太多的锐气以及傲气。我们就像是刚出山上开凿下来的石头，有太多的棱角。而这实习的几个月就像是把我们打磨得更加的圆滑去适应社会。只有这样子才能让我们更好的去适应这个社会，而不被社会所淘汰。这个实习让我能够及时明白：社会不是我们想象的这么简单，还有很长的路要走呢。</text>
+							</view>
+						</uni-card>
+						<view class="access m-4">
+							<text class="font-weight-bold d-block text-center">指导老师评语</text>
+							<view class="font-weight-bold">评分：
+								<text class="text-danger">90</text>
+							</view>
+							<text class="d-block m-4">评语：
+								<text>人生是充满希望的，未来也需要我们乘风破浪，勇于克服困难，才能更好地适应社会；注意疫情防护，不要到高风险地区，注意自身安全，佩戴口罩，多锻炼身体，照顾好自己，下周继续努力。</text>
+							</text>
+							<view class="teacherMes d-flex justify-content-between">
+								<text>评阅人：
+									<text>老师1</text>
+								</text>
+								<text>电话：
+									<text>12345678909</text>
+								</text>
+							</view>
 						</view>
 					</view>
 				</view>
@@ -65,7 +113,8 @@
 			<uni-forms ref="form" :modelValue="weeklyData" :rules="rules">
 				<view class="writeWeekly">
 					<uni-forms-item class="formsItem" required label="标题" name="weeklyTitle">
-						<uni-easyinput class="easyInput" v-model="weeklyData.weeklyTitle" trim="all" placeholder="标题 1-20 字"  />
+						<uni-easyinput class="easyInput" v-model="weeklyData.weeklyTitle" trim="all"
+							placeholder="标题 1-20 字" />
 					</uni-forms-item>
 					<uni-forms-item class="formsItem" required label="关联日期" name="weeklyTime">
 						<uni-datetime-picker class="easyInput" type="daterange" :clearIcon="false"
@@ -73,7 +122,8 @@
 							@change="binddata('weeklyData',$event,)" />
 					</uni-forms-item>
 					<uni-forms-item class="formsItem" required label="周记内容" name="weeklyContent">
-						<uni-easyinput class="textareaInput" v-model="weeklyData.weeklyContent" type="textarea" autoHeight maxlength="-1" trim="all" @input="wordCount" />
+						<uni-easyinput class="textareaInput" v-model="weeklyData.weeklyContent" type="textarea"
+							autoHeight maxlength="-1" trim="all" @input="wordCount" />
 						<view class="small">已输入<text class="text-danger">{{wordsCount}} </text>/ 300 字</view>
 					</uni-forms-item>
 					<uni-forms-item class="formsItem" label="其他附件" name="otherFile">
@@ -97,6 +147,7 @@
 					"写周记", "我的周记"
 				],
 				isWeekly: true,
+				isCheck: false,
 				weeklyData: {
 					weeklyTitle: '',
 					weeklyTime: '',
@@ -118,13 +169,14 @@
 					},
 					weeklyContent: {
 						rules: [{
-							required: true,
-							errorMessage: "请填写周记内容"
-						},
-						{
-							minLength: 300,
-							errorMessage: '至少需要 {minLength} 个字',
-						}]
+								required: true,
+								errorMessage: "请填写周记内容"
+							},
+							{
+								minLength: 300,
+								errorMessage: '至少需要 {minLength} 个字',
+							}
+						]
 					}
 				},
 				wordsCount: 0,
@@ -340,8 +392,11 @@
 					this.current = e.currentIndex
 				}
 			},
-			isWriteWeekly(){
+			isWriteWeekly() {
 				this.isWeekly = !this.isWeekly;
+			},
+			changeIsCheck() {
+				this.isCheck = !this.isCheck;
 			},
 			// 分页触发
 			change(e) {
@@ -353,12 +408,12 @@
 					this.currentArr = this.Arr.slice(10 * e.current - 10, 10 * e.current);
 				}
 			},
-			wordCount(e){
+			wordCount(e) {
 				this.wordsCount = e.length;
 			},
-			weeklyUpload(){
+			weeklyUpload() {
 				this.$refs.form.validate().then((res) => {
-					
+
 				}).catch((err) => {
 					console.log(err)
 				})
@@ -395,16 +450,24 @@
 	.paginationContainer {
 		margin: 20px 0;
 	}
-	
-	.formsItem{
+
+	.formsItem {
 		margin-left: 16px;
 	}
-	
-	.easyInput{
+
+	.easyInput {
 		width: 250px;
 	}
-	
-	.textareaInput{
+
+	.textareaInput {
 		padding-right: 20px;
+	}
+
+	.message {
+		width: 700px;
+	}
+
+	.teacherMes {
+		width: 300px;
 	}
 </style>

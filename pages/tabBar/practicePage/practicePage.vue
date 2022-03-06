@@ -83,7 +83,7 @@
 							},
 							{
 								name: '教师审核月记',
-								url: ''
+								url: 'exa-monthly'
 							},
 							{
 								name: '审核实习报告',

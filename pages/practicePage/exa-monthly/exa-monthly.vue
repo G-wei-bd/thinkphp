@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<view v-if="isWeekly" class="weeklyContainer">
-			<uni-card title="周记">
+			<uni-card title="月记">
 				<uni-table stripe emptyText="暂无更多数据">
 					<uni-tr>
 						<uni-th align="center">学生姓名</uni-th>
 						<uni-th align="center">参与项目</uni-th>
 						<uni-th align="center">实习岗位</uni-th>
 						<uni-th align="center">实习时间</uni-th>
-						<uni-th align="center">提交周记篇数</uni-th>
+						<uni-th align="center">提交月记篇数</uni-th>
 						<uni-th align="center">操作</uni-th>
 					</uni-tr>
 					<uni-tr>
@@ -16,7 +16,7 @@
 						<uni-td align="center">18网络工程实习</uni-td>
 						<uni-td align="center">前端开发</uni-td>
 						<uni-td align="center">2021.09.01 ~ 2022.01.31</uni-td>
-						<uni-td align="center">20篇</uni-td>
+						<uni-td align="center">6篇</uni-td>
 						<uni-td align="center">
 							<button class="btn btn-sm btn-primary" @click="isWriteWeekly">查看</button>
 						</uni-td>
@@ -30,13 +30,13 @@
 					<button class="btn btn-sm btn-danger" @click="isWriteWeekly">返回</button>
 				</view>
 				<view class="weeklyTable">
-					<text class="text-danger">学生1<text class="text-primary">的周记详情</text></text>
+					<text class="text-danger">学生1<text class="text-primary">的月记详情</text></text>
 					<uni-table ref="table" border stripe emptyText="暂无更多数据">
 						<uni-tr>
-							<uni-th align="center">周记周数</uni-th>
+							<uni-th align="center">月记月数</uni-th>
 							<uni-th align="center">提交时间</uni-th>
 							<uni-th align="center">批阅状态</uni-th>
-							<uni-th align="center">周记关联时间</uni-th>
+							<uni-th align="center">月记关联时间</uni-th>
 							<uni-th align="center">更多</uni-th>
 						</uni-tr>
 						<uni-tr v-for="(item,index) in currentArr" :key="index">
@@ -59,10 +59,10 @@
 				<view class="m-3">
 					<button class="btn btn-danger btn-sm" @click="changeIsCheck">返回</button>
 				</view>
-				<uni-card title="周记详情">
+				<uni-card title="月记详情">
 					<view class="m-4">
 						<view class="weeklyTitle text-center m-3">
-							<text class="text-center font-weight-bold">第二十周周记</text>
+							<text class="text-center font-weight-bold">第二月月记</text>
 						</view>
 						<view class="message text-center d-flex justify-content-between">
 							<text>姓名：
@@ -150,156 +150,6 @@
 					{
 						time: "2022.01.03",
 						week: "6",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "7",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "8",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "9",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "10",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "11",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "12",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "13",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "14",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "15",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "16",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "17",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "18",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "19",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "20",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "21",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "22",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "23",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "24",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "25",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "26",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "27",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "28",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "29",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "30",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "31",
 						state: "已批阅",
 						connectTime: "2022.01.02~2022.01.09"
 					}
