@@ -24,7 +24,7 @@
 					<text class="iconfont icon-chushengriqi"></text>
 					<text class="small">出生日期</text>
 					<view class="form-control">
-						<picker class="small form-control-sm" name="birthday" mode="date" :value="date" :start="startDate" :end="endDate">
+						<picker class="small form-control-sm" name="birthday" mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
 							<view class="input-group-sm">{{date}}</view>
 						</picker>
 					</view>
@@ -185,11 +185,12 @@
 			submitAddress: function({ simple, selected }){
 				this.dis = !this.dis;
 				this.add = simple;
-				console.log(this.add);
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;
-				console.log(e);
+			},
+			bindDateChange: function(e) {
+				this.date = e.detail.value
 			},
 			display: function(){
 				this.seen = !this.seen;

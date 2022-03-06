@@ -1,6 +1,35 @@
 <template>
 	<view>
-		<view class="agreementInfo">
+		<view class="filePicker">
+			<uni-card title="协议详情">
+				<view class="agreeTable">
+					<uni-table stripe emptyText="暂无更多数据">
+						<uni-tr>
+							<uni-th align="center">参与实习</uni-th>
+							<uni-th align="center">实习时间</uni-th>
+							<uni-th align="center">指导老师</uni-th>
+							<uni-th align="center">提交时间</uni-th>
+							<uni-th align="center">审批情况</uni-th>
+							<uni-th align="center">协议详情</uni-th>
+						</uni-tr>
+						<uni-tr>
+							<uni-td align="center">18实习</uni-td>
+							<uni-td align="center">2020-09-01~2022-01-30</uni-td>
+							<uni-td align="center">第一个老师</uni-td>
+							<uni-td align="center">2020-10-22</uni-td>
+							<uni-td align="center">
+								<text class="text-danger font-weight-bold">{{examine[exaVal]}}</text>
+							</uni-td>
+							<uni-td align="center"><img src="../../../static/logo.png" alt=""></uni-td>
+						</uni-tr>
+					</uni-table>
+				</view>
+			</uni-card>
+		</view>
+		<view class="m-3" v-if="!exaVal">
+			<text>不通过原因：<text class="text-danger">图片不清晰。</text></text>
+		</view>
+		<view class="agreementInfo" v-if="!exaVal">
 			<uni-card title="协议详情">
 				<view class="agreeTable">
 					<uni-table stripe emptyText="暂无更多数据">
@@ -22,20 +51,11 @@
 									@fail="fail">
 								</uni-file-picker>
 							</uni-td>
-
 						</uni-tr>
 					</uni-table>
 				</view>
 			</uni-card>
 		</view>
-		<!-- <view class="filePicker">
-			<text>请上传三方协议</text>
-			<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles" mode="grid"
-				limit="1" @select="select" @progress="progress" @success="success" @fail="fail">
-				<button class="btn btn-primary btn-sm">选择文件</button>
-			</uni-file-picker>
-		</view> -->
-
 	</view>
 </template>
 
@@ -53,7 +73,9 @@
 						color: '#ff6700',
 						redius: 10
 					}
-				}
+				},
+				examine: ['不通过', '通过'],
+				exaVal: 0
 			}
 		},
 		methods: {
@@ -80,9 +102,5 @@
 </script>
 
 <style>
-	.filePicker {
-		width: 240px;
-		height: 100%;
-		margin-left: 100px;
-	}
+	.filePicker {}
 </style>

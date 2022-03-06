@@ -70,20 +70,16 @@
 								url: 'myAssess'
 							},
 							{
-								name: '企业评定',
-								url: 'companyAssess'
-							},
-							{
 								name: '实习报告',
 								url: 'report'
 							},
 							{
 								name: '教师审核三方',
-								url: ''
+								url: 'examine'
 							},
 							{
 								name: '教师审核周记',
-								url: ''
+								url: 'exa-weekly'
 							},
 							{
 								name: '教师审核月记',

@@ -130,13 +130,6 @@
 			}
 
 		}, {
-			"path": "pages/practicePage/companyAssess/companyAssess",
-			"style": {
-				"navigationBarTitleText": "企业评定",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
 			"path": "pages/practicePage/report/report",
 			"style": {
 				"navigationBarTitleText": "实习报告",
@@ -185,7 +178,7 @@
             "path" : "pages/morePage/messageDetail/messageDetail",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "消息",
+                "navigationBarTitleText": "消息详情",
                 "enablePullDownRefresh": false
             }
             
@@ -204,6 +197,15 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "审核",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/practicePage/exa-weekly/exa-weekly",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "审核周记",
                 "enablePullDownRefresh": false
             }
             
