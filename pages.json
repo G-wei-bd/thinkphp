@@ -13,8 +13,7 @@
 		}
 	},
 
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/index/index"
 		},
 		{
@@ -25,14 +24,6 @@
 				"topWindow": false,
 				"leftWindow": false
 			}
-		},
-		{
-			"path": "pages/tabBar/homePage/homePage",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"enablePullDownRefresh": false
-			}
-
 		}, {
 			"path": "pages/tabBar/practicePage/practicePage",
 			"style": {
@@ -76,14 +67,6 @@
 		}, {
 			"path": "windows/topWindow",
 			"style": {
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/homePage/main/main",
-			"style": {
-				"navigationBarTitleText": "主页",
-				"leftWindow": false,
 				"enablePullDownRefresh": false
 			}
 
@@ -164,62 +147,57 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/morePage/message/message",
+			"style": {
+				"navigationBarTitleText": "消息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/morePage/messageDetail/messageDetail",
+			"style": {
+				"navigationBarTitleText": "消息详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/morePage/location/location",
+			"style": {
+				"navigationBarTitleText": "签到",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/examine/examine",
+			"style": {
+				"navigationBarTitleText": "审核",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/exa-weekly/exa-weekly",
+			"style": {
+				"navigationBarTitleText": "审核周记",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/practicePage/exa-monthly/exa-monthly",
+			"style": {
+				"navigationBarTitleText": "审核月记",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/myPage/changePassword/changePassword",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				"enablePullDownRefresh": false
+			}
+
 		}
-        ,{
-            "path" : "pages/morePage/message/message",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "消息",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/morePage/messageDetail/messageDetail",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "消息详情",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/morePage/location/location",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "签到",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/examine/examine",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "审核",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/exa-weekly/exa-weekly",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "审核周记",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/exa-monthly/exa-monthly",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "审核月记",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "SystemLogin",
@@ -232,28 +210,22 @@
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"list": [{
-				"pagePath": "pages/tabBar/homePage/homePage",
-				"text": "首页",
-				"iconPath":"static/tabBar/tabBar-1.png",
-				"selectedIconPath":"static/tabBar/tabBar-1-active.png"
-			},
-			{
 				"pagePath": "pages/tabBar/practicePage/practicePage",
 				"text": "实习",
-				"iconPath":"static/tabBar/tabBar-2.png",
-				"selectedIconPath":"static/tabBar/tabBar-2-active.png"
+				"iconPath": "static/tabBar/tabBar-2.png",
+				"selectedIconPath": "static/tabBar/tabBar-2-active.png"
 			},
 			{
 				"pagePath": "pages/tabBar/morePage/morePage",
 				"text": "更多",
-				"iconPath":"static/tabBar/tabBar-3.png",
-				"selectedIconPath":"static/tabBar/tabBar-3-active.png"
+				"iconPath": "static/tabBar/tabBar-3.png",
+				"selectedIconPath": "static/tabBar/tabBar-3-active.png"
 			},
 			{
 				"pagePath": "pages/tabBar/myPage/myPage",
 				"text": "我的",
-				"iconPath":"static/tabBar/tabBar-4.png",
-				"selectedIconPath":"static/tabBar/tabBar-4-active.png"
+				"iconPath": "static/tabBar/tabBar-4.png",
+				"selectedIconPath": "static/tabBar/tabBar-4-active.png"
 			}
 		]
 	}

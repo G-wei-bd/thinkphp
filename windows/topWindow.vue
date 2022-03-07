@@ -1,12 +1,11 @@
 <template>
 	<view class="top-window-header">
 		<view class="logo">
-			<navigator class="logo" open-type="reLaunch" url="/pages/homePage/main/main">
+			<navigator class="logo" open-type="reLaunch" url="/pages/practicePage/practice/practice">
 				<image src="../static/logo.png" mode="heightFix" style="width: 50px;"></image>
 			</navigator>
 		</view>
 		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current" @onTabItemTap="toSecondMenu" />
-		<button class="btn btn-danger btn-sm" type="default" @click="remove">清除缓存</button>
 	</view>
 </template>
 
@@ -15,16 +14,12 @@
 		data() {
 			return {
 				selected: {
-					homePage: 0,
-					practicePage: 1,
-					morePage: 2,
-					myPage: 3
+					practicePage: 0,
+					morePage: 1,
+					myPage: 2
 				},
 				current: 0,
 				indexPage: [{
-					tabBar: '/pages/tabBar/homePage/homePage',
-					index:  '/pages/homePage/main/main'
-				}, {
 					tabBar: '/pages/tabBar/practicePage/practicePage',
 					index:  '/pages/practicePage/practice/practice'
 				}, {
@@ -45,8 +40,8 @@
 						let path = newRoute.path
 						let comp
 						if (path === '/') {
-							comp = 'homePage'
-							path = '/pages/tabBar/homePage/homePage'
+							comp = 'practicePage'
+							path = '/pages/tabBar/practicePage/practicePage'
 						} else {
 							comp = path.split('/')[2]
 						}
@@ -76,22 +71,7 @@
 						})
 					}
 				}
-			},
-			remove() {
-				uni.showModal({
-					content: "是否清除缓存数据",
-					success(res) {
-						if (res.confirm) {
-							uni.removeStorageSync("token");
-							uni.navigateTo({
-								url: '/pages/login/login',
-							});
-						} else if (res.cancel) {
-							console.log("点击取消");
-						}
-					}
-				})
-			},
+			}
 		}
 	}
 </script>
@@ -125,8 +105,7 @@
 		margin-left: 8px;
 	}
 	.tab-bar-flex {
-		width: 360px;
-		
+		width: 300px;
 	}
 </style>
 

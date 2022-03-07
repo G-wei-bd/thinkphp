@@ -16,6 +16,9 @@
 				</view>
 			</view>
 		</view>
+		<view>
+			<button class="btn btn-danger btn-sm" type="default" @click="remove">退出登录</button>
+		</view>
 	</view>
 </template>
 <script>
@@ -45,6 +48,10 @@
 						{
 							name: '学籍信息',
 							url: 'studentStatus'
+						},
+						{
+							name: '修改密码',
+							url: 'changePassword'
 						}
 					]
 				}]
@@ -96,7 +103,22 @@
 					})
 				}
 				return false;
-			}
+			},
+			remove() {
+				uni.showModal({
+					content: "是否退出登录",
+					success(res) {
+						if (res.confirm) {
+							uni.removeStorageSync("token");
+							uni.navigateTo({
+								url: '/pages/login/login',
+							});
+						} else if (res.cancel) {
+							console.log("点击取消");
+						}
+					}
+				})
+			},
 		}
 	}
 </script>
@@ -104,4 +126,7 @@
 <style>
 	@import '../../../common/uni-nvue.css';
 	@import '../../../common/leftWindow.css';
+	.btn{
+		width: 170px;
+	}
 </style>

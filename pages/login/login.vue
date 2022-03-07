@@ -57,7 +57,7 @@
 	                uni.showToast({title:"验证通过!", icon:"none"});
 					uni.setStorageSync("token", e.detail.value.userName);
 					uni.reLaunch({
-						url: "../tabBar/homePage/homePage"
+						url: "../tabBar/practicePage/practicePage"
 					})
 	            }else{
 	                uni.showToast({ title: graceChecker.error, icon: "none" });
