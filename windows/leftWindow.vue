@@ -155,7 +155,7 @@
 		position: fixed;
 		top: 51px;
 		left: 0;
-		z-index: 999;
+		z-index: 99;
 	}
 
 	.second-menu {

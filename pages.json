@@ -197,7 +197,25 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/practicePage/exa-report/exa-report",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "审核实习报告",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/practicePage/commitPlan/commitPlan",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "提交实习计划",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "SystemLogin",

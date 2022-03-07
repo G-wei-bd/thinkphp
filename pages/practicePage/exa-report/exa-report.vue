@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="agreementInfo">
-			<uni-card title="协议详情">
+			<uni-card title="实习报告详情">
 				<view class="agreeTable">
 					<uni-table stripe emptyText="暂无更多数据">
 						<uni-tr>
@@ -10,8 +10,8 @@
 							<uni-th align="center">实习时间</uni-th>
 							<uni-th align="center">指导老师</uni-th>
 							<uni-th align="center">提交时间</uni-th>
-							<uni-th align="center">协议详情</uni-th>
-							<uni-th align="center">审批情况</uni-th>
+							<uni-th align="center">实习报告详情</uni-th>
+							<uni-th align="center">评分</uni-th>
 						</uni-tr>
 						<uni-tr>
 							<uni-td align="center">未知</uni-td>
@@ -24,25 +24,18 @@
 							</uni-td>
 							<uni-td align="center">
 								<view class="exa-btn" v-if="isShow">
-									<button class="btn btn-danger" @click="success">通过</button>
-									<button class="btn btn-danger" @click="reason">未通过</button>
+									<input type="number" class="input" @input="score" />
+									<button class="btn btn-danger" @click="commitScore">提交</button>
 								</view>
-								<text v-else class="text-danger font-weight-bold">已通过</text>
+								<view v-else>
+									<text class="text-danger font-weight-bold">{{ reportScore }}</text>
+								</view>
 							</uni-td>
 						</uni-tr>
 					</uni-table>
 				</view>
 			</uni-card>
 		</view>
-		<uni-popup ref="popup" type="top">
-			<view class="bg-light reason d-flex align-items-center">
-				<text class="text-danger m-2 font-weight-bold">未通过原因</text>
-				<uni-data-checkbox  v-model="value" multiple :localdata="reasonData" @change="change" />
-				<view>
-					<button class="btn btn-danger" @click="close">提交</button>
-				</view>
-			</view>
-		</uni-popup>
 	</view>
 </template>
 
@@ -50,24 +43,28 @@
 	export default {
 		data() {
 			return {
+				imageValue: [],
+				imageStyles: {
+					border: true,
+					width: 100,
+					height: 100,
+					borderStyle: {
+						width: 1,
+						color: '#ff6700',
+						redius: 10
+					}
+				},
 				isShow: true,
-				value: '',
-				reasonData: [{"value": 0,"text": "不清晰"},{"value": 1,"text": "不规范"},{"value": 2,"text": "时间错误"}]
+				reportScore: ''
 			}
 		},
 		methods: {
-			success(){
+			score(e){
+				this.reportScore = e.detail.value;
+			},
+			commitScore(){
+				console.log(this.reportScore);
 				this.isShow = !this.isShow;
-			},
-			reason(){
-				this.$refs.popup.open()
-			},
-			change(e){
-				this.value = e.detail.value;
-			},
-			close(){
-				this.$refs.popup.close()
-				console.log(this.value);
 			}
 		}
 	}
@@ -79,10 +76,12 @@
 		display: flex;
 		justify-content: space-between;
 	}
-	.reason{
-		height: 150px;
-		position: relative;
-		z-index: 999;
-		padding: 50px 20px;
+	
+	.input{
+		height: 36px;
+		border: 1px solid #999;
+		border-radius: 5px;
+		background-color: #fff;
+		margin-right: 10px;
 	}
 </style>

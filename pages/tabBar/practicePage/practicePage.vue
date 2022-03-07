@@ -44,7 +44,7 @@
 							},
 							{
 								name: '教师提交实习计划',
-								url: ''
+								url: 'commitPlan'
 							}
 						]
 					},
@@ -87,7 +87,7 @@
 							},
 							{
 								name: '审核实习报告',
-								url: ''
+								url: 'exa-report'
 							}
 							
 						]
