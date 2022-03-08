@@ -33,7 +33,7 @@
 				<view class="address">
 					<text class="iconfont icon-dizhi"></text>
 					<text class="small">地址</text>
-					<view class="selectAddress addressText" name="address" @click="disAdd()">{{add[0]}}  {{add[1]}}  {{add[2]}}</view>
+					<view class="selectAddress addressText" name="address" @click="disAdd">{{add}}</view>
 					<view class="addressList" v-show="dis">
 						<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
 					</view>
@@ -147,8 +147,8 @@
 		},
 		methods: {
 			submitRegister: function(e){
-				console.log("表单提交数据为：" + JSON.stringify(e.detail.value));
-				console.log("非表单提交数据为：" + this.add);
+				// console.log("表单提交数据为：" + JSON.stringify(e.detail.value));
+				// console.log("非表单提交数据为：" + this.add);
 				var rule = [
 					{name: "userName", checkType: "notnull", errorMsg: "请填写姓名"},
 					{name: "gender", checkType: "notnull", errorMsg: "请选择性别	"},
@@ -160,18 +160,33 @@
 					{name: "majorClass", checkType: "notnull", errorMsg: "所在班级不能为空"},
 					{name: "password", checkType: "notnull", errorMsg: "密码不能为空"},
 					{name: "password", checkType: "length", errorMsg: "密码需要6-16个字符"},
-					{name: "comfirmPassword", checkType: "same", checkRule:e.detail.value.password, errorMsg: "两次密码不一致"},
+					{name: "comfirmPassword", checkType: "same", checkRule:e.detail.value.password, errorMsg: "两次密码不一致"}
 				];
 				var formData = e.detail.value;
+				formData.detailedAddress = this.add + e.detail.value.detailedAddress;
+				console.log(formData);
 				var checkRes = graceChecker.check(formData, rule);
 				if(checkRes){
 					uni.showToast({
 						title: "注册成功",
 						icon: "success"
 					});
-					uni.navigateTo({
-						url:"../login/login"
-					})
+					uni.request({
+						url: 'http://127.0.0.1/index.php/register/index',
+						method: 'GET',
+						data: formData,
+						success: res => {
+							console.log('发送成功');
+							console.log(res.data);
+						},
+						fail: () => {
+							console.log('发送失败');
+						},
+						complete: () => {}
+					});
+					// uni.navigateTo({
+					// 	url:"../login/login"
+					// })
 				}else{
 					uni.showToast({
 						title: graceChecker.error,
@@ -184,7 +199,8 @@
 			},
 			submitAddress: function({ simple, selected }){
 				this.dis = !this.dis;
-				this.add = simple;
+				this.add = simple.join('');
+				console.log(this.add);
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;

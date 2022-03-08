@@ -127,6 +127,6 @@
 	@import '../../../common/uni-nvue.css';
 	@import '../../../common/leftWindow.css';
 	.btn{
-		width: 170px;
+		width: 100%;
 	}
 </style>

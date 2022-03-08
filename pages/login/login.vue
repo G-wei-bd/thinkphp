@@ -42,7 +42,7 @@
 		},
 		methods: {
 			formSubmit: function(e) {
-				console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
+				// console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
 	            //定义表单规则
 	            var rule = [
 					{name:"userName", checkType : "admin", errorMsg:"请输入手机号"},
@@ -56,9 +56,22 @@
 	            if(checkRes){
 	                uni.showToast({title:"验证通过!", icon:"none"});
 					uni.setStorageSync("token", e.detail.value.userName);
-					uni.reLaunch({
-						url: "../tabBar/practicePage/practicePage"
-					})
+					// uni.request({
+					// 	url: 'http://127.0.0.1/index.php/register/index',
+					// 	method: 'GET',
+					// 	data: {},
+					// 	success: (res) => {
+					// 		console.log('发送成功');
+					// 		console.log(res.data);
+					// 	},
+					// 	fail: () => {
+					// 		console.log('发送失败');
+					// 	},
+					// 	complete: () => {}
+					// });
+					// uni.reLaunch({
+					// 	url: "../tabBar/practicePage/practicePage"
+					// })
 	            }else{
 	                uni.showToast({ title: graceChecker.error, icon: "none" });
 	            }
