@@ -6,7 +6,7 @@
 				<view class="userName">
 					<text class="iconfont icon-yonghuming"></text>
 					<text class="small">姓名</text>
-					<input type="text" class="form-control form-control-sm" name="userName" placeholder="姓名" placeholder-class="small"/>
+					<input type="text" class="form-control form-control-sm" name="user_name" placeholder="姓名" placeholder-class="small"/>
 				</view>
 				
 				<view class="gender">
@@ -14,8 +14,8 @@
 					<text class="small">性别</text>
 					<view class="gender">
 						<radio-group name="gender">
-							<radio value="男" color="#0069D9" class="form-control-sm radioBtn" /><text class="small">男</text>
-							<radio value="女" color="#0069D9" class="form-control-sm radioBtn" /><text class="small">女</text>
+							<radio value="1" color="#0069D9" class="form-control-sm radioBtn" /><text class="small">男</text>
+							<radio value="0" color="#0069D9" class="form-control-sm radioBtn" /><text class="small">女</text>
 						</radio-group>
 					</view>
 				</view>
@@ -33,7 +33,7 @@
 				<view class="address">
 					<text class="iconfont icon-dizhi"></text>
 					<text class="small">地址</text>
-					<view class="selectAddress addressText" name="address" @click="disAdd">{{add}}</view>
+					<view class="selectAddress addressText" name="add" @click="disAdd">{{add}}</view>
 					<view class="addressList" v-show="dis">
 						<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
 					</view>
@@ -42,13 +42,13 @@
 				<view class="detailedAdd">
 					<text class="iconfont icon-xiangxidizhi"></text>
 					<text class="small">详细地址</text>
-					<input class="form-control form-control-sm" type="text" name="detailedAddress" placeholder="家庭详细地址" placeholder-class="small"/>
+					<input class="form-control form-control-sm" type="text" name="address" placeholder="家庭详细地址" placeholder-class="small"/>
 				</view>
 				
 				<view class="phoneNumber">
 					<text class="iconfont icon-shoujihaoma"></text>
 					<text class="small">手机号</text>
-					<input type="number" class="form-control form-control-sm" maxlength="11" name="phoneNumber" placeholder="请输入手机号" placeholder-class="small"/>
+					<input type="number" class="form-control form-control-sm" maxlength="11" name="phone_num" placeholder="请输入手机号" placeholder-class="small"/>
 				</view>
 				
 				<view class="university">
@@ -76,7 +76,7 @@
 				<view class="majorClass">
 					<text class="iconfont icon-banjiketang"></text>
 					<text class="small">所在班级</text>
-					<input type="text" class="form-control form-control-sm" name="majorClass" placeholder="所在班级" placeholder-class="small"/>
+					<input type="text" class="form-control form-control-sm" name="major_class" placeholder="所在班级" placeholder-class="small"/>
 				</view>
 				
 				<view class="password">
@@ -140,7 +140,7 @@
 				index: 0,
 				degree: "",
 				seen: false,
-				secondSeen: false,
+				secondSeen: false, 
 				type_text: "text",
 				type_password: "password",
 			}
@@ -150,43 +150,46 @@
 				// console.log("表单提交数据为：" + JSON.stringify(e.detail.value));
 				// console.log("非表单提交数据为：" + this.add);
 				var rule = [
-					{name: "userName", checkType: "notnull", errorMsg: "请填写姓名"},
+					{name: "user_name", checkType: "notnull", errorMsg: "请填写姓名"},
 					{name: "gender", checkType: "notnull", errorMsg: "请选择性别	"},
-					{name: "detailedAddress", checkType: "notnull", errorMsg: "请输入详细地址"},
-					{name: "phoneNumber", checkType: "notnull", errorMsg: "手机号不能为空"},
+					{name: "address", checkType: "notnull", errorMsg: "请输入详细地址"},
+					{name: "phone_num", checkType: "notnull", errorMsg: "手机号不能为空"},
 					{name: "university", checkType: "notnull", errorMsg: "请填写学校名称"},
 					{name: "degree", checkType: "select", errorMsg: "请选择学历"},
 					{name: "major", checkType: "notnull", errorMsg: "请填写所在专业"},
-					{name: "majorClass", checkType: "notnull", errorMsg: "所在班级不能为空"},
+					{name: "major_class", checkType: "notnull", errorMsg: "所在班级不能为空"},
 					{name: "password", checkType: "notnull", errorMsg: "密码不能为空"},
 					{name: "password", checkType: "length", errorMsg: "密码需要6-16个字符"},
 					{name: "comfirmPassword", checkType: "same", checkRule:e.detail.value.password, errorMsg: "两次密码不一致"}
 				];
 				var formData = e.detail.value;
-				formData.detailedAddress = this.add + e.detail.value.detailedAddress;
-				console.log(formData);
+				formData.address = this.add + e.detail.value.address;
 				var checkRes = graceChecker.check(formData, rule);
 				if(checkRes){
-					uni.showToast({
-						title: "注册成功",
-						icon: "success"
-					});
+					delete formData.comfirmPassword;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/register/index',
 						method: 'GET',
 						data: formData,
 						success: res => {
-							console.log('发送成功');
-							console.log(res.data);
+							if(res.data == 1){
+								uni.showToast({
+									title: "注册成功",
+									icon: "success",
+									duration: 2000
+								});
+								setTimeout(function(){
+									uni.navigateTo({
+									url:"../login/login"
+								})
+								},500);
+							}
 						},
 						fail: () => {
 							console.log('发送失败');
 						},
 						complete: () => {}
 					});
-					// uni.navigateTo({
-					// 	url:"../login/login"
-					// })
 				}else{
 					uni.showToast({
 						title: graceChecker.error,
@@ -200,7 +203,6 @@
 			submitAddress: function({ simple, selected }){
 				this.dis = !this.dis;
 				this.add = simple.join('');
-				console.log(this.add);
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;

@@ -8,7 +8,8 @@
 					<uni-list-item title="是否提交岗位" :note="isHandler[handleValue]">
 						<view slot="footer">
 							<button v-if="isDisabled" class="btn btn-danger btn-sm" @click="isSubmit">提交岗位</button>
-							<button v-else class="btn btn-primary" v-show="isCommitList" @click="commitListDisplay">查看实习信息</button>
+							<button v-else class="btn btn-primary" v-show="isCommitList"
+								@click="commitListDisplay">查看实习信息</button>
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -27,10 +28,10 @@
 			<uni-forms ref="form" :modelValue="commitData" :rules="rules">
 				<view class="formContainer">
 					<uni-forms-item style="margin-left: 14px;" label="实习单位名称" name="companyName" required>
-						<uni-easyinput class="input" v-model="commitData.companyName" trim="all" />
+						<uni-easyinput class="input" v-model="commitData.company_name" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习岗位名称" name="postName" required>
-						<uni-easyinput class="input" v-model="commitData.postName" trim="all" />
+						<uni-easyinput class="input" v-model="commitData.post_name" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="行业方向" name="trade" required>
 						<uni-easyinput class="input" v-model="commitData.trade" trim="all" />
@@ -39,16 +40,16 @@
 						<uni-easyinput class="input" v-model="commitData.contact" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习单位电话" name="companyNumber" required>
-						<uni-easyinput class="input" v-model="commitData.companyNumber" trim="all" />
+						<uni-easyinput class="input" v-model="commitData.company_number" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习单位邮箱" name="companyEmail" required>
-						<uni-easyinput class="input" v-model="commitData.companyEmail" trim="all" />
+						<uni-easyinput class="input" v-model="commitData.company_email" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习单位导师" name="companyTeacher" required>
-						<uni-easyinput class="input" v-model="commitData.companyTeacher" trim="all" />
+						<uni-easyinput class="input" v-model="commitData.company_teacher" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="导师手机号" name="teacherNumber" required>
-						<uni-easyinput class="input" v-model="commitData.teacherNumber" type="number" trim="all"
+						<uni-easyinput class="input" v-model="commitData.teacher_number" type="number" trim="all"
 							maxlength="11" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="薪资" name="salary" required>
@@ -56,13 +57,13 @@
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习时间" name="practiceTime" required>
 						<uni-datetime-picker style="width: 250px;" type="daterange" :clearIcon="false"
-							v-model="commitData.practiceTime" rangeSeparator="至"
+							v-model="commitData.practice_time" rangeSeparator="至"
 							@change="binddata('practiceTime',$event,'form')" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="实习所在地区" name="practiceCity" required>
 						<view>
-							<picker mode="multiSelector" :range="range" :value="value" v-model="commitData.practiceCity"
-								@columnchange="columnchange"
+							<picker mode="multiSelector" :range="range" :value="value"
+								v-model="commitData.practice_city" @columnchange="columnchange"
 								@change="binddata('practiceCity',$event.detail.value,'form')">
 								<view class="picker">{{this.range[0][value[0]]}} {{this.range[1][value[1]]}}
 								</view>
@@ -71,7 +72,7 @@
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="工作内容" name="workContent" required>
 						<uni-easyinput trim="all" type="textarea" autoHeight style="width: 220px;" class="input"
-							v-model="commitData.workContent" />
+							v-model="commitData.work_content" />
 					</uni-forms-item>
 				</view>
 			</uni-forms>
@@ -87,12 +88,12 @@
 				<uni-list v-for="(item, index) in listData" :key="index">
 					<uni-list-item title="实习单位名称">
 						<view slot="footer">
-							<text class="text-primary">{{item.companyName}}</text>
+							<text class="text-primary">{{item.company_name}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="实习岗位名称">
 						<view slot="footer">
-							<text class="text-primary">{{item.postName}}</text>
+							<text class="text-primary">{{item.post_name}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="行业方向">
@@ -107,22 +108,22 @@
 					</uni-list-item>
 					<uni-list-item title="实习单位电话">
 						<view slot="footer">
-							<text class="text-primary">{{item.companyNumber}}</text>
+							<text class="text-primary">{{item.company_number}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="实习单位邮箱">
 						<view slot="footer">
-							<text class="text-primary">{{item.companyEmail}}</text>
+							<text class="text-primary">{{item.company_email}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="实习单位导师">
 						<view slot="footer">
-							<text class="text-primary">{{item.companyTeacher}}</text>
+							<text class="text-primary">{{item.company_teacher}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="导师手机号">
 						<view slot="footer">
-							<text class="text-primary">{{item.teacherNumber}}</text>
+							<text class="text-primary">{{item.teacher_number}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="薪资">
@@ -132,17 +133,17 @@
 					</uni-list-item>
 					<uni-list-item title="实习时间">
 						<view slot="footer">
-							<text class="text-primary">{{item.practiceTime[0]}} - {{item.practiceTime[1]}}</text>
+							<text class="text-primary">{{item.practice_time[0]}} - {{item.practice_time[1]}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="实习所在地区">
 						<view slot="footer">
-							<text class="text-primary">{{item.practiceCity}}</text>
+							<text class="text-primary">{{item.practice_city}}</text>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="工作内容">
 						<view slot="footer">
-							<text class="text-primary">{{item.workContent}}</text>
+							<text class="text-primary">{{item.work_content}}</text>
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -167,18 +168,18 @@
 				handleValue: 0,
 				submit: true,
 				commitData: {
-					companyName: '',
-					postName: '',
+					company_name: '',
+					post_name: '',
 					trade: '',
 					contact: '',
-					companyNumber: '',
-					companyEmail: '',
-					companyTeacher: '',
-					teacherNumber: '',
+					company_number: '',
+					company_email: '',
+					company_teacher: '',
+					teacher_number: '',
 					salary: '',
-					practiceTime: '',
-					practiceCity: '',
-					workContent: ''
+					practice_time: '',
+					practice_city: '',
+					work_content: ''
 				},
 				listData: [],
 				range: [
@@ -196,6 +197,17 @@
 				this.range[0].push(area.province_list[provinceCode])
 				this.provinceCodes.push(provinceCode)
 			}
+			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/search',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.listData = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+			console.log(this.listData);
 		},
 		methods: {
 			isSubmit() {
@@ -231,27 +243,46 @@
 				}
 				// 提交数据到 this.firstFormData 中
 				if (this.value[0] == 0) {
-					this.commitData.practiceCity = '';
+					this.commitData.practice_city = '';
 				}
 				if (!this.range[1][this.value[1]]) {
 					this.range[1][this.value[1]] = '';
 				}
-				this.commitData.practiceCity = this.range[0][this.value[0]] + this.range[1][this.value[1]];
-				console.log(this.commitData.practiceCity);
+				this.commitData.practice_city = this.range[0][this.value[0]] + this.range[1][this.value[1]];
 			},
 			commit(e) {
 				this.$refs.form.validate().then((res) => {
-					console.log(this.commitData);
-					this.handleValue = 1;
-					this.$refs.popupSuccess.open();
-					this.submit = !this.submit;
-					this.isDisabled = !this.isDisabled;
-					this.listData.push(this.commitData);
+					// this.handleValue = 1;
+					// this.$refs.popupSuccess.open();
+					// this.submit = !this.submit;
+					// this.isDisabled = !this.isDisabled;
+					
+					uni.request({
+						url: 'http://127.0.0.1/index.php/practice/index',
+						method: 'GET',
+						data: this.commitData,
+						success: res => {
+							if(res.data == 1){
+								this.handleValue = 1;
+								setTimeout(function(){
+									this.$refs.popupSuccess.open();
+								},1000);
+								
+								this.submit = !this.submit;
+								this.isDisabled = !this.isDisabled;
+								
+							}
+						},
+						fail: () => {
+							console.log('发送失败');
+						},
+						complete: () => {}
+					});
 				}).catch((err) => {
 					console.log(err)
 				})
 			},
-			commitListDisplay(){
+			commitListDisplay() {
 				this.isCommitList = !this.isCommitList;
 			}
 		}

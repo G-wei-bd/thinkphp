@@ -7,7 +7,7 @@
 					<view class="userInfo">
 						<view class="input">
 							<text class="iconfont icon-yonghuming"></text>
-							<input type="number" class="form-control" name="userName" placeholder="手机号"  placeholder-class="placeholder" focus/>
+							<input type="number" class="form-control" name="phone_num" placeholder="手机号"  placeholder-class="placeholder" focus/>
 						</view>
 						<view class="input">
 							<text class="iconfont icon-mima"></text>
@@ -42,36 +42,44 @@
 		},
 		methods: {
 			formSubmit: function(e) {
-				// console.log('form发生了submit事件，携带数据为：' + JSON.stringify(e.detail.value))
 	            //定义表单规则
 	            var rule = [
-					{name:"userName", checkType : "admin", errorMsg:"请输入手机号"},
-	                // {name:"userName", checkType : "phoneNumber", checkRule:"11",  errorMsg:"请输入正确的手机号"},
-					{name:"password", checkType : "null", errorMsg:"请输入密码"},
-	                {name:"password", checkType : "password", checkRule:"8",  errorMsg:"请输入正确密码"}
+					{name:"phone_num", checkType : "null", errorMsg:"请输入手机号"},
+					{name:"password", checkType : "null", errorMsg:"请输入密码"}
 	            ];
 	            //进行表单检查
 	            var formData = e.detail.value;
 	            var checkRes = graceChecker.check(formData, rule);
 	            if(checkRes){
-	                uni.showToast({title:"验证通过!", icon:"none"});
-					uni.setStorageSync("token", e.detail.value.userName);
-					// uni.request({
-					// 	url: 'http://127.0.0.1/index.php/register/index',
-					// 	method: 'GET',
-					// 	data: {},
-					// 	success: (res) => {
-					// 		console.log('发送成功');
-					// 		console.log(res.data);
-					// 	},
-					// 	fail: () => {
-					// 		console.log('发送失败');
-					// 	},
-					// 	complete: () => {}
-					// });
-					// uni.reLaunch({
-					// 	url: "../tabBar/practicePage/practicePage"
-					// })
+	               uni.request({
+					url: 'http://127.0.0.1/index.php/login/login',
+					method: 'GET',
+					data: formData,
+					success: (res) => {
+						console.log(res.data);
+						if(res.data != 0){
+							uni.showToast({
+								icon:"success",
+								title: '验证通过'
+							});
+							setTimeout(function(){
+								uni.reLaunch({
+									url: "../tabBar/practicePage/practicePage"
+								})
+							}, 500);
+						}
+						else{
+							uni.showToast({
+								title: '用户名或密码错误',
+								icon:"error"
+							})
+						}
+					},
+					fail: () => {
+						console.log('发送失败');
+					},
+					complete: () => {}
+				});
 	            }else{
 	                uni.showToast({ title: graceChecker.error, icon: "none" });
 	            }
