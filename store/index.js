@@ -10,6 +10,7 @@ import { createStore } from 'vuex'
 const store = createStore({
 // #endif
 	state: {
+		student_id: 1,
 		hasLogin: false,
 		isUniverifyLogin: false,
 		openid: null,
@@ -24,6 +25,9 @@ const store = createStore({
 		univerifyErrorMsg: ''
 	},
 	mutations: {
+		setStudent_id(state, id){
+			state.student_id = id
+		},
 		setTestTrue(state) {
 			state.testvuex = true
 		},

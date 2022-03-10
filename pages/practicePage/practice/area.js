@@ -371,13 +371,13 @@ export const area = {
 		654300: '阿勒泰地区',
 	},
 	rules: {
-		companyName: {
+		company_name: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写实习单位名称"
 			}]
 		},
-		postName: {
+		post_name: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写实习岗位名称"
@@ -395,25 +395,25 @@ export const area = {
 				errorMessage: "请填写实习单位联系人"
 			}]
 		},
-		companyNumber: {
+		company_number: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写实习单位电话"
 			}]
 		},
-		companyEmail: {
+		company_email: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写实习单位邮箱"
 			}]
 		},
-		companyTeacher: {
+		company_teacher: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写实习单位导师"
 			}]
 		},
-		teacherNumber: {
+		teacher_number: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写导师手机号"
@@ -425,19 +425,19 @@ export const area = {
 				errorMessage: "请填写具体薪资"
 			}]
 		},
-		practiceTime: {
+		practice_time: {
 			rules: [{
 				required: true,
 				errorMessage: "请选择实习时间"
 			}]
 		},
-		practiceCity: {
+		practice_city: {
 			rules: [{
 				required: true,
 				errorMessage: "请选择实习所在地区"
 			}]
 		},
-		workContent: {
+		work_content: {
 			rules: [{
 				required: true,
 				errorMessage: "请填写工作内容"

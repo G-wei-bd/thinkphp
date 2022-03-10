@@ -27,10 +27,10 @@
 			</view>
 			<uni-forms ref="form" :modelValue="commitData" :rules="rules">
 				<view class="formContainer">
-					<uni-forms-item style="margin-left: 14px;" label="实习单位名称" name="companyName" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习单位名称" name="company_name" required>
 						<uni-easyinput class="input" v-model="commitData.company_name" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习岗位名称" name="postName" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习岗位名称" name="post_name" required>
 						<uni-easyinput class="input" v-model="commitData.post_name" trim="all" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="行业方向" name="trade" required>
@@ -39,28 +39,28 @@
 					<uni-forms-item style="margin-left: 14px;" label="实习单位联系人" name="contact" required>
 						<uni-easyinput class="input" v-model="commitData.contact" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习单位电话" name="companyNumber" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习单位电话" name="company_number" required>
 						<uni-easyinput class="input" v-model="commitData.company_number" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习单位邮箱" name="companyEmail" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习单位邮箱" name="company_email" required>
 						<uni-easyinput class="input" v-model="commitData.company_email" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习单位导师" name="companyTeacher" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习单位导师" name="company_teacher" required>
 						<uni-easyinput class="input" v-model="commitData.company_teacher" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="导师手机号" name="teacherNumber" required>
+					<uni-forms-item style="margin-left: 14px;" label="导师手机号" name="teacher_number" required>
 						<uni-easyinput class="input" v-model="commitData.teacher_number" type="number" trim="all"
 							maxlength="11" />
 					</uni-forms-item>
 					<uni-forms-item style="margin-left: 14px;" label="薪资" name="salary" required>
 						<uni-easyinput class="input" v-model="commitData.salary" trim="all" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习时间" name="practiceTime" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习时间" name="practice_time" required>
 						<uni-datetime-picker style="width: 250px;" type="daterange" :clearIcon="false"
 							v-model="commitData.practice_time" rangeSeparator="至"
 							@change="binddata('practiceTime',$event,'form')" />
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="实习所在地区" name="practiceCity" required>
+					<uni-forms-item style="margin-left: 14px;" label="实习所在地区" name="practice_city" required>
 						<view>
 							<picker mode="multiSelector" :range="range" :value="value"
 								v-model="commitData.practice_city" @columnchange="columnchange"
@@ -70,7 +70,7 @@
 							</picker>
 						</view>
 					</uni-forms-item>
-					<uni-forms-item style="margin-left: 14px;" label="工作内容" name="workContent" required>
+					<uni-forms-item style="margin-left: 14px;" label="工作内容" name="work_content" required>
 						<uni-easyinput trim="all" type="textarea" autoHeight style="width: 220px;" class="input"
 							v-model="commitData.work_content" />
 					</uni-forms-item>
@@ -84,70 +84,73 @@
 			<view class="goBack">
 				<button class="btn btn-danger" @click="commitListDisplay">返回</button>
 			</view>
-			<uni-card title="实习信息详情">
-				<uni-list v-for="(item, index) in listData" :key="index">
-					<uni-list-item title="实习单位名称">
-						<view slot="footer">
-							<text class="text-primary">{{item.company_name}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习岗位名称">
-						<view slot="footer">
-							<text class="text-primary">{{item.post_name}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="行业方向">
-						<view slot="footer">
-							<text class="text-primary">{{item.trade}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习单位联系人">
-						<view slot="footer">
-							<text class="text-primary">{{item.contact}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习单位电话">
-						<view slot="footer">
-							<text class="text-primary">{{item.company_number}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习单位邮箱">
-						<view slot="footer">
-							<text class="text-primary">{{item.company_email}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习单位导师">
-						<view slot="footer">
-							<text class="text-primary">{{item.company_teacher}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="导师手机号">
-						<view slot="footer">
-							<text class="text-primary">{{item.teacher_number}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="薪资">
-						<view slot="footer">
-							<text class="text-primary">{{item.salary}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习时间">
-						<view slot="footer">
-							<text class="text-primary">{{item.practice_time[0]}} - {{item.practice_time[1]}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="实习所在地区">
-						<view slot="footer">
-							<text class="text-primary">{{item.practice_city}}</text>
-						</view>
-					</uni-list-item>
-					<uni-list-item title="工作内容">
-						<view slot="footer">
-							<text class="text-primary">{{item.work_content}}</text>
-						</view>
-					</uni-list-item>
-				</uni-list>
-			</uni-card>
+			<view>
+				<uni-card class="mb-5" title="实习信息详情" v-for="(item, index) in listData" :key="index">
+					<uni-list>
+						<uni-list-item title="实习单位名称">
+							<view slot="footer">
+								<text class="text-primary">{{item.company_name}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习岗位名称">
+							<view slot="footer">
+								<text class="text-primary">{{item.post_name}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="行业方向">
+							<view slot="footer">
+								<text class="text-primary">{{item.trade}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习单位联系人">
+							<view slot="footer">
+								<text class="text-primary">{{item.contact}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习单位电话">
+							<view slot="footer">
+								<text class="text-primary">{{item.company_number}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习单位邮箱">
+							<view slot="footer">
+								<text class="text-primary">{{item.company_email}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习单位导师">
+							<view slot="footer">
+								<text class="text-primary">{{item.company_teacher}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="导师手机号">
+							<view slot="footer">
+								<text class="text-primary">{{item.teacher_number}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="薪资">
+							<view slot="footer">
+								<text class="text-primary">{{item.salary}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习时间">
+							<view slot="footer">
+								<text class="text-primary">{{item.practice_time}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="实习所在地区">
+							<view slot="footer">
+								<text class="text-primary">{{item.practice_city}}</text>
+							</view>
+						</uni-list-item>
+						<uni-list-item title="工作内容">
+							<view slot="footer">
+								<text class="text-primary">{{item.work_content}}</text>
+							</view>
+						</uni-list-item>
+					</uni-list>
+				</uni-card>
+			</view>
+
 		</view>
 	</view>
 </template>
@@ -156,9 +159,13 @@
 	import {
 		area
 	} from './area.js'
+	import {
+		mapState //读取数据
+	} from 'vuex'
 	export default {
 		data() {
 			return {
+				stu_id: '',
 				isDisabled: true,
 				isCommitList: true,
 				titleName: "18毕业实习",
@@ -191,24 +198,36 @@
 				value: [0, 0],
 			}
 		},
+		computed: {
+			...mapState({
+				student_id: state => state.student_id
+			})
+		},
 		onLoad() {
+			this.stu_id = this.student_id;
 			this.rules = area.rules;
 			for (let provinceCode in area.province_list) {
 				this.range[0].push(area.province_list[provinceCode])
 				this.provinceCodes.push(provinceCode)
 			}
+			var id = this.stu_id;
 			uni.request({
 				url: 'http://127.0.0.1/index.php/practice/search',
 				method: 'GET',
-				data: {},
-				success: res => {
-					this.listData = res.data;
+				data: {id: 3},
+				success: (res) => {
+					if (res.data != null) {
+						this.listData = res.data;
+						this.isDisabled = !this.isDisabled;
+					}
+					this.isDisabled = true;
 				},
-				fail: () => {},
+				fail: () => {
+					console.log('发送失败');
+				},
 				complete: () => {}
 			});
-			console.log(this.listData);
-		},
+		},	
 		methods: {
 			isSubmit() {
 				this.submit = !this.submit;
@@ -252,25 +271,18 @@
 			},
 			commit(e) {
 				this.$refs.form.validate().then((res) => {
-					// this.handleValue = 1;
-					// this.$refs.popupSuccess.open();
-					// this.submit = !this.submit;
-					// this.isDisabled = !this.isDisabled;
-					
 					uni.request({
 						url: 'http://127.0.0.1/index.php/practice/index',
 						method: 'GET',
 						data: this.commitData,
 						success: res => {
-							if(res.data == 1){
+							if (res.data == 1) {
 								this.handleValue = 1;
-								setTimeout(function(){
+								setTimeout(function() {
 									this.$refs.popupSuccess.open();
-								},1000);
-								
+								}, 1000);
 								this.submit = !this.submit;
 								this.isDisabled = !this.isDisabled;
-								
 							}
 						},
 						fail: () => {
@@ -278,6 +290,7 @@
 						},
 						complete: () => {}
 					});
+
 				}).catch((err) => {
 					console.log(err)
 				})

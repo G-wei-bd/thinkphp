@@ -39,10 +39,6 @@
 								url: 'practice'
 							},
 							{
-								name: '实习计划进度',
-								url: 'practice-steps'
-							},
-							{
 								name: '教师提交实习计划',
 								url: 'commitPlan'
 							}

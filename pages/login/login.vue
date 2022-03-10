@@ -32,6 +32,10 @@
 
 <script>
 	import graceChecker from "../../common/graceChecker.js"
+	import {
+		mapMutations, //调用 index.js 里的方法
+		mapState //读取数据
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -40,7 +44,13 @@
 				type_password: "password",
 			}
 		},
+		computed: {
+			...mapState({
+				student_id: state => state.student_id
+			})
+		},
 		methods: {
+			...mapMutations(['setStudent_id']),
 			formSubmit: function(e) {
 	            //定义表单规则
 	            var rule = [
@@ -56,7 +66,7 @@
 					method: 'GET',
 					data: formData,
 					success: (res) => {
-						console.log(res.data);
+						this.setStudent_id(res.data);
 						if(res.data != 0){
 							uni.showToast({
 								icon:"success",

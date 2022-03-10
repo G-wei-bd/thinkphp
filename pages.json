@@ -77,14 +77,7 @@
 				"enablePullDownRefresh": false
 			}
 
-		}, {
-			"path": "pages/practicePage/practice-steps/practice-steps",
-			"style": {
-				"navigationBarTitleText": "实习计划进度",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
+		},{
 			"path": "pages/practicePage/agreement/agreement",
 			"style": {
 				"navigationBarTitleText": "三方协议",
