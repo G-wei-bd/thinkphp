@@ -6,12 +6,11 @@
 					<uni-easyinput v-model="formData.name" trim="all" placeholder="请输入实习计划名称" />
 				</uni-forms-item>
 				<uni-forms-item required label="关联学生" name="student_id">
-					<!-- <uni-easyinput v-model="formData.student_id" trim="all" placeholder="请输入院系名称" /> -->
 					<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change"></uni-data-checkbox>
 				</uni-forms-item>
 				<uni-forms-item required label="实习计划时间" name="time">
-					<uni-datetime-picker v-model="formData.time" type="daterange" :clearIcon="false"
-						start="1990-01-01" end="2099-12-31" rangeSeparator="~" />
+					<uni-datetime-picker v-model="formData.time" type="daterange" :clearIcon="false" start="1990-01-01"
+						end="2099-12-31" rangeSeparator="~" />
 				</uni-forms-item>
 				<uni-forms-item required label="要求" name="claim">
 					<uni-easyinput v-model="formData.claim" trim="all" placeholder="请输入实习要求" />
@@ -56,14 +55,35 @@
 					}
 
 				},
-				range: [{"value": 0,"text": "网络1班"},{"value": 1,"text": "网络2班"}],
-				value: [0,2]
+				value: [],
+				range: [{
+					"value": 0,
+					"text": "篮球"
+				}, {
+					"value": 1,
+					"text": "足球"
+				}, {
+					"value": 2,
+					"text": "游泳"
+				}]
 			}
 		},
 		methods: {
+			change(e) {
+				console.log('e:', e);
+			},
 			submit: function() {
 				this.$refs.form.validate().then((res) => {
-					
+					uni.request({
+						url: 'http://127.0.0.1/index.php/commitplan/index',
+						method: 'GET',
+						data: {},
+						success: res => {
+							console.log(res.data);
+						},
+						fail: () => {},
+						complete: () => {}
+					});
 				}).catch((err) => {
 					console.log(err)
 				})

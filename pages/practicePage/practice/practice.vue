@@ -204,29 +204,29 @@
 			})
 		},
 		onLoad() {
-			this.stu_id = this.student_id;
 			this.rules = area.rules;
 			for (let provinceCode in area.province_list) {
 				this.range[0].push(area.province_list[provinceCode])
 				this.provinceCodes.push(provinceCode)
 			}
-			var id = this.stu_id;
-			uni.request({
-				url: 'http://127.0.0.1/index.php/practice/search',
-				method: 'GET',
-				data: {id: 3},
-				success: (res) => {
-					if (res.data != null) {
-						this.listData = res.data;
-						this.isDisabled = !this.isDisabled;
-					}
-					this.isDisabled = true;
-				},
-				fail: () => {
-					console.log('发送失败');
-				},
-				complete: () => {}
-			});
+			// this.stu_id = this.student_id;
+			// var id = this.stu_id;
+			// uni.request({
+			// 	url: 'http://127.0.0.1/index.php/practice/search',
+			// 	method: 'GET',
+			// 	data: {id},
+			// 	success: (res) => {
+			// 		if (res.data != null) {
+			// 			this.listData = res.data;
+			// 			this.isDisabled = !this.isDisabled;
+			// 		}
+			// 		this.isDisabled = true;
+			// 	},
+			// 	fail: (res) => {
+			// 		console.log(res);
+			// 	},
+			// 	complete: () => {}
+			// });
 		},	
 		methods: {
 			isSubmit() {
