@@ -5,8 +5,8 @@
 				<uni-forms-item required label="实习计划名称" name="name">
 					<uni-easyinput v-model="formData.name" trim="all" placeholder="请输入实习计划名称" />
 				</uni-forms-item>
-				<uni-forms-item required label="关联学生" name="student_id">
-					<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change"></uni-data-checkbox>
+				<uni-forms-item required label="关联学生" name="major_class">
+					<uni-data-checkbox multiple v-model="value" :localdata="range"></uni-data-checkbox>
 				</uni-forms-item>
 				<uni-forms-item required label="实习计划时间" name="time">
 					<uni-datetime-picker v-model="formData.time" type="daterange" :clearIcon="false" start="1990-01-01"
@@ -35,7 +35,7 @@
 							errorMessage: "请填写实习计划名称"
 						}, ]
 					},
-					student_id: {
+					major_class: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择关联学生"
@@ -58,27 +58,44 @@
 				value: [],
 				range: [{
 					"value": 0,
-					"text": "篮球"
+					"text": ""
 				}, {
 					"value": 1,
-					"text": "足球"
-				}, {
-					"value": 2,
-					"text": "游泳"
+					"text": ""
 				}]
 			}
 		},
+		onLoad() {
+			uni.request({
+				url: 'http://127.0.0.1/index.php/commitplan/index',
+				method: 'GET',
+				data: {id: 1001},
+				success: res => {
+					for(var i = 0; i <= res.data.length; i++){
+						this.range[i].value = res.data[i];
+						this.range[i].text = res.data[i];
+					}
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
 		methods: {
-			change(e) {
-				console.log('e:', e);
-			},
 			submit: function() {
 				this.$refs.form.validate().then((res) => {
+					var formData = res;
 					uni.request({
-						url: 'http://127.0.0.1/index.php/commitplan/index',
+						url: 'http://127.0.0.1/index.php/commitplan/commit',
 						method: 'GET',
-						data: {},
+						data: {formData},
 						success: res => {
+							if(res.data != null){
+								setTimeout(function(){
+									uni.showToast({
+										title: '提交成功'
+									});
+								}, 1000);
+							}
 							console.log(res.data);
 						},
 						fail: () => {},

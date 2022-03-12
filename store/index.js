@@ -10,7 +10,7 @@ import { createStore } from 'vuex'
 const store = createStore({
 // #endif
 	state: {
-		student_id: 1,
+		student_id: '',
 		hasLogin: false,
 		isUniverifyLogin: false,
 		openid: null,

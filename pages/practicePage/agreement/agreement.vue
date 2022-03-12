@@ -47,8 +47,7 @@
 							<uni-td align="center">2020-10-22</uni-td>
 							<uni-td align="center">
 								<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles"
-									mode="grid" limit="1" @select="select" @progress="progress" @success="success"
-									@fail="fail">
+									mode="grid" limit="1" :autoUpload="false" @select="select">
 								</uni-file-picker>
 							</uni-td>
 						</uni-tr>
@@ -81,22 +80,26 @@
 		methods: {
 			// 获取上传状态
 			select(e) {
-				console.log('选择文件：', e)
-			},
-			// 获取上传进度
-			progress(e) {
-				console.log('上传进度：', e)
-			},
-
-			// 上传成功
-			success(e) {
-				console.log('上传成功')
-			},
-
-			// 上传失败
-			fail(e) {
-				console.log('上传失败：', e)
+				console.log('选择文件：', e);
+				const tempFilePaths = e.tempFilePaths;
+				const uploadTask = uni.uploadFile({
+					url: 'http://127.0.0.1/index.php/agreement/index', //仅为示例，非真实的接口地址
+					filePath: tempFilePaths[0],
+					name: 'file',
+					success: (uploadFileRes) => {
+						console.log(uploadFileRes.data);
+					}
+				});
+								
+				uploadTask.onProgressUpdate((res) => {
+					console.log('上传进度' + res.progress);
+					console.log('已经上传的数据长度' + res.totalBytesSent);
+					console.log('预期需要上传的数据总长度' + res.totalBytesExpectedToSend);
+								
+							
+				});
 			}
+
 		}
 	}
 </script>

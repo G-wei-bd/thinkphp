@@ -72,11 +72,13 @@
 								icon:"success",
 								title: '验证通过'
 							});
+							console.log(res.data);
+							uni.setStorageSync('id', JSON.stringify(res.data));
 							setTimeout(function(){
 								uni.reLaunch({
 									url: "../tabBar/practicePage/practicePage"
 								})
-							}, 500);
+							}, 300);
 						}
 						else{
 							uni.showToast({
