@@ -47,7 +47,7 @@
 							<uni-td align="center">2020-10-22</uni-td>
 							<uni-td align="center">
 								<uni-file-picker v-model="imageValue" fileMediatype="image" :image-styles="imageStyles"
-									mode="grid" limit="1" :autoUpload="false" @select="select">
+									mode="grid" limit="1" :delIcon="false" :autoUpload="false" @select="select">
 								</uni-file-picker>
 							</uni-td>
 						</uni-tr>

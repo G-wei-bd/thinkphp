@@ -67,24 +67,24 @@
 					data: formData,
 					success: (res) => {
 						this.setStudent_id(res.data);
-						if(res.data != 0){
+						if(res.data == 0){
+							uni.showToast({
+								title: '用户名或密码错误',
+								icon:"error"
+							})
+						}
+						else{
 							uni.showToast({
 								icon:"success",
 								title: '验证通过'
 							});
 							console.log(res.data);
-							uni.setStorageSync('id', JSON.stringify(res.data));
+							uni.setStorageSync('user_info', JSON.stringify(res.data));
 							setTimeout(function(){
 								uni.reLaunch({
 									url: "../tabBar/practicePage/practicePage"
 								})
 							}, 300);
-						}
-						else{
-							uni.showToast({
-								title: '用户名或密码错误',
-								icon:"error"
-							})
 						}
 					},
 					fail: () => {

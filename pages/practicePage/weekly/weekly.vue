@@ -42,10 +42,10 @@
 									<uni-th align="center">更多</uni-th>
 								</uni-tr>
 								<uni-tr v-for="(item,index) in currentArr" :key="index">
-									<uni-td align="center">{{ item.week }}</uni-td>
-									<uni-td align="center">{{ item.time }}</uni-td>
-									<uni-td align="center">{{ item.state }}</uni-td>
-									<uni-td align="center">{{ item.connectTime }}</uni-td>
+									<uni-td align="center">{{ item.id }}</uni-td>
+									<uni-td align="center">{{ item.commit_time }}</uni-td>
+									<uni-td align="center">{{ item.student_id }}</uni-td>
+									<uni-td align="center">{{ item.weekly_time }}</uni-td>
 									<uni-td align="center">
 										<button class="btn btn-sm btn-primary" @click="changeIsCheck">查看</button>
 									</uni-td>
@@ -112,22 +112,19 @@
 			</view>
 			<uni-forms ref="form" :modelValue="weeklyData" :rules="rules">
 				<view class="writeWeekly">
-					<uni-forms-item class="formsItem" required label="标题" name="weeklyTitle">
-						<uni-easyinput class="easyInput" v-model="weeklyData.weeklyTitle" trim="all"
+					<uni-forms-item class="formsItem" required label="标题" name="weekly_title">
+						<uni-easyinput class="easyInput" v-model="weeklyData.weekly_title" trim="all"
 							placeholder="标题 1-20 字" />
 					</uni-forms-item>
-					<uni-forms-item class="formsItem" required label="关联日期" name="weeklyTime">
+					<uni-forms-item class="formsItem" required label="关联日期" name="weekly_time">
 						<uni-datetime-picker class="easyInput" type="daterange" :clearIcon="false"
-							v-model="weeklyData.weeklyTime" rangeSeparator="至"
+							v-model="weeklyData.weekly_time" rangeSeparator="至"
 							@change="binddata('weeklyData',$event,)" />
 					</uni-forms-item>
-					<uni-forms-item class="formsItem" required label="周记内容" name="weeklyContent">
-						<uni-easyinput class="textareaInput" v-model="weeklyData.weeklyContent" type="textarea"
-							autoHeight maxlength="-1" trim="all" @input="wordCount" />
+					<uni-forms-item class="formsItem" required label="周记内容" name="content">
+						<uni-easyinput class="textareaInput" v-model="weeklyData.content" type="textarea" autoHeight
+							maxlength="-1" trim="all" @input="wordCount" />
 						<view class="small">已输入<text class="text-danger">{{wordsCount}} </text>/ 300 字</view>
-					</uni-forms-item>
-					<uni-forms-item class="formsItem" label="其他附件" name="otherFile">
-						<uni-file-picker file-mediatype="all"></uni-file-picker>
 					</uni-forms-item>
 				</view>
 			</uni-forms>
@@ -146,28 +143,28 @@
 				items: [
 					"写周记", "我的周记"
 				],
+				check: ['未审核','已审核','未通过'],
 				isWeekly: true,
 				isCheck: false,
 				weeklyData: {
-					weeklyTitle: '',
-					weeklyTime: '',
-					weeklyContent: '',
-					otherFile: ''
+					weekly_title: '',
+					weekly_time: '',
+					content: '',
 				},
 				rules: {
-					weeklyTitle: {
+					weekly_title: {
 						rules: [{
 							required: true,
 							errorMessage: "请填写周记标题"
 						}]
 					},
-					weeklyTime: {
+					weekly_time: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择关联日期"
 						}]
 					},
-					weeklyContent: {
+					content: {
 						rules: [{
 								required: true,
 								errorMessage: "请填写周记内容"
@@ -187,199 +184,23 @@
 				// 数据总量
 				total: 0,
 				// 显示在表格上的数据
-				currentArr: [],
-				Arr: [{
-						time: "2022.01.03",
-						week: "1",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "2",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "3",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "4",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "5",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "6",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "7",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "8",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "9",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "10",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "11",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "12",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "13",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "14",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "15",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "16",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "17",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "18",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "19",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "20",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "21",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "22",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "23",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "24",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "25",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "26",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "27",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "28",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "29",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "30",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					},
-					{
-						time: "2022.01.03",
-						week: "31",
-						state: "已批阅",
-						connectTime: "2022.01.02~2022.01.09"
-					}
-				]
+				currentArr: '',
+				Arr: []
 			}
 		},
 		onLoad() {
 			this.total = this.Arr.length;
 			this.currentArr = this.Arr.slice(10 * this.pageCurrent - 10, 10 * this.pageCurrent);
+			uni.request({
+				url: 'http://127.0.0.1/index.php/weekly/search',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.currentArr = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
 		},
 		watch: {
 			pageCurrent: function(newVal, oldVal) {
@@ -412,8 +233,37 @@
 				this.wordsCount = e.length;
 			},
 			weeklyUpload() {
+				const value = uni.getStorageSync('user_info');
+				const userData = JSON.parse(value);
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+				const commit_time = `${year}-${month}-${day}`;
 				this.$refs.form.validate().then((res) => {
-
+					res.user_name = userData.user_name;
+					res.student_id = userData.id;
+					res.major_class = userData.major_class;
+					res.commit_time = commit_time;
+					const formData = res;
+					uni.request({
+						url: 'http://127.0.0.1/index.php/weekly/index',
+						method: 'GET',
+						data: formData,
+						success: res => {
+							console.log(res.data);
+							if (res.data == 1) {
+								uni.showToast({
+									title: "提交成功",
+									icon: "success",
+									duration: 1000
+								});
+								this.isWeekly = !this.isWeekly;
+							}
+						},
+						fail: () => {},
+						complete: () => {}
+					});
 				}).catch((err) => {
 					console.log(err)
 				})

@@ -14,7 +14,7 @@
 		created() {
 		            console.log('App Launch')
 		             // token标志来判断
-		            let token= uni.getStorageSync('token');   
+		            let token= uni.getStorageSync('user_info');   
 		            console.log(token);
 		             if (!token) {
 		                 console.log('没有token'),
@@ -26,7 +26,7 @@
 		                console.log('有token')
 		                //跳到首页,跳转tabbar界面,必须使用这个方法
 		                uni.switchTab({
-		                        url: '/pages/tabBar/homePage/homePage'
+		                        url: '/pages/tabBar/practicePage/practicePage'
 		                    })
 		            }   
 		            
