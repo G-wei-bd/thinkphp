@@ -10,42 +10,42 @@
 					<view class="twoParts">
 						<uni-card title="我的实习评价">
 							<uni-list>
-								<uni-list-item title="参与计划" rightText="18实习"></uni-list-item>
-								<uni-list-item title="参与时间" rightText="2021.09.01 ~ 2022.01.31"></uni-list-item>
-								<uni-list-item title="指导老师" rightText="不知道"></uni-list-item>
-								<uni-list-item title="是否评价" note="未评价">
+								<uni-list-item title="参与计划">
 									<view slot="footer">
+										<text>18实习</text>
+									</view>
+								</uni-list-item>
+								<uni-list-item title="参与时间">
+									<view slot="footer">
+										<text>2020-09-01 ~ 2021-02-01</text>
+									</view>
+								</uni-list-item>
+								<uni-list-item title="指导老师">
+									<view slot="footer">
+										<text>老师1</text>
+									</view>
+								</uni-list-item>
+								<uni-list-item title="是否评价">
+									<view slot="footer" class="text-center">
+										<text class="mr-5 text-danger font-weight-bold ">未评价</text>
 										<button class="btn btn-danger btn-sm" @click="toRate">添加评价</button>
 									</view>
 								</uni-list-item>
 							</uni-list>
 						</uni-card>
 					</view>
-				</view>
-				<view v-show="current === 1">
-					<view class="twoParts">
-						<uni-card title="我的实习评价">
-							<uni-list>
-								<uni-list-item title="参与计划" rightText="18实习"></uni-list-item>
-								<uni-list-item title="参与时间" rightText="2021.09.01 ~ 2022.01.31"></uni-list-item>
-								<uni-list-item title="指导老师" rightText="不知道"></uni-list-item>
-								<uni-list-item title="是否评价" note="已评价">
-									<view slot="footer">
-										<button disabled class="btn btn-dark btn-sm">已评价</button>
-									</view>
-								</uni-list-item>
-							</uni-list>
-						</uni-card>
+					<view>
+						<text>当前没有未评价</text>
 					</view>
 				</view>
-				<view v-show="current === 2">
+				<view v-show="current === 1">
 					<view class="allAssess">
 						<view v-for="(item, index) in arrData" :key="index">
 							<uni-card title="我的实习评价">
 								<uni-list>
 									<uni-list-item title="参与计划">
 										<view slot="footer">
-											<text>{{item.name}}</text>
+											<text>{{item.task_name}}</text>
 										</view>
 									</uni-list-item>
 									<uni-list-item title="参与时间">
@@ -55,12 +55,12 @@
 									</uni-list-item>
 									<uni-list-item title="指导老师">
 										<view slot="footer">
-											<text>{{item.teacher}}</text>
+											<text>{{item.teacher_name}}</text>
 										</view>
 									</uni-list-item>
 									<uni-list-item title="是否评价">
 										<view slot="footer">
-											<text class="text-info">{{item.whetherAssess}}</text>
+											<text class="text-danger font-weight-bold">是</text>
 										</view>
 									</uni-list-item>
 								</uni-list>
@@ -99,7 +99,8 @@
 							<uni-rate v-model="rateData.organization_rate"></uni-rate>
 						</uni-forms-item>
 						<uni-forms-item label="对本次实践教学的建议" name="suggest">
-							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.suggest" />
+							<uni-easyinput style="width: 200px;" type="textarea" autoHeight
+								v-model="rateData.suggest" />
 						</uni-forms-item>
 					</uni-group>
 					<uni-group title="指导老师评价" margin-top="0">
@@ -107,7 +108,8 @@
 							<uni-rate v-model="rateData.teacher_rate"></uni-rate>
 						</uni-forms-item>
 						<uni-forms-item label="对指导老师评价" name="teacher_advise">
-							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.teacher_advise" />
+							<uni-easyinput style="width: 200px;" type="textarea" autoHeight
+								v-model="rateData.teacher_advise" />
 						</uni-forms-item>
 					</uni-group>
 					<uni-group title="对实习单位的评价" margin-top="0">
@@ -127,7 +129,8 @@
 							<uni-rate v-model="rateData.value"></uni-rate>
 						</uni-forms-item>
 						<uni-forms-item label="是否留用" name="stay">
-							<uni-data-checkbox :value="stayValue" v-model="rateData.stay" mode="default" :localdata="stayData" />
+							<uni-data-checkbox :value="stayValue" v-model="rateData.stay" mode="default"
+								:localdata="stayData" />
 						</uni-forms-item>
 					</uni-group>
 				</uni-forms>
@@ -146,27 +149,10 @@
 				display: true,
 				current: 0,
 				items: [
-					"未评价", "已评价", "全部评价"
+					"未评价", "全部评价"
 				],
-				arrData: [{
-						name: '18实习',
-						time: '2022-09-01 ~ 2023-01-01',
-						teacher: '第一个老师',
-						whetherAssess: '未评价'
-					},
-					{
-						name: '19实习',
-						time: '2022-10-01 ~ 2023-01-01',
-						teacher: '第二个老师',
-						whetherAssess: '已评价'
-					},
-					{
-						name: '20实习',
-						time: '2022-11-01 ~ 2023-01-01',
-						teacher: '第三个老师',
-						whetherAssess: '已评价'
-					}
-				],
+				accessData: '',
+				arrData: '',
 				rateData: {
 					adapt_time: '',
 					ideal_time: '',
@@ -282,6 +268,22 @@
 				}],
 			}
 		},
+		onLoad() {
+			const value = uni.getStorageSync('user_info');
+			const id = JSON.parse(value).id;
+			uni.request({
+				url: 'http://127.0.0.1/index.php/access/search',
+				method: 'GET',
+				data: {id: id},
+				success: res => {
+					this.arrData = res.data;
+				},
+				fail: () => {
+					console.log('失败');
+				},
+				complete: () => {}
+			});
+		},
 		methods: {
 			onClickItem(e) {
 				if (this.current !== e.currentIndex) {
@@ -291,7 +293,7 @@
 			toRate() {
 				this.display = !this.display;
 			},
-			submitRate(e){
+			submitRate(e) {
 				this.$refs.form.validate().then((res) => {
 					const value = uni.getStorageSync('user_info');
 					const student_id = JSON.parse(value).id;
@@ -311,6 +313,7 @@
 									icon: "success",
 									duration: 1000
 								});
+							this.display = !this.display;
 							}
 						},
 						fail: () => {},
@@ -366,10 +369,9 @@
 		align-items: center;
 		width: 140px;
 	}
-	
-	.submitBtn{
+
+	.submitBtn {
 		display: flex;
 		justify-content: center;
 	}
-
 </style>
