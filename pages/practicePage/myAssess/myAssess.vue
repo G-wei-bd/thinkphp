@@ -77,48 +77,48 @@
 			<view class="assessRate">
 				<uni-forms ref="form" :modelValue="rateData" :rules="rules">
 					<uni-group title="对实践教学的评价" margin-top="0">
-						<uni-forms-item label="适应岗位的时间" name="adaptTime">
+						<uni-forms-item label="适应岗位的时间" name="adapt_time">
 							<view class="easyInput">
-								<uni-easyinput type="number" maxlength="2" v-model="rateData.adaptTime" />
+								<uni-easyinput type="number" maxlength="2" v-model="rateData.adapt_time" />
 								<text>天</text>
 							</view>
 						</uni-forms-item>
-						<uni-forms-item label="理想的实习时间" name="idealTime">
+						<uni-forms-item label="理想的实习时间" name="ideal_time">
 							<view class="easyInput">
-								<uni-easyinput type="number" maxlength="3" v-model="rateData.idealTime" />
+								<uni-easyinput type="number" maxlength="3" v-model="rateData.ideal_time" />
 								<text>天</text>
 							</view>
 						</uni-forms-item>
-						<uni-forms-item label="岗位胜任情况评价" name="postRate">
-							<uni-rate v-model="rateData.postRate"></uni-rate>
+						<uni-forms-item label="岗位胜任情况评价" name="post_rate">
+							<uni-rate v-model="rateData.post_rate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="实习工作量评价" name="workloadRate">
-							<uni-rate v-model="rateData.workloadRate"></uni-rate>
+						<uni-forms-item label="实习工作量评价" name="workload_rate">
+							<uni-rate v-model="rateData.workload_rate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="实习组织满意度" name="organizationRate">
-							<uni-rate v-model="rateData.organizationRate"></uni-rate>
+						<uni-forms-item label="实习组织满意度" name="organization_rate">
+							<uni-rate v-model="rateData.organization_rate"></uni-rate>
 						</uni-forms-item>
 						<uni-forms-item label="对本次实践教学的建议" name="suggest">
 							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.suggest" />
 						</uni-forms-item>
 					</uni-group>
 					<uni-group title="指导老师评价" margin-top="0">
-						<uni-forms-item label="指导老师满意度" name="teacherRate">
-							<uni-rate v-model="rateData.teacherRate"></uni-rate>
+						<uni-forms-item label="指导老师满意度" name="teacher_rate">
+							<uni-rate v-model="rateData.teacher_rate"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="对指导老师评价" name="teacherAdvise">
-							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.teacherAdvise" />
+						<uni-forms-item label="对指导老师评价" name="teacher_advise">
+							<uni-easyinput style="width: 200px;" type="textarea" autoHeight v-model="rateData.teacher_advise" />
 						</uni-forms-item>
 					</uni-group>
 					<uni-group title="对实习单位的评价" margin-top="0">
-						<uni-forms-item label="工作环境" name="workCondition">
-							<uni-rate v-model="rateData.workCondition"></uni-rate>
+						<uni-forms-item label="工作环境" name="work_condition">
+							<uni-rate v-model="rateData.work_condition"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="工作岗位" name="workPost">
-							<uni-rate v-model="rateData.workPost"></uni-rate>
+						<uni-forms-item label="工作岗位" name="work_post">
+							<uni-rate v-model="rateData.work_post"></uni-rate>
 						</uni-forms-item>
-						<uni-forms-item label="工作指导" name="workGuidance">
-							<uni-rate v-model="rateData.workGuidance"></uni-rate>
+						<uni-forms-item label="工作指导" name="work_guidance">
+							<uni-rate v-model="rateData.work_guidance"></uni-rate>
 						</uni-forms-item>
 						<uni-forms-item label="薪资" name="salary">
 							<uni-rate v-model="rateData.salary"></uni-rate>
@@ -168,47 +168,47 @@
 					}
 				],
 				rateData: {
-					adaptTime: '',
-					idealTime: '',
-					postRate: '',
-					workloadRate: '',
-					organizationRate: '',
+					adapt_time: '',
+					ideal_time: '',
+					post_rate: '',
+					workload_rate: '',
+					organization_rate: '',
 					suggest: '',
-					teacherRate: '',
-					teacherAdvise: '',
-					workCondition: '',
-					workPost: '',
-					workGuidance: '',
+					teacher_rate: '',
+					teacher_advise: '',
+					work_condition: '',
+					work_post: '',
+					work_guidance: '',
 					salary: '',
 					value: '',
 					stay: ''
 				},
 				rules: {
-					adaptTime: {
+					adapt_time: {
 						rules: [{
 							required: true,
 							errorMessage: "请输入时间"
 						}]
 					},
-					idealTime: {
+					ideal_time: {
 						rules: [{
 							required: true,
 							errorMessage: "请输入时间"
 						}]
 					},
-					postRate: {
+					post_rate: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
 						}]
 					},
-					workloadRate: {
+					workload_rate: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
 						}]
 					},
-					organizationRate: {
+					organization_rate: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
@@ -220,31 +220,31 @@
 							errorMessage: "请填写本次教学建议"
 						}]
 					},
-					teacherRate: {
+					teacher_rate: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
 						}]
 					},
-					teacherAdvise: {
+					teacher_advise: {
 						rules: [{
 							required: true,
 							errorMessage: "请填写对指导老师的评价"
 						}]
 					},
-					workCondition: {
+					work_condition: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
 						}]
 					},
-					workPost: {
+					work_post: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
 						}]
 					},
-					workGuidance: {
+					work_guidance: {
 						rules: [{
 							required: true,
 							errorMessage: "请选择评价等级"
@@ -271,13 +271,13 @@
 				},
 				stayValue: '',
 				stayData: [{
-					"value": 0,
+					"value": '是',
 					"text": "是"
 				}, {
-					"value": 1,
+					"value": '否',
 					"text": "否"
 				}, {
-					"value": 2,
+					"value": '无意留用',
 					"text": "无意留用"
 				}],
 			}
@@ -293,8 +293,29 @@
 			},
 			submitRate(e){
 				this.$refs.form.validate().then((res) => {
-					console.log(e);
-					console.log(this.rateData);
+					const value = uni.getStorageSync('user_info');
+					const student_id = JSON.parse(value).id;
+					const user_name = JSON.parse(value).user_name;
+					this.rateData.student_id = student_id;
+					this.rateData.user_name = user_name;
+					const formData = this.rateData;
+					uni.request({
+						url: 'http://127.0.0.1/index.php/access/index',
+						method: 'GET',
+						data: formData,
+						success: res => {
+							console.log(res.data);
+							if (res.data == 1) {
+								uni.showToast({
+									title: "提交成功",
+									icon: "success",
+									duration: 1000
+								});
+							}
+						},
+						fail: () => {},
+						complete: () => {}
+					});
 				}).catch((err) => {
 					console.log(err)
 				})

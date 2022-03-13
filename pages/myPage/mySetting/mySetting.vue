@@ -6,15 +6,6 @@
 		<view class="registerContainer">
 			<form class="form-group" @submit="submitRegister">
 				<view class="allForm">
-					<view class="photo">
-						<view class="tipText">
-							<text class="iconfont icon-yonghuming"></text>
-							<text class="small">头像</text>
-						</view>
-						<uni-file-picker v-model="imageValue" :image-styles="imageStyles" mode="grid" limit="1" file-mediatype="image">
-						</uni-file-picker>
-					</view>
-
 					<view class="userName">
 						<view class="tipText">
 							<text class="iconfont icon-yonghuming"></text>
@@ -110,12 +101,11 @@
 							placeholder-class="small" />
 					</view>
 
-					<view class="submit">
+				</view>
+				<view class="submit">
 						<button class="btn btn-primary btn-outline-primary submitBtn" type="submit"
 							form-type="submit">保存</button>
 					</view>
-
-				</view>
 			</form>
 		</view>
 	</view>
@@ -132,14 +122,6 @@
 		data() {
 			return {
 				single: '2021-5-3',
-				imageValue: [],
-				imageStyles: {
-					width: 100,
-					height: 100,
-					border: {
-						radius: '50%'
-					}
-				},
 				add: "请选择",
 				dis: false,
 				array: [{
@@ -253,13 +235,9 @@
 	}
 
 	.allForm {
-		width: 800px;
-		height: 500px;
-		padding: 0 10px;
-		margin: 0 auto;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
+		justify-content: flex-start;
 		align-items: center;
 
 	}
@@ -291,8 +269,6 @@
 		height: 320px;
 		border: 1rpx #cbcbcb solid;
 		position: absolute;
-		bottom: -5px;
-		left: 320px;
 		z-index: 99;
 	}
 
@@ -304,7 +280,9 @@
 	}
 
 	.submit {
-		margin: 0 auto;
+		display: flex;
+		justify-content: center;
+		padding-top: 30px;
 	}
 
 	.submitBtn {
@@ -322,6 +300,7 @@
 	.major,
 	.majorClass {
 		margin-right: 50px;
+		margin-top: 20px;
 		width: 250px;
 	}
 </style>
