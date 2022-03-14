@@ -83,7 +83,7 @@
 				console.log('选择文件：', e);
 				const tempFilePaths = e.tempFilePaths;
 				const uploadTask = uni.uploadFile({
-					url: 'http://127.0.0.1/index.php/agreement/index', //仅为示例，非真实的接口地址
+					url: 'http://127.0.0.1/index.php/agreement/index',
 					filePath: tempFilePaths[0],
 					name: 'file',
 					success: (uploadFileRes) => {

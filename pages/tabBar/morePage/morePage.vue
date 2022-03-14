@@ -42,21 +42,6 @@
 							name: '签到',
 							url: 'location'
 						}]
-					},
-					{
-						id: 'post',
-						name: '求职管理',
-						open: false,
-						pages: [{
-							name: '投递情况',
-							url: ''
-						}, {
-							name: '收藏的公司',
-							url: ''
-						}, {
-							name: '收藏的职位',
-							url: ''
-						}]
 					}
 				]
 			}

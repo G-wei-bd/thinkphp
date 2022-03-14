@@ -34,12 +34,10 @@
 							</uni-list>
 						</uni-card>
 					</view>
-					<view>
-						<text>当前没有未评价</text>
-					</view>
+					
 				</view>
 				<view v-show="current === 1">
-					<view class="allAssess">
+					<view class="allAssess" v-if="arrData">
 						<view v-for="(item, index) in arrData" :key="index">
 							<uni-card title="我的实习评价">
 								<uni-list>
@@ -66,6 +64,9 @@
 								</uni-list>
 							</uni-card>
 						</view>
+					</view>
+					<view v-else>
+						<text class="d-flex justify-content-center text-danger mt-5 font-weight-bold">当前没有评价</text>
 					</view>
 				</view>
 			</view>
@@ -149,7 +150,7 @@
 				display: true,
 				current: 0,
 				items: [
-					"未评价", "全部评价"
+					"未评价", "已评价"
 				],
 				accessData: '',
 				arrData: '',
@@ -277,6 +278,7 @@
 				data: {id: id},
 				success: res => {
 					this.arrData = res.data;
+					console.log(this.arrData);
 				},
 				fail: () => {
 					console.log('失败');

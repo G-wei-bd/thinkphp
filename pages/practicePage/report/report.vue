@@ -28,8 +28,7 @@
 							</view>
 							<view class="submitFile">
 								<uni-file-picker v-model="imageValue" file-mediatype="all" :image-styles="imageStyles"
-									mode="grid" limit="1" @select="select" @progress="progress" @success="success"
-									@fail="fail">
+									mode="grid" limit="1" @select="select">
 								</uni-file-picker>
 							</view>
 						</view>
@@ -79,6 +78,9 @@
 			},
 			openPopup() {
 				this.$refs.popup.open();
+			},
+			select(e){
+				console.log(e);
 			}
 		}
 	}

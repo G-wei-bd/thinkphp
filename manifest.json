@@ -75,6 +75,19 @@
         "template" : "template.h5.html",
         "router" : {
             "base" : "./"
+        },
+        "title" : "毕业设计",
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        },
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "XKVBZ-KWSCJ-QSEFE-KGQEV-KBHSF-REFCS"
+                }
+            }
         }
     }
 }
