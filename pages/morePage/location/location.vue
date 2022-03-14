@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<text class="d-block text-danger text-center font-weight-bold">现在是{{now_time}}</text>
+		<text class="d-block text-danger text-center font-weight-bold">{{week}}</text>
 		<view class="content">
 			<qian-dao :list="list" :date="date" @day_change="day_change_fun" @date_change="date_change_fun"></qian-dao>
 		</view>
@@ -8,6 +10,15 @@
 
 <script>
 	import QianDao from "@/components/qian-dao/qian-dao.vue";
+	function getDate(type) {
+		const date = new Date();
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+		month = month > 9 ? month : '0' + month;
+		day = day > 9 ? day : '0' + day;
+		return `${year}-${month}-${day}`;
+	}
 	function getTime(type) {
 		const time = new Date();
 		let year = time.getFullYear();
@@ -31,6 +42,8 @@
 		},
 		data() {
 			return {
+				now_time: '',
+				week: '',
 				// 当前的日期
 				date: "",
 				monent: '',
@@ -40,6 +53,8 @@
 			}
 		},
 		onLoad() {
+			var str = "今天是星期" + "日一二三四五六".charAt(new Date().getDay());
+			this.week = str;
 			this.monent = getTime();
 			const user_info = uni.getStorageSync('user_info');
 			const stud_id = JSON.parse(user_info).id;
@@ -51,12 +66,16 @@
 					student_id: stud_id
 				},
 				success: res => {
-					this.list.push(res.data[0].date_list);
+					this.list = res.data.date_list.split(',');
 					console.log(this.list);
 				},
 				fail: () => {},
 				complete: () => {}
 			});
+			
+			setInterval(()=>{
+				this.now_time = getTime();
+			}, 1000);
 		},
 		methods: {
 			// 日期改变时触发
@@ -68,6 +87,7 @@
 			},
 			// // 点击天
 			day_change_fun(day) {
+				console.log(day);
 				// 如果今天没有签到(只签到今天的，如果只需要签到今天的可以这么写)
 				if (!day.click && day.type == "today") {
 					this.list.push(day.nyr);
@@ -111,9 +131,11 @@
 					});
 				}
 				uni.showToast({
-					title: '已签到，无需再次点击',
+					title: '今天已签到',
 					icon: "none"
 				});
+				
+				
 
 				// 如果没有签到（可以补签，需要补签的可以这么写）
 				// if (!day.click) {
