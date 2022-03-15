@@ -1,23 +1,26 @@
 <template>
 	<view>
-		<view class="messageContainer">
+		<view class="messageContainer" v-if="isDetail">
 			<uni-list class="messageList">
-				<uni-list :border="true">
+				<uni-list :border="true" v-for="(item, index) in messageArr" :key="index">
 					<!-- 头像显示角标 -->
-					<uni-list-chat title="消息助手" link="navigateTo" to="../messageDetail/messageDetail"
-						avatar="../../../static/logo.png"
-						note="您收到一条新的消息" time="2022-02-22 22:22" badge-positon="left" badge-text="99"></uni-list-chat>
-					<uni-list-chat title="学校" link="navigateTo" to="../messageDetail/messageDetail"
-						avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
-						note="您收到一条新的消息" time="2022-02-22 22:22" badge-positon="left" badge-text="9"></uni-list-chat>
-					<uni-list-chat title="老师" link="navigateTo" to="../messageDetail/messageDetail"
-						avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
-						note="您收到一条新的消息" time="2022-02-22 22:22" badge-positon="left" badgeText="dot"></uni-list-chat>
-					<uni-list-chat title="其他" link="navigateTo" to="../messageDetail/messageDetail"
-						avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
-						note="您收到一条新的消息" time="2022-02-22 22:22" badge-positon="left" badge-text="2"></uni-list-chat>
+					<uni-list-chat :title="item.title" clickable @click="back(index)" avatar="../../../static/logo.png"
+						note="点击查看详情" ellipsis="1" :time="item.time" badge-positon="left" badgeText="1"></uni-list-chat>
 				</uni-list>
 			</uni-list>
+		</view>
+		<view v-else>
+			<view class="navBarContainer">
+				<uni-nav-bar left-icon="left" right-text="菜单" left-text="返回" title="消息详情" @clickLeft="back" />
+			</view>
+			<view class="detail">
+				<text class="d-block text-center font-weight-bold m-3">{{messageArr[list_item].title}}</text>
+				<view class="d-flex justify-content-around mb-2">
+					<text class="font-weight-bold">发送人：{{messageArr[list_item].teacher_name}}</text>
+					<text>时间：{{messageArr[list_item].time}}</text>
+				</view>
+				<text>{{messageArr[list_item].content}}</text>
+			</view>
 		</view>
 	</view>
 </template>
@@ -26,17 +29,33 @@
 	export default {
 		data() {
 			return {
-
+				isDetail: true,
+				messageArr: '',
+				list_item: ''
 			}
 		},
+		onLoad() {
+			uni.request({
+				url: 'http://127.0.0.1/index.php/message/index',
+				method: 'GET',
+				data: {},
+				success: res => {
+					this.messageArr = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
 		methods: {
-
+			back(e) {
+				console.log(e);
+				this.list_item = e;
+				this.isDetail = !this.isDetail;
+			}
 		}
 	}
 </script>
 
 <style>
-	.messageContainer{
-		
-	}
+	.messageContainer {}
 </style>

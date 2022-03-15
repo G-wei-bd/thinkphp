@@ -11,7 +11,7 @@
 							<text class="iconfont icon-yonghuming"></text>
 							<text class="small">姓名</text>
 						</view>
-						<input type="text" class="form-control form-control-sm" name="userName" placeholder="姓名"
+						<input type="text" class="form-control form-control-sm" name="user_name" placeholder="姓名"
 							placeholder-class="small" />
 					</view>
 
@@ -22,9 +22,9 @@
 						</view>
 						<view class="gender">
 							<radio-group name="gender">
-								<radio value="男" color="#0069D9" class="form-control-sm radioBtn" /><text
+								<radio value="1" color="#0069D9" class="form-control-sm radioBtn" /><text
 									class="small">男</text>
-								<radio value="女" color="#0069D9" class="form-control-sm radioBtn" /><text
+								<radio value="0" color="#0069D9" class="form-control-sm radioBtn" /><text
 									class="small">女</text>
 							</radio-group>
 						</view>
@@ -36,7 +36,7 @@
 							<text class="small">出生日期</text>
 						</view>
 						<view>
-							<uni-datetime-picker type="date" :clearIcon="false" v-model="single" @change="dateChange" />
+							<uni-datetime-picker type="date" :clearIcon="false" v-model="bitrhday" @change="dateChange" />
 							</picker>
 						</view>
 					</view>
@@ -44,8 +44,7 @@
 					<view class="address">
 						<text class="iconfont icon-dizhi"></text>
 						<text class="small">地址</text>
-						<view class="selectAddress" name="address" @click="disAdd()">{{add[0]}} {{add[1]}}
-							{{add[2]}}
+						<view class="selectAddress" name="add" @click="disAdd()">{{add}}
 						</view>
 						<view class="addressList" v-show="dis">
 							<lee-select-city class="selectAdd" @submit="submitAddress"></lee-select-city>
@@ -57,7 +56,7 @@
 							<text class="iconfont icon-xiangxidizhi"></text>
 							<text class="small">详细地址</text>
 						</view>
-						<input class="form-control form-control-sm" type="text" name="detailedAddress"
+						<input class="form-control form-control-sm" type="text" name="address"
 							placeholder="家庭详细地址" placeholder-class="small" />
 					</view>
 
@@ -97,7 +96,7 @@
 							<text class="iconfont icon-banjiketang"></text>
 							<text class="small">所在班级</text>
 						</view>
-						<input type="text" class="form-control form-control-sm" name="majorClass" placeholder="所在班级"
+						<input type="text" class="form-control form-control-sm" name="major_class" placeholder="所在班级"
 							placeholder-class="small" />
 					</view>
 
@@ -121,7 +120,7 @@
 		},
 		data() {
 			return {
-				single: '2021-5-3',
+				bitrhday: '',
 				add: "请选择",
 				dis: false,
 				array: [{
@@ -135,18 +134,12 @@
 				}],
 				index: 0,
 				degree: "",
-				seen: false,
-				secondSeen: false,
-				type_text: "text",
-				type_password: "password",
 			}
 		},
 		methods: {
 			submitRegister: function(e) {
-				console.log("表单提交数据为：" + JSON.stringify(e.detail.value));
-				console.log("非表单提交数据为：" + this.single);
 				var rule = [{
-						name: "userName",
+						name: "user_name",
 						checkType: "notnull",
 						errorMsg: "请填写姓名"
 					},
@@ -156,7 +149,7 @@
 						errorMsg: "请选择性别"
 					},
 					{
-						name: "detailedAddress",
+						name: "address",
 						checkType: "notnull",
 						errorMsg: "请输入详细地址"
 					},
@@ -176,17 +169,37 @@
 						errorMsg: "请填写所在专业"
 					},
 					{
-						name: "majorClass",
+						name: "major_class",
 						checkType: "notnull",
 						errorMsg: "所在班级不能为空"
 					}
 				];
-				var formData = e.detail.value;
+				const formData = e.detail.value;
+				formData.address = this.add + e.detail.value.address;
+				formData.birthday = this.birthday;
+				const value = uni.getStorageSync('user_info');
+				const id = JSON.parse(value).id;
+				formData.id = id;
 				var checkRes = graceChecker.check(formData, rule);
 				if (checkRes) {
-					uni.showToast({
-						title: "注册成功",
-						icon: "success"
+					uni.request({
+						url: 'http://127.0.0.1/index.php/update/index',
+						method: 'GET',
+						data: formData,
+						success: res => {
+							console.log(res.data);
+							if(res.data == 1){
+								uni.showToast({
+									title: "修改成功",
+									icon: "success",
+									duration: 2000
+								});
+							}
+						},
+						fail: () => {
+							console.log('发送失败');
+						},
+						complete: () => {}
 					});
 				} else {
 					uni.showToast({
@@ -203,11 +216,10 @@
 				selected
 			}) {
 				this.dis = !this.dis;
-				this.add = simple;
-				console.log(this.add);
+				this.add = simple.join('');
 			},
 			dateChange: function(e) {
-				this.single = e;
+				this.birthday = e;
 			},
 			bindPickerChange: function(e) {
 				this.index = e.detail.value;

@@ -41,10 +41,10 @@
 							name: '个人信息',
 							url: 'mySetting'
 						},
-						{
-							name: '简历信息',
-							url: 'resumeInfo'
-						},
+						// {
+						// 	name: '简历信息',
+						// 	url: 'resumeInfo'
+						// },
 						{
 							name: '学籍信息',
 							url: 'studentStatus'

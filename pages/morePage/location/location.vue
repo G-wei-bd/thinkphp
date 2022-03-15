@@ -67,7 +67,6 @@
 				},
 				success: res => {
 					this.list = res.data.date_list.split(',');
-					console.log(this.list);
 				},
 				fail: () => {},
 				complete: () => {}

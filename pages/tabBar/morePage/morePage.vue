@@ -39,6 +39,10 @@
 							url: 'message'
 						},
 						{
+							name: '教师发送消息',
+							url: 'sendMessage'
+						},
+						{
 							name: '签到',
 							url: 'location'
 						}]
