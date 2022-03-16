@@ -109,7 +109,7 @@
 					content: "是否退出登录",
 					success(res) {
 						if (res.confirm) {
-							uni.removeStorageSync("token");
+							uni.removeStorageSync("user_info");
 							uni.navigateTo({
 								url: '/pages/login/login',
 							});
