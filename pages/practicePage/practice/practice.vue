@@ -198,35 +198,31 @@
 				value: [0, 0],
 			}
 		},
-		computed: {
-			...mapState({
-				student_id: state => state.student_id
-			})
-		},
 		onLoad() {
 			this.rules = area.rules;
 			for (let provinceCode in area.province_list) {
 				this.range[0].push(area.province_list[provinceCode])
 				this.provinceCodes.push(provinceCode)
 			}
-			// this.stu_id = this.student_id;
-			// var id = this.stu_id;
-			// uni.request({
-			// 	url: 'http://127.0.0.1/index.php/practice/search',
-			// 	method: 'GET',
-			// 	data: {id},
-			// 	success: (res) => {
-			// 		if (res.data != null) {
-			// 			this.listData = res.data;
-			// 			this.isDisabled = !this.isDisabled;
-			// 		}
-			// 		this.isDisabled = true;
-			// 	},
-			// 	fail: (res) => {
-			// 		console.log(res);
-			// 	},
-			// 	complete: () => {}
-			// });
+			const value = uni.getStorageSync('user_info');
+			this.stu_id = JSON.parse(value).id;
+			const id = this.stu_id;
+			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/search',
+				method: 'GET',
+				data: {id},
+				success: (res) => {
+					if (res.data) {
+						this.listData = res.data;
+						console.log(this.listData);
+						this.isDisabled = !this.isDisabled;
+					}
+				},
+				fail: (res) => {
+					console.log(res);
+				},
+				complete: () => {}
+			});
 		},	
 		methods: {
 			isSubmit() {

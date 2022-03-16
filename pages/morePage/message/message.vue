@@ -5,7 +5,7 @@
 				<uni-list :border="true" v-for="(item, index) in messageArr" :key="index">
 					<!-- 头像显示角标 -->
 					<uni-list-chat :title="item.title" clickable @click="back(index)" avatar="../../../static/logo.png"
-						note="点击查看详情" ellipsis="1" :time="item.time" badge-positon="left" badgeText="1"></uni-list-chat>
+						note="点击查看详情" ellipsis="1" :time="item.time" badge-positon="left"></uni-list-chat>
 				</uni-list>
 			</uni-list>
 		</view>

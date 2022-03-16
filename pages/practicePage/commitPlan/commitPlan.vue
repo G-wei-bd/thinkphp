@@ -12,6 +12,12 @@
 					<uni-datetime-picker v-model="formData.time" type="daterange" :clearIcon="false" start="1990-01-01"
 						end="2099-12-31" rangeSeparator="~" />
 				</uni-forms-item>
+				<uni-forms-item required label="指导老师" name="teacher_name">
+					<uni-easyinput v-model="formData.claim" trim="all" placeholder="请输入指导老师姓名" />
+				</uni-forms-item>
+				<uni-forms-item required label="学工号" name="teacher_id">
+					<uni-easyinput v-model="formData.claim" trim="all" placeholder="请输入指导老师学工号" />
+				</uni-forms-item>
 				<uni-forms-item required label="要求" name="claim">
 					<uni-easyinput v-model="formData.claim" trim="all" placeholder="请输入实习要求" />
 				</uni-forms-item>
@@ -69,9 +75,12 @@
 			uni.request({
 				url: 'http://127.0.0.1/index.php/commitplan/index',
 				method: 'GET',
-				data: {id: 1001},
+				data: {
+					id: 1001
+				},
 				success: res => {
-					for(var i = 0; i <= res.data.length; i++){
+					console.log(res.data);
+					for (var i = 0; i <= res.data.length; i++) {
 						this.range[i].value = res.data[i];
 						this.range[i].text = res.data[i];
 					}
@@ -87,10 +96,12 @@
 					uni.request({
 						url: 'http://127.0.0.1/index.php/commitplan/commit',
 						method: 'GET',
-						data: {formData},
+						data: {
+							formData
+						},
 						success: res => {
-							if(res.data != null){
-								setTimeout(function(){
+							if (res.data != null) {
+								setTimeout(function() {
 									uni.showToast({
 										title: '提交成功'
 									});

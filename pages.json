@@ -148,13 +148,6 @@
 			}
 
 		}, {
-			"path": "pages/morePage/messageDetail/messageDetail",
-			"style": {
-				"navigationBarTitleText": "消息详情",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
 			"path": "pages/morePage/location/location",
 			"style": {
 				"navigationBarTitleText": "签到",

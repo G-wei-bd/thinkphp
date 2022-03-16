@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="mb-3">
 		<uni-forms ref="form" :modelValue="formData" :rules="rules">
 			<view class="d-flex flex-column align-items-center justify-content-center mt-3">
 				<uni-forms-item label="教师学工号" name="teacher_id">
@@ -69,7 +69,25 @@
 			messageUpload() {
 				this.$refs.form.validate().then((res) => {
 					this.formData.time = getTime();
-					console.log(this.formData);
+					const data = this.formData;
+					console.log(data);
+					uni.request({
+						url: 'http://127.0.0.1/index.php/message/commit',
+						method: 'GET',
+						data: data,
+						success: res => {
+							console.log(res.data);
+							if (res.data == 1) {
+								uni.showToast({
+									title: '发送成功',
+									icon: "success",
+									duration: 800
+								});
+							}
+						},
+						fail: () => {},
+						complete: () => {}
+					});
 				}).catch((err) => {
 					console.log(err)
 				})
