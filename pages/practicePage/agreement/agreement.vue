@@ -20,7 +20,7 @@
 							<uni-td align="center">
 								<text class="text-danger font-weight-bold">{{examine[exaVal]}}</text>
 							</uni-td>
-							<uni-td align="center"><img src="../../../static/logo.png" alt=""></uni-td>
+							<uni-td align="center"><img style="width: 40px;height: 40px;" :src="this.imgArr" alt=""></uni-td>
 						</uni-tr>
 					</uni-table>
 				</view>
@@ -62,6 +62,7 @@
 	export default {
 		data() {
 			return {
+				imgArr: [],
 				imageValue: [],
 				imageStyles: {
 					border: true,
@@ -80,7 +81,7 @@
 		methods: {
 			// 获取上传状态
 			select(e) {
-				console.log('选择文件：', e);
+				this.imgArr = e.tempFilePaths;
 				const tempFilePaths = e.tempFilePaths;
 				const uploadTask = uni.uploadFile({
 					url: 'http://127.0.0.1/index.php/agreement/index',
