@@ -69,8 +69,7 @@
 						this.setStudent_id(res.data);
 						if(res.data == 0){
 							uni.showToast({
-								title: '用户名或密码错误',
-								icon:"error"
+								title: '用户名或密码错误,请重新输入'
 							})
 						}
 						else{
