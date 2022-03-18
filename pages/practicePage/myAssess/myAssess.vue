@@ -7,7 +7,7 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					<view class="twoParts">
+					<view class="twoParts" v-if="isAccess">
 						<uni-card title="我的实习评价">
 							<uni-list>
 								<uni-list-item title="参与计划">
@@ -34,7 +34,7 @@
 							</uni-list>
 						</uni-card>
 					</view>
-					<view class="">
+					<view v-else class="font-weight-bold text-center">
 						<text>当前没有未添加评价</text>
 					</view>
 				</view>
@@ -149,6 +149,7 @@
 	export default {
 		data() {
 			return {
+				isAccess: true,
 				taskData: {
 					name: '',
 					time: '',
@@ -339,6 +340,7 @@
 								});
 								this.taskData = this.arrData;
 							this.display = !this.display;
+							this.isAccess = !this.isAccess;
 							}
 						},
 						fail: () => {},

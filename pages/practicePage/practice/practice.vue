@@ -214,6 +214,9 @@
 				success: (res) => {
 					if (res.data) {
 						this.listData = res.data;
+						if(this.data != []){
+							this.handleValue = 1;
+						}
 						console.log(this.listData);
 						this.isDisabled = !this.isDisabled;
 					}
