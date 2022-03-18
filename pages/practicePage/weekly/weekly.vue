@@ -12,15 +12,15 @@
 							<uni-table stripe emptyText="暂无更多数据">
 								<uni-tr>
 									<uni-th align="center">参与项目</uni-th>
-									<uni-th align="center">实习岗位</uni-th>
+									<uni-th align="center">指导老师</uni-th>
 									<uni-th align="center">实习时间</uni-th>
 									<uni-th align="center">周记篇数</uni-th>
 									<uni-th align="center">操作</uni-th>
 								</uni-tr>
 								<uni-tr>
-									<uni-td align="center">18网络工程实习</uni-td>
-									<uni-td align="center">前端开发</uni-td>
-									<uni-td align="center">2021.09.01 ~ 2022.01.31</uni-td>
+									<uni-td align="center">{{taskData.name}}</uni-td>
+									<uni-td align="center">{{taskData.teacher_name}}</uni-td>
+									<uni-td align="center">{{taskData.time}}</uni-td>
 									<uni-td align="center">{{currentArr.length}}篇</uni-td>
 									<uni-td align="center">
 										<button class="btn btn-sm btn-primary" @click="isWriteWeekly">新建</button>
@@ -143,6 +143,12 @@
 	export default {
 		data() {
 			return {
+				task_id: '',
+				taskData: {
+					name: '',
+					time: '',
+					teacher_name:''
+				},
 				current: 0,
 				items: [
 					"写周记", "我的周记"
@@ -204,6 +210,20 @@
 				data: {id: id},
 				success: res => {
 					this.currentArr = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/plan',
+				method: 'GET',
+				data: {id},
+				success: res => {
+					console.log(res.data);
+					this.taskData.name = res.data.name;
+					this.taskData.time = res.data.time;
+					this.taskData.teacher_name = res.data.teacher_name;
+					this.task_id = res.data.task_id;
 				},
 				fail: () => {},
 				complete: () => {}
@@ -283,6 +303,8 @@
 					res.student_id = userData.id;
 					res.major_class = userData.major_class;
 					res.commit_time = commit_time;
+					res.teacher_id = userData.teacher_id;
+					res.task_id = this.task_id;
 					const formData = res;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/weekly/index',
