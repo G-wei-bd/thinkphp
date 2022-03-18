@@ -91,8 +91,8 @@
 								placeholder="请输入分数" />
 						</uni-forms-item>
 						<uni-forms-item label="评语" name="access">
-							<uni-easyinput style="width: 400px;" type="textarea" autoHeight
-								v-model="scoreData.access" placeholder="请输入评语" />
+							<uni-easyinput style="width: 400px;" type="textarea" autoHeight trim="all" v-model="scoreData.access"
+								placeholder="请输入评语" />
 						</uni-forms-item>
 					</uni-forms>
 					<view class="text-center">
@@ -113,6 +113,7 @@
 				isWeekly: true,
 				isCheck: false,
 				checkList: ['未审核', '已审核'],
+				check: 0,
 				wordsCount: 0,
 				// 每页数据量
 				pageSize: 10,
@@ -194,28 +195,48 @@
 			wordCount(e) {
 				this.wordsCount = e.length;
 			},
-			weeklyUpload() {
-				this.$refs.form.validate().then((res) => {
-
-				}).catch((err) => {
-					console.log(err)
-				})
-			},
 			submitAccess(e) {
 				this.$refs.form.validate().then((res) => {
-					const data = this.scoreData;
 					const id = this.detailWeekly.id;
+					const score = this.scoreData.score;
+					const access = this.scoreData.access;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/weekly/commit',
 						method: 'GET',
-						data: data,
+						data: {
+							id,
+							score,
+							access
+						},
 						success: res => {
-							console.log(res.data);
+							if (res.data == 1) {
+								uni.showToast({
+									title: '提交成功',
+									icon:"success",
+									duration: 1000
+								});
+								uni.request({
+									url: 'http://127.0.0.1/index.php/weekly/studentweekly',
+									method: 'GET',
+									data: {
+										id
+									},
+									success: res => {
+										this.Arr = res.data;
+									},
+									fail: () => {},
+									complete: () => {}
+								});
+								this.isCheck = !this.isCheck;
+								uni.reLaunch({
+									url: '/pages/practicePage/exa-weekly/exa-weekly'
+								});
+							}
 						},
 						fail: () => {},
 						complete: () => {}
 					});
-					
+
 				}).catch((err) => {
 					console.log(err)
 				})

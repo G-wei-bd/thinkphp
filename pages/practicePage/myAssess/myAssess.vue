@@ -12,17 +12,17 @@
 							<uni-list>
 								<uni-list-item title="参与计划">
 									<view slot="footer">
-										<text>18实习</text>
+										<text>{{taskData.name}}</text>
 									</view>
 								</uni-list-item>
 								<uni-list-item title="参与时间">
 									<view slot="footer">
-										<text>2020-09-01 ~ 2021-02-01</text>
+										<text>{{taskData.time}}</text>
 									</view>
 								</uni-list-item>
 								<uni-list-item title="指导老师">
 									<view slot="footer">
-										<text>老师1</text>
+										<text>{{taskData.teacher_name}}</text>
 									</view>
 								</uni-list-item>
 								<uni-list-item title="是否评价">
@@ -34,7 +34,9 @@
 							</uni-list>
 						</uni-card>
 					</view>
-					
+					<view class="">
+						<text>当前没有未添加评价</text>
+					</view>
 				</view>
 				<view v-show="current === 1">
 					<view class="allAssess" v-if="arrData">
@@ -147,6 +149,11 @@
 	export default {
 		data() {
 			return {
+				taskData: {
+					name: '',
+					time: '',
+					teacher_name:''
+				},
 				display: true,
 				current: 0,
 				items: [
@@ -273,6 +280,20 @@
 			const value = uni.getStorageSync('user_info');
 			const id = JSON.parse(value).id;
 			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/plan',
+				method: 'GET',
+				data: {id},
+				success: res => {
+					console.log(res.data);
+					this.taskData.name = res.data.name;
+					this.taskData.time = res.data.time;
+					this.taskData.teacher_name = res.data.teacher_name;
+					this.task_id = res.data.task_id;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+			uni.request({
 				url: 'http://127.0.0.1/index.php/access/search',
 				method: 'GET',
 				data: {id: id},
@@ -303,6 +324,7 @@
 					this.rateData.student_id = student_id;
 					this.rateData.user_name = user_name;
 					const formData = this.rateData;
+					formData.task_id = this.taskData.task_id;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/access/index',
 						method: 'GET',
@@ -315,6 +337,7 @@
 									icon: "success",
 									duration: 1000
 								});
+								this.taskData = this.arrData;
 							this.display = !this.display;
 							}
 						},

@@ -12,18 +12,18 @@
 							<uni-table stripe emptyText="暂无更多数据">
 								<uni-tr>
 									<uni-th align="center">参与项目</uni-th>
-									<uni-th align="center">实习岗位</uni-th>
+									<uni-th align="center">指导老师</uni-th>
 									<uni-th align="center">实习时间</uni-th>
 									<uni-th align="center">月记篇数</uni-th>
 									<uni-th align="center">操作</uni-th>
 								</uni-tr>
 								<uni-tr>
-									<uni-td align="center">18网络工程实习</uni-td>
-									<uni-td align="center">前端开发</uni-td>
-									<uni-td align="center">2021.09.01 ~ 2022.01.31</uni-td>
+									<uni-td align="center">{{taskData.name}}</uni-td>
+									<uni-td align="center">{{taskData.teacher_name}}</uni-td>
+									<uni-td align="center">{{taskData.time}}</uni-td>
 									<uni-td align="center">{{currentArr.length}}篇</uni-td>
 									<uni-td align="center">
-										<button class="btn btn-sm btn-primary" @click="isWritemonthly">新建</button>
+										<button class="btn btn-sm btn-outline-primary" @click="isWritemonthly">新建月记</button>
 									</uni-td>
 								</uni-tr>
 							</uni-table>
@@ -92,17 +92,14 @@
 						<view class="access m-4">
 							<text class="font-weight-bold d-block text-center">指导老师评语</text>
 							<view class="font-weight-bold">评分：
-								<text class="text-danger">90</text>
+								<text class="text-danger">{{monthly.score}}</text>
 							</view>
-							<text class="d-block m-4">评语：
-								<text>人生是充满希望的，未来也需要我们乘风破浪，勇于克服困难，才能更好地适应社会；注意疫情防护，不要到高风险地区，注意自身安全，佩戴口罩，多锻炼身体，照顾好自己，下月继续努力。</text>
+							<text class="d-block m-4 font-weight-bold">评语：
+								<text class="font-weight-light">{{monthly.access}}</text>
 							</text>
 							<view class="teacherMes d-flex justify-content-between">
-								<text>评阅人：
-									<text>老师1</text>
-								</text>
-								<text>电话：
-									<text>12345678909</text>
+								<text v-if="monthly.score">评阅人：
+									<text class="font-weight-bold">{{taskData.teacher_name}}</text>
 								</text>
 							</view>
 						</view>
@@ -143,6 +140,12 @@
 	export default {
 		data() {
 			return {
+				task_id:'',
+				taskData: {
+					name: '',
+					time:'',
+					teacher_name: ''
+				},
 				current: 0,
 				items: [
 					"写月记", "我的月记"
@@ -208,7 +211,20 @@
 				fail: () => {},
 				complete: () => {}
 			});
-
+			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/plan',
+				method: 'GET',
+				data: {id},
+				success: res => {
+					console.log(res.data);
+					this.taskData.name = res.data.name;
+					this.taskData.time = res.data.time;
+					this.taskData.teacher_name = res.data.teacher_name;
+					this.task_id = res.data.task_id;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
 		},
 		watch: {
 			pageCurrent: function(newVal, oldVal) {
@@ -297,6 +313,9 @@
 									duration: 1000
 								});
 								this.ismonthly = !this.ismonthly;
+								uni.reLaunch({
+									url: '/pages/practicePage/monthly/monthly'
+								})
 							}
 						},
 						fail: () => {},
