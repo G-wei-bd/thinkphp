@@ -42,6 +42,8 @@
 		},
 		data() {
 			return {
+				task_id: '',
+				taskData: '',
 				now_time: '',
 				week: '',
 				// 当前的日期
@@ -66,7 +68,17 @@
 					student_id: stud_id
 				},
 				success: res => {
-					this.list = res.data.date_list.split(',');
+					this.list = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+			uni.request({
+				url: 'http://127.0.0.1/index.php/location/fetch',
+				method: 'GET',
+				data: {stud_id},
+				success: res => {
+					this.task_id = res.data.task_id;
 				},
 				fail: () => {},
 				complete: () => {}
@@ -94,12 +106,13 @@
 						success: (res) => {
 							this.formData.location = res.address + res.name;
 							this.formData.time = this.monent;
-							this.formData.date_list = this.list;
+							this.formData.date_list = getDate();
 							const value = uni.getStorageSync('user_info');
 							const id = JSON.parse(value).id;
 							const user_name = JSON.parse(value).user_name;
 							this.formData.student_id = id;
 							this.formData.user_name = user_name;
+							this.formData.task_id = this.task_id;
 							console.log(this.formData);
 							uni.request({
 								url: 'http://127.0.0.1/index.php/location/index',

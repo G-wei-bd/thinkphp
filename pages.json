@@ -210,6 +210,24 @@
             }
             
         }
+        ,{
+            "path" : "pages/practicePage/exa-access/exa-access",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "查看评价",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/morePage/exa-location/exa-location",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "教师查看签到",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

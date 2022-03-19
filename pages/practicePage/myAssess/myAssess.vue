@@ -153,7 +153,7 @@
 				taskData: {
 					name: '',
 					time: '',
-					teacher_name:''
+					teacher_name: ''
 				},
 				display: true,
 				current: 0,
@@ -283,7 +283,9 @@
 			uni.request({
 				url: 'http://127.0.0.1/index.php/practice/plan',
 				method: 'GET',
-				data: {id},
+				data: {
+					id
+				},
 				success: res => {
 					console.log(res.data);
 					this.taskData.name = res.data.name;
@@ -297,10 +299,13 @@
 			uni.request({
 				url: 'http://127.0.0.1/index.php/access/search',
 				method: 'GET',
-				data: {id: id},
+				data: {
+					id: id
+				},
 				success: res => {
 					this.arrData = res.data;
 					console.log(this.arrData);
+					
 				},
 				fail: () => {
 					console.log('失败');
@@ -325,7 +330,12 @@
 					this.rateData.student_id = student_id;
 					this.rateData.user_name = user_name;
 					const formData = this.rateData;
-					formData.task_id = this.taskData.task_id;
+					formData.task_id = this.task_id;
+					formData.task_name = this.taskData.name;
+					formData.teacher_id = this.taskData.teacher_id;
+					formData.teacher_name = this.taskData.teacher_name;
+					formData.time = this.taskData.time;
+					console.log(formData);
 					uni.request({
 						url: 'http://127.0.0.1/index.php/access/index',
 						method: 'GET',
@@ -338,9 +348,13 @@
 									icon: "success",
 									duration: 1000
 								});
-								this.taskData = this.arrData;
-							this.display = !this.display;
-							this.isAccess = !this.isAccess;
+								this.arrData.push(this.taskData);
+
+								this.display = !this.display;
+								this.isAccess = !this.isAccess;
+								uni.reLaunch({
+									url:"/pages/practicePage/myAccess/myAccess"
+								})
 							}
 						},
 						fail: () => {},

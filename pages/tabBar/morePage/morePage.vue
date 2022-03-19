@@ -31,23 +31,27 @@
 		data() {
 			return {
 				list: [{
-						id: 'navbar',
-						name: '消息',
-						open: false,
-						pages: [{
+					id: 'navbar',
+					name: '消息',
+					open: false,
+					pages: [{
 							name: '消息及公告',
 							url: 'message'
+						},
+						{
+							name: '签到',
+							url: 'location'
 						},
 						{
 							name: '教师发送消息',
 							url: 'sendMessage'
 						},
 						{
-							name: '签到',
-							url: 'location'
-						}]
-					}
-				]
+							name: '教师查看签到',
+							url: 'exa-location'
+						},
+					]
+				}]
 			}
 		},
 		watch: {

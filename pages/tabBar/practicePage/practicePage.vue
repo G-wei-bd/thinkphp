@@ -80,12 +80,16 @@
 							{
 								name: '教师审核月记',
 								url: 'exa-monthly'
+							}, 
+							{
+								name: '教师查看评价',
+								url: 'exa-access'
 							},
 							{
 								name: '审核实习报告',
 								url: 'exa-report'
 							}
-							
+
 						]
 					}
 				]

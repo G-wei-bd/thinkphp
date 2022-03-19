@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="tipInfo">
-			<text>在此处修改您的个人信息</text>
+			<text class="text-danger m-4">当前登录：{{user_name}}</text>
 		</view>
 		<view class="registerContainer">
 			<form class="form-group" @submit="submitRegister">
@@ -113,13 +113,13 @@
 <script>
 	import LeeSelectCity from '@/components/lee-select-city/lee-select-city.vue';
 	import graceChecker from "../../../common/graceChecker.js";
-
 	export default {
 		components: {
 			LeeSelectCity
 		},
 		data() {
 			return {
+				user_name: '',
 				bitrhday: '',
 				add: "请选择",
 				dis: false,
@@ -135,6 +135,10 @@
 				index: 0,
 				degree: "",
 			}
+		},
+		onLoad() {
+			const user = uni.getStorageSync('user_info');
+			this.user_name = JSON.parse(user).user_name;
 		},
 		methods: {
 			submitRegister: function(e) {

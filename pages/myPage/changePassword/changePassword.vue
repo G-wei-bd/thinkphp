@@ -43,7 +43,7 @@
 					uni.request({
 						url: 'http://127.0.0.1/index.php/changePassword/index',
 						method: 'GET',
-						data: {commitData},
+						data: commitData,
 						success: res => {
 							if (res.data == 1) {
 								uni.showToast({
@@ -63,6 +63,9 @@
 									fail: () => {},
 									complete: () => {}
 								});
+								uni.reLaunch({
+									url:"/pages/myPage/changePassword/changePassword"
+								})
 							} else {
 								uni.showToast({
 									title: '操作异常，请重新修改',
