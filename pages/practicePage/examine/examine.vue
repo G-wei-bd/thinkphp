@@ -5,27 +5,29 @@
 				<view class="agreeTable">
 					<uni-table stripe emptyText="暂无更多数据">
 						<uni-tr>
+							<uni-th align="center">序号</uni-th>
 							<uni-th align="center">学生姓名</uni-th>
 							<uni-th align="center">参与实习</uni-th>
 							<uni-th align="center">实习时间</uni-th>
 							<uni-th align="center">指导老师</uni-th>
-							<uni-th align="center">提交时间</uni-th>
 							<uni-th align="center">协议详情</uni-th>
+							<uni-th align="center">意见</uni-th>
 							<uni-th align="center">审批情况</uni-th>
 						</uni-tr>
-						<uni-tr>
-							<uni-td align="center">未知</uni-td>
-							<uni-td align="center">18实习</uni-td>
-							<uni-td align="center">2020-09-01~2022-01-30</uni-td>
-							<uni-td align="center">第一个老师</uni-td>
-							<uni-td align="center">2020-10-22</uni-td>
+						<uni-tr v-for="(item, index) in checkData" :key="index">
+							<uni-td align="center">{{index + 1}}</uni-td>
+							<uni-td align="center">{{item.student_name}}</uni-td>
+							<uni-td align="center">{{item.name}}</uni-td>
+							<uni-td align="center">{{item.time}}</uni-td>
+							<uni-td align="center">{{item.teacher_name}}</uni-td>
 							<uni-td align="center">
-								<img src="../../../static/logo.png">
+								<img :src="item.agreement">
 							</uni-td>
+							<uni-td align="center" class="text-danger font-weight-bold">{{examine[item.agreement_check]}}</uni-td>
 							<uni-td align="center">
 								<view class="exa-btn" v-if="isShow">
-									<button class="btn btn-danger" @click="success">通过</button>
-									<button class="btn btn-danger" @click="reason">未通过</button>
+									<button class="btn btn-danger" @click="success(index)">通过</button>
+									<button class="btn btn-danger" @click="reason(index)">未通过</button>
 								</view>
 								<text v-else class="text-danger font-weight-bold">已通过</text>
 							</uni-td>
@@ -34,15 +36,6 @@
 				</view>
 			</uni-card>
 		</view>
-		<uni-popup ref="popup" type="top">
-			<view class="bg-light reason d-flex align-items-center">
-				<text class="text-danger m-2 font-weight-bold">未通过原因</text>
-				<uni-data-checkbox  v-model="value" multiple :localdata="reasonData" @change="change" />
-				<view>
-					<button class="btn btn-danger" @click="close">提交</button>
-				</view>
-			</view>
-		</uni-popup>
 	</view>
 </template>
 
@@ -50,24 +43,70 @@
 	export default {
 		data() {
 			return {
+				teacher_id: '',
+				checkData: '',
 				isShow: true,
 				value: '',
-				reasonData: [{"value": 0,"text": "不清晰"},{"value": 1,"text": "不规范"},{"value": 2,"text": "时间错误"}]
+				examine: ['未审核', '通过', '不通过', ],
 			}
 		},
+		onLoad() {
+			const value = uni.getStorageSync('user_info');
+			this.teacher_id = JSON.parse(value).phone_num;
+			const id = this.teacher_id;
+			console.log(id);
+			uni.request({
+				url: 'http://127.0.0.1/index.php/agreement/teacher',
+				method: 'GET',
+				data: {id},
+				success: res => {
+					console.log(res.data);
+					this.checkData = res.data;
+				},
+				fail: () => {},
+				complete: () => {}
+			});
+		},
 		methods: {
-			success(){
-				this.isShow = !this.isShow;
+			success(e){
+				const id = this.checkData[e].student_id;
+				uni.request({
+					url: 'http://127.0.0.1/index.php/agreement/success',
+					method: 'GET',
+					data: {id},
+					success: res => {
+						console.log(res.data);
+						if(res.data == 1){
+							uni.reLaunch({
+								url: '/pages/practicePage/examine/examine'
+							})
+						}
+					},
+					fail: () => {},
+					complete: () => {}
+				});
+				
 			},
-			reason(){
-				this.$refs.popup.open()
+			reason(e){
+				const id = this.checkData[e].student_id;
+				uni.request({
+					url: 'http://127.0.0.1/index.php/agreement/reason',
+					method: 'GET',
+					data: {id},
+					success: res => {
+						console.log(res.data);
+						if(res.data == 1){
+							uni.reLaunch({
+								url: '/pages/practicePage/examine/examine'
+							})
+						}
+					},
+					fail: () => {},
+					complete: () => {}
+				});
 			},
 			change(e){
 				this.value = e.detail.value;
-			},
-			close(){
-				this.$refs.popup.close()
-				console.log(this.value);
 			}
 		}
 	}

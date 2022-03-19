@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="tipInfo">
-			<text class="text-danger m-4">当前登录：{{user_name}}</text>
+			<text class="text-danger font-weight-bold m-4">当前登录：{{user_name}}</text>
 		</view>
 		<view class="registerContainer">
 			<form class="form-group" @submit="submitRegister">

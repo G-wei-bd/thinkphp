@@ -19,9 +19,6 @@
 									mode="grid" limit="1" :delIcon="false" :autoUpload="false" @select="select">
 								</uni-file-picker>
 							</uni-td>
-							<!-- <uni-td align="center">
-								<button class="btn btn-danger btn-sm" @click="upload">上传</button>
-							</uni-td> -->
 						</uni-tr>
 					</uni-table>
 				</view>
@@ -43,9 +40,9 @@
 							<uni-td align="center">{{detail.time}}</uni-td>
 							<uni-td align="center">{{detail.teacher_name}}</uni-td>
 							<uni-td align="center">
-								<text class="text-danger font-weight-bold">{{examine[exaVal]}}</text>
+								<text class="text-danger font-weight-bold">{{examine[agreement_check]}}</text>
 							</uni-td>
-							<uni-td align="center"><img style="width: 40px;height: 40px;" :src="detail.agreement" alt="">
+							<uni-td align="center"><image :src="detail.agreement" style="width: 80px; height: 80px;"></image>
 							</uni-td>
 						</uni-tr>
 					</uni-table>
@@ -100,7 +97,7 @@
 				data: {id},
 				success: res => {
 					this.detail = res.data;
-					this.detail.agreement = 'http://127.0.0.1/upload/' + this.detail.agreement;
+					// this.detail.agreement = 'http://127.0.0.1/upload/' + this.detail.agreement;
 				},
 				fail: () => {},
 				complete: () => {}
