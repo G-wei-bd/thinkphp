@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view class="applyContainer" v-if="submit" :style="isCommitList ? '' : 'display: none;' ">
-			<uni-card :title="titleName">
+			<uni-card :title="taskData.name">
 				<uni-list>
-					<uni-list-item title="实习时间" :note="practiceTime"></uni-list-item>
-					<uni-list-item title="提交岗位时间" :note="applyTime"></uni-list-item>
+					<uni-list-item title="实习时间" :note="taskData.time"></uni-list-item>
+					<uni-list-item title="指导老师" :note="taskData.teacher_name"></uni-list-item>
 					<uni-list-item title="是否提交岗位" :note="isHandler[handleValue]">
 						<view slot="footer">
 							<button v-if="isDisabled" class="btn btn-danger btn-sm" @click="isSubmit">提交岗位</button>
@@ -168,9 +168,7 @@
 				stu_id: '',
 				isDisabled: true,
 				isCommitList: true,
-				titleName: "18毕业实习",
-				practiceTime: "2021-08-31 - 2022-01-30",
-				applyTime: "2021-08-01 - 2021-10-01",
+				taskData: '',
 				isHandler: ['未提交', '已提交'],
 				handleValue: 0,
 				submit: true,
@@ -224,6 +222,16 @@
 				fail: (res) => {
 					console.log(res);
 				},
+				complete: () => {}
+			});
+			uni.request({
+				url: 'http://127.0.0.1/index.php/practice/plan',
+				method: 'GET',
+				data: {id},
+				success: res => {
+					this.taskData = res.data;
+				},
+				fail: () => {},
 				complete: () => {}
 			});
 		},	
