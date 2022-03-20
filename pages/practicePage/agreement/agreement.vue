@@ -40,7 +40,7 @@
 							<uni-td align="center">{{detail.time}}</uni-td>
 							<uni-td align="center">{{detail.teacher_name}}</uni-td>
 							<uni-td align="center">
-								<text class="text-danger font-weight-bold">{{examine[agreement_check]}}</text>
+								<text class="text-danger font-weight-bold">{{examine[detail.agreement_check]}}</text>
 							</uni-td>
 							<uni-td align="center"><image :src="detail.agreement" style="width: 80px; height: 80px;"></image>
 							</uni-td>
@@ -71,7 +71,7 @@
 						redius: 10
 					}
 				},
-				examine: ['未审核', '不通过', '通过', ],
+				examine: ['未审核', '通过', '不通过', ],
 				exaVal: 0
 			}
 		},
@@ -87,6 +87,7 @@
 				},
 				success: res => {
 					this.taskData = res.data;
+					console.log(this.taskData);
 				},
 				fail: () => {},
 				complete: () => {}

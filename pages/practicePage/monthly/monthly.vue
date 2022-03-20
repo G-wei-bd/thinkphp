@@ -200,37 +200,32 @@
 			this.total = this.Arr.length;
 			this.currentArr = this.Arr.slice(10 * this.pageCurrent - 10, 10 * this.pageCurrent);
 			const value = uni.getStorageSync('user_info');
-			const id = JSON.parse(value).id
-			const task_id = this.task_id;
-			uni.request({
-				url: 'http://127.0.0.1/index.php/monthly/search',
-				method: 'GET',
-				data: {id,task_id},
-				success: res => {
-					this.currentArr = res.data;
-				},
-				fail: () => {},
-				complete: () => {}
-			});
+			const id = JSON.parse(value).id;
 			uni.request({
 				url: 'http://127.0.0.1/index.php/practice/plan',
 				method: 'GET',
 				data: {id},
 				success: res => {
-					console.log(res.data);
-					this.taskData.name = res.data.name;
-					this.taskData.time = res.data.time;
-					this.taskData.teacher_name = res.data.teacher_name;
+					this.taskData = res.data;
+					console.log(this.taskData);
 					this.task_id = res.data.task_id;
+					const task_id = this.task_id;
+					uni.request({
+						url: 'http://127.0.0.1/index.php/monthly/search',
+						method: 'GET',
+						data: {id,task_id},
+						success: res => {
+							this.currentArr = res.data;
+							console.log(this.currentArr);
+							
+						},
+						fail: () => {},
+						complete: () => {}
+					});
 				},
 				fail: () => {},
 				complete: () => {}
 			});
-		},
-		watch: {
-			pageCurrent: function(newVal, oldVal) {
-
-			}
 		},
 		methods: {
 			onClickItem(e) {
@@ -240,12 +235,14 @@
 				if (this.current == 1) {
 					const value = uni.getStorageSync('user_info');
 					const id = JSON.parse(value).id
+					const task_id = this.task_id;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/monthly/search',
 						method: 'GET',
-						data: {id: id},
+						data: {id,task_id},
 						success: res => {
 							this.currentArr = res.data;
+							this.total = res.data.length;
 						},
 						fail: () => {},
 						complete: () => {}
