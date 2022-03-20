@@ -355,13 +355,10 @@
 									icon: "success",
 									duration: 1000
 								});
-								uni.reLaunch({
-									url: '/pages/practicePage/myAccess/myAccess'
-								})
 								this.display = !this.display;
 								this.isAccess = !this.isAccess;
 								uni.reLaunch({
-									url:"/pages/practicePage/myAccess/myAccess"
+									url: '/pages/practicePage/myAssess/myAssess'
 								})
 							}
 						},

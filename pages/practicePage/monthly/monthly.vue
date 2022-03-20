@@ -43,7 +43,7 @@
 									<uni-th align="center">更多</uni-th>
 								</uni-tr>
 								<uni-tr v-for="(item,index) in currentArr" :key="index">
-									<uni-td align="center">{{ item.id }}</uni-td>
+									<uni-td align="center">{{ index + 1 }}</uni-td>
 									<uni-td align="center">{{ item.monthly_title }}</uni-td>
 									<uni-td align="center">{{ item.commit_time }}</uni-td>
 									<uni-td align="center" class="text-danger font-weight-bold">{{ check[item.check] }}
