@@ -7,7 +7,10 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					<view class="twoParts" v-if="isAccess">
+					<view v-if="last_task_id == task_id" class="font-weight-bold text-center">
+						<text class="text-danger font-weight-bold">当前已添加评价</text>
+					</view>
+					<view class="twoParts" v-else>
 						<uni-card title="我的实习评价">
 							<uni-list>
 								<uni-list-item title="参与计划">
@@ -34,12 +37,9 @@
 							</uni-list>
 						</uni-card>
 					</view>
-					<view v-else class="font-weight-bold text-center">
-						<text>当前没有未添加评价</text>
-					</view>
 				</view>
 				<view v-show="current === 1">
-					<view class="allAssess" v-if="arrData">
+					<view class="allAssess" v-if="isAccess">
 						<view v-for="(item, index) in arrData" :key="index">
 							<uni-card title="我的实习评价">
 								<uni-list>
@@ -68,7 +68,7 @@
 						</view>
 					</view>
 					<view v-else>
-						<text class="d-flex justify-content-center text-danger mt-5 font-weight-bold">当前没有评价</text>
+						<text class="d-flex justify-content-center text-danger mt-5 font-weight-bold">当前没有已评价</text>
 					</view>
 				</view>
 			</view>
@@ -149,7 +149,9 @@
 	export default {
 		data() {
 			return {
-				isAccess: true,
+				task_id: '',
+				last_task_id: '',
+				isAccess: '',
 				taskData: {
 					name: '',
 					time: '',
@@ -292,24 +294,29 @@
 					this.taskData.time = res.data.time;
 					this.taskData.teacher_name = res.data.teacher_name;
 					this.task_id = res.data.task_id;
+					const task_id = this.task_id;
+					console.log(this.task_id);
+					uni.request({
+						url: 'http://127.0.0.1/index.php/access/search',
+						method: 'GET',
+						data: {
+							id,task_id
+						},
+						success: res => {
+							this.arrData = res.data;
+							this.isAccess = res.data.length;
+							this.last_task_id = res.data.slice(-1)[0].task_id;
+							console.log(this.arrData);
+							console.log(this.last_task_id);
+							
+						},
+						fail: () => {
+							console.log('失败');
+						},
+						complete: () => {}
+					});
 				},
 				fail: () => {},
-				complete: () => {}
-			});
-			uni.request({
-				url: 'http://127.0.0.1/index.php/access/search',
-				method: 'GET',
-				data: {
-					id: id
-				},
-				success: res => {
-					this.arrData = res.data;
-					console.log(this.arrData);
-					
-				},
-				fail: () => {
-					console.log('失败');
-				},
 				complete: () => {}
 			});
 		},
@@ -348,8 +355,9 @@
 									icon: "success",
 									duration: 1000
 								});
-								this.arrData.push(this.taskData);
-
+								uni.reLaunch({
+									url: '/pages/practicePage/myAccess/myAccess'
+								})
 								this.display = !this.display;
 								this.isAccess = !this.isAccess;
 								uni.reLaunch({
