@@ -35,7 +35,7 @@
 					</uni-popup>
 				</view>
 				<view v-show="current === 1">
-					<uni-table stripe emptyText="暂无更多数据">
+					<uni-table stripe emptyText="暂无更多数据" v-if="Boolean(taskData.report)">
 						<uni-tr>
 							<uni-th align="center">参与实习</uni-th>
 							<uni-th align="center">实习时间</uni-th>
@@ -51,6 +51,9 @@
 							<uni-td align="center">{{taskData.report}}</uni-td>
 						</uni-tr>
 					</uni-table>
+					<view class="text-center" v-else>
+						<text class="text-danger font-weight-bold">当前未提交报告</text>
+					</view>
 				</view>
 			</view>
 		</view>

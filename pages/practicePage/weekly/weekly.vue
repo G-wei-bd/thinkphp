@@ -201,12 +201,14 @@
 			this.currentArr = this.Arr.slice(10 * this.pageCurrent - 10, 10 * this.pageCurrent);
 			const value = uni.getStorageSync('user_info');
 			const id = JSON.parse(value).id
+			const task_id = this.task_id;
 			uni.request({
 				url: 'http://127.0.0.1/index.php/weekly/search',
 				method: 'GET',
-				data: {id: id},
+				data: {id,task_id},
 				success: res => {
 					this.currentArr = res.data;
+					console.log(res.data);
 				},
 				fail: () => {},
 				complete: () => {}

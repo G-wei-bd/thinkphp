@@ -127,6 +127,7 @@
 						method: 'GET',
 						data: formData,
 						success: res => {
+							console.log(res.data);
 							if (res.data == 1) {
 								uni.showToast({
 									title: '提交成功',

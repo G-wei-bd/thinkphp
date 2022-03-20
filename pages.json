@@ -14,7 +14,11 @@
 	},
 
 	"pages": [{
-			"path": "pages/index/index"
+			"path": "pages/index/index",
+			"style": {
+				"enablePullDownRefresh": false,
+				"disableScroll": true
+			}
 		},
 		{
 			"path": "pages/login/login",
@@ -52,11 +56,6 @@
 				"enablePullDownRefresh": false,
 				"topWindow": false,
 				"leftWindow": false
-			}
-		}, {
-			"path": "pages/error/404",
-			"style": {
-				"navigationBarTitleText": "Not Found"
 			}
 		}, {
 			"path": "windows/leftWindow",

@@ -7,9 +7,9 @@
 					<uni-list-item title="指导老师" :note="taskData.teacher_name"></uni-list-item>
 					<uni-list-item title="是否提交岗位" :note="isHandler[handleValue]">
 						<view slot="footer">
-							<button v-if="isDisabled" class="btn btn-danger btn-sm" @click="isSubmit">提交岗位</button>
-							<button v-else class="btn btn-primary" v-show="isCommitList"
+							<button v-if="taskData.task_id == last_task_id" class="btn btn-primary" v-show="isCommitList"
 								@click="commitListDisplay">查看实习信息</button>
+							<button v-else class="btn btn-danger btn-sm" @click="isSubmit(taskData.task_id)">提交岗位</button>
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -166,6 +166,8 @@
 		data() {
 			return {
 				stu_id: '',
+				task_id: '',
+				last_task_id: '',
 				isDisabled: true,
 				isCommitList: true,
 				taskData: '',
@@ -216,6 +218,7 @@
 							this.handleValue = 1;
 						}
 						console.log(this.listData);
+						this.last_task_id = this.listData.slice(-1)[0].task_id;
 						this.isDisabled = !this.isDisabled;
 					}
 				},
@@ -230,13 +233,15 @@
 				data: {id},
 				success: res => {
 					this.taskData = res.data;
+					console.log(res.data);
 				},
 				fail: () => {},
 				complete: () => {}
 			});
 		},	
 		methods: {
-			isSubmit() {
+			isSubmit(e) {
+				this.commitData.task_id = e;
 				this.submit = !this.submit;
 			},
 			columnchange: function(e) {
@@ -278,6 +283,8 @@
 			},
 			commit(e) {
 				this.$refs.form.validate().then((res) => {
+					const value = uni.getStorageSync('user_info');
+					this.commitData.student_id = JSON.parse(value).id;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/practice/index',
 						method: 'GET',
@@ -285,11 +292,12 @@
 						success: res => {
 							if (res.data == 1) {
 								this.handleValue = 1;
-								setTimeout(function() {
-									this.$refs.popupSuccess.open();
-								}, 1000);
+								this.$refs.popupSuccess.open();
 								this.submit = !this.submit;
 								this.isDisabled = !this.isDisabled;
+								uni.reLaunch({
+									url:'/pages/practicePage/practice/practice'
+								})
 							}
 						},
 						fail: () => {
