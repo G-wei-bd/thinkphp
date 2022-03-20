@@ -44,6 +44,7 @@
 			return {
 				task_id: '',
 				taskData: '',
+				teacher_id:'',
 				now_time: '',
 				week: '',
 				// 当前的日期
@@ -60,6 +61,8 @@
 			this.monent = getTime();
 			const user_info = uni.getStorageSync('user_info');
 			const stud_id = JSON.parse(user_info).id;
+			const value = uni.getStorageSync('user_info');
+			const id = JSON.parse(value).id;
 			uni.request({
 				url: 'http://127.0.0.1/index.php/location/search',
 				method: 'GET',
@@ -79,6 +82,7 @@
 				data: {stud_id},
 				success: res => {
 					this.task_id = res.data.task_id;
+					this.teacher_id = res.data.teacher_id;
 				},
 				fail: () => {},
 				complete: () => {}
@@ -113,6 +117,7 @@
 							this.formData.student_id = id;
 							this.formData.user_name = user_name;
 							this.formData.task_id = this.task_id;
+							this.formData.teacher_id = this.teacher_id;
 							console.log(this.formData);
 							uni.request({
 								url: 'http://127.0.0.1/index.php/location/index',
