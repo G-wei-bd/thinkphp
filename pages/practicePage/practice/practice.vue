@@ -85,7 +85,7 @@
 				<button class="btn btn-danger" @click="commitListDisplay">返回</button>
 			</view>
 			<view>
-				<uni-card class="mb-5" title="实习信息详情" v-for="(item, index) in listData" :key="index">
+				<uni-card class="mb-5 dataList" title="实习信息详情" v-for="(item, index) in listData" :key="index">
 					<uni-list>
 						<uni-list-item title="实习单位名称">
 							<view slot="footer">
@@ -354,5 +354,9 @@
 
 	.commitBtn {
 		width: 200px;
+	}
+	
+	.dataList{
+		width: 500px;
 	}
 </style>
