@@ -14,13 +14,6 @@
 	},
 
 	"pages": [{
-		"path": "pages/first/first",
-		"style": {
-			"navigationBarTitleText": "",
-			"enablePullDownRefresh": false
-		}
-
-	}, {
 		"path": "pages/login/login",
 		"style": {
 			"navigationBarTitleText": "系统登录",

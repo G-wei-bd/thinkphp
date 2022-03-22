@@ -7,6 +7,18 @@
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
+			const value = uni.getStorageSync('user_info');
+			if(value){
+				console.log('已登录');
+				uni.switchTab({
+					url: '/pages/practicePage/practice/practice'
+				})
+			}else{
+				console.log('未登录');
+				uni.reLaunch({
+					url: '/pages/login/login'
+				})
+			}
 		},
 		onShow: function() {
 			console.log('App Show')
