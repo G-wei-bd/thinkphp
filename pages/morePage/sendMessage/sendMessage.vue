@@ -69,6 +69,8 @@
 			messageUpload() {
 				this.$refs.form.validate().then((res) => {
 					this.formData.time = getTime();
+					const value = uni.getStorageSync('user_info');
+					this.formData.teacher_name = JSON.parse(value).user_name;
 					const data = this.formData;
 					console.log(data);
 					uni.request({
