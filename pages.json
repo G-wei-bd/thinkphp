@@ -14,220 +14,209 @@
 	},
 
 	"pages": [{
-			"path": "pages/index/index",
-			"style": {
-				"enablePullDownRefresh": false,
-				"disableScroll": true
-			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "系统登录",
-				"enablePullDownRefresh": false,
-				"topWindow": false,
-				"leftWindow": false
-			}
-		}, {
-			"path": "pages/tabBar/practicePage/practicePage",
-			"style": {
-				"navigationBarTitleText": "我的实习",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/tabBar/morePage/morePage",
-			"style": {
-				"navigationBarTitleText": "更多",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/tabBar/myPage/myPage",
-			"style": {
-				"navigationBarTitleText": "我的",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/register/register",
-			"style": {
-				"navigationBarTitleText": "注册",
-				"enablePullDownRefresh": false,
-				"topWindow": false,
-				"leftWindow": false
-			}
-		}, {
-			"path": "windows/leftWindow",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "windows/topWindow",
-			"style": {
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/practice/practice",
-			"style": {
-				"navigationBarTitleText": "实习",
-				"enablePullDownRefresh": false
-			}
-
-		},{
-			"path": "pages/practicePage/agreement/agreement",
-			"style": {
-				"navigationBarTitleText": "三方协议",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/weekly/weekly",
-			"style": {
-				"navigationBarTitleText": "周记",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/monthly/monthly",
-			"style": {
-				"navigationBarTitleText": "月记",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/myAssess/myAssess",
-			"style": {
-				"navigationBarTitleText": "我的评价",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/report/report",
-			"style": {
-				"navigationBarTitleText": "实习报告",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/results/results",
-			"style": {
-				"navigationBarTitleText": "成绩鉴定",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/myPage/mySetting/mySetting",
-			"style": {
-				"navigationBarTitleText": "我的设置",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/myPage/resumeInfo/resumeInfo",
-			"style": {
-				"navigationBarTitleText": "简历信息",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/myPage/studentStatus/studentStatus",
-			"style": {
-				"navigationBarTitleText": "学籍信息",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/morePage/message/message",
-			"style": {
-				"navigationBarTitleText": "消息",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/morePage/location/location",
-			"style": {
-				"navigationBarTitleText": "签到",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/examine/examine",
-			"style": {
-				"navigationBarTitleText": "审核",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/exa-weekly/exa-weekly",
-			"style": {
-				"navigationBarTitleText": "审核周记",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/practicePage/exa-monthly/exa-monthly",
-			"style": {
-				"navigationBarTitleText": "审核月记",
-				"enablePullDownRefresh": false
-			}
-
-		}, {
-			"path": "pages/myPage/changePassword/changePassword",
-			"style": {
-				"navigationBarTitleText": "修改密码",
-				"enablePullDownRefresh": false
-			}
-
+		"path": "pages/first/first",
+		"style": {
+			"navigationBarTitleText": "",
+			"enablePullDownRefresh": false
 		}
-	    ,{
-            "path" : "pages/practicePage/exa-report/exa-report",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "审核实习报告",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/commitPlan/commitPlan",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "提交实习计划",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/morePage/sendMessage/sendMessage",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "发送消息",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/practicePage/exa-access/exa-access",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "查看评价",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/morePage/exa-location/exa-location",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "教师查看签到",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+
+	}, {
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": "系统登录",
+			"enablePullDownRefresh": false,
+			"topWindow": false,
+			"leftWindow": false
+		}
+	}, {
+		"path": "pages/tabBar/practicePage/practicePage",
+		"style": {
+			"navigationBarTitleText": "我的实习",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/tabBar/morePage/morePage",
+		"style": {
+			"navigationBarTitleText": "更多",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/tabBar/myPage/myPage",
+		"style": {
+			"navigationBarTitleText": "我的",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/register/register",
+		"style": {
+			"navigationBarTitleText": "注册",
+			"enablePullDownRefresh": false,
+			"topWindow": false,
+			"leftWindow": false
+		}
+	}, {
+		"path": "windows/leftWindow",
+		"style": {
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "windows/topWindow",
+		"style": {
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/practice/practice",
+		"style": {
+			"navigationBarTitleText": "实习",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/agreement/agreement",
+		"style": {
+			"navigationBarTitleText": "三方协议",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/weekly/weekly",
+		"style": {
+			"navigationBarTitleText": "周记",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/monthly/monthly",
+		"style": {
+			"navigationBarTitleText": "月记",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/myAssess/myAssess",
+		"style": {
+			"navigationBarTitleText": "我的评价",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/report/report",
+		"style": {
+			"navigationBarTitleText": "实习报告",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/results/results",
+		"style": {
+			"navigationBarTitleText": "成绩鉴定",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/myPage/mySetting/mySetting",
+		"style": {
+			"navigationBarTitleText": "我的设置",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/myPage/resumeInfo/resumeInfo",
+		"style": {
+			"navigationBarTitleText": "简历信息",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/myPage/studentStatus/studentStatus",
+		"style": {
+			"navigationBarTitleText": "学籍信息",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/morePage/message/message",
+		"style": {
+			"navigationBarTitleText": "消息",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/morePage/location/location",
+		"style": {
+			"navigationBarTitleText": "签到",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/examine/examine",
+		"style": {
+			"navigationBarTitleText": "审核",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/exa-weekly/exa-weekly",
+		"style": {
+			"navigationBarTitleText": "审核周记",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/exa-monthly/exa-monthly",
+		"style": {
+			"navigationBarTitleText": "审核月记",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/myPage/changePassword/changePassword",
+		"style": {
+			"navigationBarTitleText": "修改密码",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/exa-report/exa-report",
+		"style": {
+			"navigationBarTitleText": "审核实习报告",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/commitPlan/commitPlan",
+		"style": {
+			"navigationBarTitleText": "提交实习计划",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/morePage/sendMessage/sendMessage",
+		"style": {
+			"navigationBarTitleText": "发送消息",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/practicePage/exa-access/exa-access",
+		"style": {
+			"navigationBarTitleText": "查看评价",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
+		"path": "pages/morePage/exa-location/exa-location",
+		"style": {
+			"navigationBarTitleText": "教师查看签到",
+			"enablePullDownRefresh": false
+		}
+
+	}],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "SystemLogin",
