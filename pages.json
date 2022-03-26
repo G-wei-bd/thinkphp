@@ -14,6 +14,13 @@
 	},
 
 	"pages": [{
+		"path": "pages/tabBar/practicePage/practicePage",
+		"style": {
+			"navigationBarTitleText": "我的实习",
+			"enablePullDownRefresh": false
+		}
+
+	}, {
 		"path": "pages/login/login",
 		"style": {
 			"navigationBarTitleText": "系统登录",
@@ -21,13 +28,6 @@
 			"topWindow": false,
 			"leftWindow": false
 		}
-	}, {
-		"path": "pages/tabBar/practicePage/practicePage",
-		"style": {
-			"navigationBarTitleText": "我的实习",
-			"enablePullDownRefresh": false
-		}
-
 	}, {
 		"path": "pages/tabBar/morePage/morePage",
 		"style": {

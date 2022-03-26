@@ -110,7 +110,7 @@
 					success(res) {
 						if (res.confirm) {
 							uni.removeStorageSync("user_info");
-							uni.navigateTo({
+							uni.redirectTo({
 								url: '/pages/login/login',
 							});
 						} else if (res.cancel) {

@@ -15,7 +15,7 @@
 				})
 			}else{
 				console.log('未登录');
-				uni.reLaunch({
+				uni.redirectTo({
 					url: '/pages/login/login'
 				})
 			}
