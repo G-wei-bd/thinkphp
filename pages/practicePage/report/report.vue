@@ -24,7 +24,7 @@
 					<uni-popup ref="popup" type="center">
 						<view class="popupContainer">
 							<view>
-								<text class="text-primary">请上传实习报告，建议大小不超过 20M</text>
+								<text class="text-primary">请上传实习报告（Word文档），建议大小不超过 20M</text>
 							</view>
 							<view class="submitFile">
 								<uni-file-picker v-model="imageValue" file-mediatype="all" :image-styles="imageStyles"
@@ -48,7 +48,9 @@
 							<uni-td align="center">{{taskData.time}}</uni-td>
 							<uni-td align="center">{{taskData.teacher_name}}</uni-td>
 							<uni-td align="center">{{taskData.score}}</uni-td>
-							<uni-td align="center">{{taskData.report}}</uni-td>
+							<uni-td align="center">
+								<a :href="taskData.report">点此查看</a>
+							</uni-td>
 						</uni-tr>
 					</uni-table>
 					<view class="text-center" v-else>

@@ -21,7 +21,7 @@
 							<uni-td align="center">{{item.time}}</uni-td>
 							<uni-td align="center">{{item.teacher_name}}</uni-td>
 							<uni-td align="center">
-								<img :src="item.report">
+								<a :href="item.report">点此查看</a>
 							</uni-td>
 							<uni-td align="center" class="text-danger font-weight-bold">{{examine[item.report_check]}},评分是:{{item.score}}</uni-td>
 							<uni-td align="center">
