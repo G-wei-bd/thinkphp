@@ -1,7 +1,7 @@
 <template>
 	<view class="loginContainer container-fluid">
 		<view class="userContainer">
-			<image class="loginLogo" src="../../static/logo.svg"></image>
+			<text class="loginLogo text-danger font-weight-bold">请登录</text>
 			<form class="form-group" @submit="formSubmit">
 				<view class="userInfoContainer">
 					<view class="userInfo">
@@ -110,8 +110,7 @@
 		align-items: center;
 	}
 	.loginLogo{
-		width: 240rpx;
-		height: 80rpx;
+		display: block;
 		margin: 0 auto;
 		
 	}
