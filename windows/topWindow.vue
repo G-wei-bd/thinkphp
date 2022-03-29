@@ -57,8 +57,6 @@
 				}
 			}
 		},
-		mounted() {
-		},
 		methods: {
 			toSecondMenu(e) {
 				const activeTabBar = '/' + e.pagePath

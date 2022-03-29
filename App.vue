@@ -32,7 +32,7 @@
 <style>
 	/*每个页面公共css */
 	@import "/common/bootstrap.css";
-	@import url("//at.alicdn.com/t/font_3123617_i07wm7qzc2q.css");
+	@import url("//at.alicdn.com/t/font_3123617_0qvwncu6vium.css");
 	/* 隐藏tabbar */
 	.uni-app--showtopwindow+.uni-tabbar-bottom {
 		display: none;

@@ -7,7 +7,10 @@
 			</view>
 			<view class="content">
 				<view v-show="current === 0">
-					<view class="twoParts">
+					<view v-if="taskData.report">
+						<text class="d-block text-center text-danger font-weight-bold">当前没有待提交的实习报告</text>
+					</view>
+					<view class="twoParts" v-else>
 						<uni-card title="我的实习评价">
 							<uni-list>
 								<uni-list-item title="参与计划" :rightText="taskData.name"></uni-list-item>
