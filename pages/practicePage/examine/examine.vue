@@ -21,7 +21,11 @@
 							<uni-td align="center">{{item.time}}</uni-td>
 							<uni-td align="center">{{item.teacher_name}}</uni-td>
 							<uni-td align="center">
-								<img :src="item.agreement">
+								<view>
+									<a v-if="item.agreement" :href="item.agreement">点击查看</a>
+									<text v-else class="text-danger">未提交</text>
+								</view>
+								
 							</uni-td>
 							<uni-td align="center" class="text-danger font-weight-bold">{{examine[item.agreement_check]}}</uni-td>
 							<uni-td align="center">

@@ -293,6 +293,7 @@
 					this.taskData.name = res.data.name;
 					this.taskData.time = res.data.time;
 					this.taskData.teacher_name = res.data.teacher_name;
+					this.taskData.teacher_id = res.data.teacher_id;
 					this.task_id = res.data.task_id;
 					const task_id = this.task_id;
 					console.log(this.task_id);
