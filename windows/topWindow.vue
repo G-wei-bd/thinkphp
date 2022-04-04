@@ -5,8 +5,9 @@
 				<image src="../static/logo.png" mode="heightFix" style="width: 50px;"></image>
 			</navigator>
 		</view>
-		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current" @onTabItemTap="toSecondMenu" />
-		</view>
+		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current"
+			@onTabItemTap="toSecondMenu" />
+	</view>
 	</view>
 </template>
 
