@@ -144,13 +144,28 @@
 						},
 						fail: (res) => {
 
+						},
+						complete: (res) => {
+							if(!res.address){
+								uni.reLaunch({
+									url: '/pages/morePage/location/location'
+								})
+							}
 						}
 					});
 				}
-				uni.showToast({
+				if(!day.click && day.type == "this_month"){
+					uni.showToast({
+						title: '不允许补签，请点击当天日期',
+						icon: "none"
+					});
+				}else{
+					uni.showToast({
 					title: '今天已签到',
 					icon: "none"
 				});
+				}
+				
 				
 				
 

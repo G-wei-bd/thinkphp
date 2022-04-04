@@ -6,6 +6,7 @@
 			</navigator>
 		</view>
 		<custom-tab-bar class="tab-bar-flex" direction="horizontal" :show-icon="false" :selected="current" @onTabItemTap="toSecondMenu" />
+		</view>
 	</view>
 </template>
 
@@ -21,13 +22,13 @@
 				current: 0,
 				indexPage: [{
 					tabBar: '/pages/tabBar/practicePage/practicePage',
-					index:  '/pages/practicePage/practice/practice'
+					index: '/pages/practicePage/practice/practice'
 				}, {
 					tabBar: '/pages/tabBar/morePage/morePage',
-					index:  '/pages/morePage/message/message'
+					index: '/pages/morePage/message/message'
 				}, {
 					tabBar: '/pages/tabBar/myPage/myPage',
-					index:  '/pages/myPage/mySetting/mySetting'
+					index: '/pages/myPage/mySetting/mySetting'
 				}],
 			}
 		},
@@ -36,7 +37,7 @@
 				immediate: true,
 				handler(newRoute) {
 					const width = uni.getSystemInfoSync().screenWidth
-					if ( width >= 768 ) {
+					if (width >= 768) {
 						let path = newRoute.path
 						let comp
 						if (path === '/') {
@@ -46,7 +47,7 @@
 							comp = path.split('/')[2]
 						}
 						this.current = this.selected[comp]
-						for(const item of this.indexPage) {
+						for (const item of this.indexPage) {
 							if (path === item.tabBar) {
 								uni.redirectTo({
 									url: item.index
@@ -62,7 +63,7 @@
 				const activeTabBar = '/' + e.pagePath
 				const tabBarIndex = activeTabBar.split('/')[3]
 				this.current = this.selected[tabBarIndex]
-				for(const item of this.indexPage) {
+				for (const item of this.indexPage) {
 					if (activeTabBar === item.tabBar) {
 						uni.redirectTo({
 							url: item.index
@@ -88,6 +89,7 @@
 		background-color: #FFFFFF;
 		color: #333;
 	}
+
 	.logo {
 		display: flex;
 		flex-direction: row;
@@ -95,15 +97,17 @@
 		position: absolute;
 		left: 20px;
 	}
+
 	.logo image {
 		height: 50px;
 		width: 50px;
 	}
+
 	.logo text {
 		margin-left: 8px;
 	}
+
 	.tab-bar-flex {
 		width: 300px;
 	}
 </style>
-

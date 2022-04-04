@@ -133,6 +133,9 @@
 									title: '提交成功',
 									icon: "success"
 								});
+								uni.reLaunch({
+									url: '/pages/practicePage/commitPlan/commitPlan'
+								});
 							}
 						},
 						fail: () => {},
