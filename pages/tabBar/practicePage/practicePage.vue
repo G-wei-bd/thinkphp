@@ -70,6 +70,10 @@
 								url: 'report'
 							},
 							{
+								name: '教师查看岗位',
+								url: 'checkPost'
+							},
+							{
 								name: '教师审核三方',
 								url: 'examine'
 							},
@@ -80,7 +84,7 @@
 							{
 								name: '教师审核月记',
 								url: 'exa-monthly'
-							}, 
+							},
 							{
 								name: '教师查看评价',
 								url: 'exa-access'

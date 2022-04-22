@@ -84,7 +84,7 @@
 			<view class="goBack">
 				<button class="btn btn-danger" @click="commitListDisplay">返回</button>
 			</view>
-			<view>
+			<view class="d-flex" style="width: 500px;">
 				<uni-card class="mb-5 dataList" title="实习信息详情" v-for="(item, index) in listData" :key="index">
 					<uni-list>
 						<uni-list-item title="实习单位名称">
@@ -214,7 +214,7 @@
 				success: (res) => {
 					if (res.data) {
 						this.listData = res.data;
-						if(this.data != []){
+						if(res.data != []){
 							this.handleValue = 1;
 						}
 						console.log(this.listData);
@@ -285,6 +285,8 @@
 				this.$refs.form.validate().then((res) => {
 					const value = uni.getStorageSync('user_info');
 					this.commitData.student_id = JSON.parse(value).id;
+					this.commitData.student_name = JSON.parse(value).user_name;
+					this.commitData.teacher_id = this.taskData.teacher_id;
 					uni.request({
 						url: 'http://127.0.0.1/index.php/practice/index',
 						method: 'GET',
@@ -357,6 +359,6 @@
 	}
 	
 	.dataList{
-		width: 500px;
+		width: 500px !important;
 	}
 </style>
